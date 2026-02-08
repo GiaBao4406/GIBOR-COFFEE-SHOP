@@ -64,6 +64,23 @@
     </header>
 
     <main>
+      <!-- Loading Screen -->
+      <div class="logo" id="preloader">
+        <div class="loader-icon">
+          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+        </div>
+        <p
+          style="
+            color: white;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            font-weight: 600;
+          "
+        >
+          GIBOR COFFEE
+        </p>
+      </div>
+
       <div>
         <section class="hero">
           <div class="hero-content">
@@ -77,48 +94,63 @@
         </section>
       </div>
 
-      <div>
-        <section class="intro">
-          <h2>Hơn cả một tách cà phê</h2>
-          <p>
-            Tại GIBOR, chúng tôi tin rằng cà phê ngon nhất là khi nó giữ được sự
-            mộc mạc của đất trời và sự tử tế của người pha chế. Không hương
-            liệu, không tạp chất - chỉ có sự nguyên bản từ nông trại đến tách cà
-            phê trên tay bạn.
-          </p>
-          <div
-            class="featured-icons"
-            style="
-              display: flex;
-              justify-content: center;
-              gap: 50px;
-              flex-wrap: wrap;
-            "
-          >
-            <div>
-              <i
-                class="fas fa-leaf"
-                style="font-size: 2rem; color: var(--accent)"
-              ></i>
-              <p>100% Rang Mộc</p>
-            </div>
-            <div>
-              <i
-                class="fas fa-heart"
-                style="font-size: 2rem; color: var(--accent)"
-              ></i>
-              <p>Pha Chế Tận Tâm</p>
-            </div>
-            <div>
-              <i
-                class="fas fa-clock"
-                style="font-size: 2rem; color: var(--accent)"
-              ></i>
-              <p>Mở Cửa 07:00 - 22:00</p>
-            </div>
+      <section class="intro">
+        <h2>Hơn cả một tách cà phê</h2>
+        <p>
+          Tại GIBOR, chúng tôi tin rằng cà phê ngon nhất là khi nó giữ được sự
+          mộc mạc của đất trời và sự tử tế của người pha chế. Không hương liệu,
+          không tạp chất - chỉ có sự nguyên bản từ nông trại đến tách cà phê
+          trên tay bạn.
+        </p>
+        <div
+          class="featured-icons"
+          style="
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+          "
+        >
+          <div>
+            <i
+              class="fas fa-leaf"
+              style="font-size: 2rem; color: var(--accent)"
+            ></i>
+            <p>100% Rang Mộc</p>
           </div>
-        </section>
-      </div>
+          <div>
+            <i
+              class="fas fa-heart"
+              style="font-size: 2rem; color: var(--accent)"
+            ></i>
+            <p>Pha Chế Tận Tâm</p>
+          </div>
+          <div>
+            <i
+              class="fas fa-clock"
+              style="font-size: 2rem; color: var(--accent)"
+            ></i>
+            <p>Mở Cửa 07:00 - 22:00</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Advertising Promo Banner -->
+      <section class="promo-banner">
+        <div class="promo-content">
+          <span class="promo-tag">Ưu đãi giới hạn</span>
+          <h2>
+            Mua 2 Tặng 1 <br />
+            <span style="color: var(--accent)">Bạc Xỉu GIBOR</span>
+          </h2>
+          <p>
+            Dành riêng cho khách hàng trải nghiệm tại quán vào khung giờ sáng từ
+            7:00 - 10:00 hàng ngày. Đừng bỏ lỡ hương vị nguyên bản!
+          </p>
+          <a href="menu.html" class="btn-cta">Hãy thưởng thức ngay</a>
+        </div>
+        <div class="promo-image"></div>
+      </section>
     </main>
 
     <!-- FOOTER DÙNG CHUNG -->
@@ -126,15 +158,23 @@
       <div class="footer-container">
         <div class="footer-col">
           <h3 class="footer-logo">GIBOR COFFEE</h3>
-          <p>
-            Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất. Chúng
-            tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
-          </p>
+          <ul>
+            <li>
+              <p>
+                Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất.
+                Chúng tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
+              </p>
+            </li>
+            <li>
+              <img src="images/logoHuit.png" alt="logo-huit" height="60" />
+            </li>
+          </ul>
         </div>
 
         <div class="footer-col">
           <h4>Khám Phá</h4>
           <ul>
+            <li><a href="about.html">Giới thiệu</a></li>
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="contact.html">Liên hệ</a></li>
@@ -143,8 +183,14 @@
 
         <div class="footer-col">
           <h4>Liên Hệ</h4>
-          <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
-          <p>📞 0909 999 999</p>
+          <ul>
+            <li>
+              <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
+            </li>
+            <li>
+              <p>📞 0909 999 999</p>
+            </li>
+          </ul>
 
           <h4 style="margin-top: 25px">Theo Dõi GIBOR</h4>
           <div class="social-links">

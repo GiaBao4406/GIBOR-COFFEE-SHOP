@@ -7,6 +7,47 @@
 */
 
 /* 
+=================================== HIỆU ỨNG PRELOAD ==================================
+*/
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s;
+}
+
+.loader-icon {
+  font-size: 3rem;
+  color: var(--accent);
+  animation: coffee-bounce 1s ease-in-out infinite alternate;
+}
+
+@keyframes coffee-bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 
 =================================== DÙNG CHỦ ĐỀ CHUNG ==================================
 */
 
@@ -211,6 +252,7 @@ body {
 .icon-btn:hover {
   background: var(--accent);
   color: var(--primary);
+  transform: translateY(-3px);
 }
 
 .icon-btn.cart {
@@ -236,6 +278,29 @@ a {
   text-decoration: none;
   color: inherit;
   transition: 0.3s;
+}
+
+/* PHẦN NÚT BẤM */
+.btn-primary {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--white);
+  color: #000;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: #000;
+  transform: translateY(-3px);
 }
 
 /* ========================================== PHẦN FOOTER ================================== */
@@ -285,6 +350,7 @@ a {
 .footer-col ul li a:hover {
   color: var(--accent);
   padding-left: 5px;
+  transform: translateY(-3px);
 }
 
 .social-links a {

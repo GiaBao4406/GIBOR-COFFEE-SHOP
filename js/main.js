@@ -32,6 +32,14 @@ window.onload = () => {
   }
 };
 
+// Xử lý Preloader
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  setTimeout(() => {
+    preloader.classList.add("preloader-hidden");
+  }, 1200); // Hiển thị 1.2 giây để khách thấy logo
+});
+
 /* 
 ========================================================================================
 

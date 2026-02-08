@@ -61,7 +61,24 @@
       </div>
     </header>
 
-    <main class="about-page">
+    <main>
+      <!-- Loading Screen -->
+      <div class="logo" id="preloader">
+        <div class="loader-icon">
+          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+        </div>
+        <p
+          style="
+            color: white;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            font-weight: 600;
+          "
+        >
+          GIBOR COFFEE
+        </p>
+      </div>
+
       <!-- Hero Section -->
       <section class="about-hero">
         <div class="hero-content">
@@ -151,19 +168,28 @@
       </section>
     </main>
 
+    <!-- FOOTER DÙNG CHUNG -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
           <h3 class="footer-logo">GIBOR COFFEE</h3>
-          <p>
-            Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất. Chúng
-            tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
-          </p>
+          <ul>
+            <li>
+              <p>
+                Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất.
+                Chúng tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
+              </p>
+            </li>
+            <li>
+              <img src="images/logoHuit.png" alt="logo-huit" height="60" />
+            </li>
+          </ul>
         </div>
 
         <div class="footer-col">
           <h4>Khám Phá</h4>
           <ul>
+            <li><a href="about.html">Giới thiệu</a></li>
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="contact.html">Liên hệ</a></li>
@@ -172,8 +198,14 @@
 
         <div class="footer-col">
           <h4>Liên Hệ</h4>
-          <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
-          <p>📞 0909 999 999</p>
+          <ul>
+            <li>
+              <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
+            </li>
+            <li>
+              <p>📞 0909 999 999</p>
+            </li>
+          </ul>
 
           <h4 style="margin-top: 25px">Theo Dõi GIBOR</h4>
           <div class="social-links">
@@ -205,5 +237,18 @@
 
     <!-- Phần JS CHUNG -->
     <script src="js/main.js"></script>
+
+    <!-- Phần JS của about -->
+    <script src="js/about.js"></script>
   </body>
 </html>
+
+<!-- 
+
+========================================================================================
+
+                                KẾT THÚC CODE BỞI TRẦN GIA BẢO
+
+========================================================================================
+
+-->
