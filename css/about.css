@@ -1,0 +1,257 @@
+/* 
+========================================================================================
+
+                                    CODE BỞI TRẦN GIA BẢO
+
+========================================================================================
+*/
+
+:root {
+  --primary: #4b2c20;
+  --accent: #d4a373;
+  --bg: #fdf8f5;
+  --text: #2d2424;
+  --white: #ffffff;
+  --border: #eeeeee;
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Montserrat", sans-serif;
+  --font-sign: "Mrs Saint Delafield", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  line-height: 1.6;
+  background-color: var(--white);
+}
+
+/* --- HERO SECTION --- */
+.about-hero {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/about.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  letter-spacing: 1px;
+}
+
+/* --- STORY SECTION --- */
+.story-section {
+  padding: 100px 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.story-img {
+  position: relative;
+}
+
+.story-img img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 20px 20px 0 var(--accent);
+}
+
+.story-text h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 30px;
+}
+
+.story-text p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* --- TIMELINE SECTION --- */
+.timeline-section {
+  background-color: var(--bg);
+  padding: 100px 10%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--primary);
+}
+
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  margin-bottom: 50px;
+  position: relative;
+  width: 50%;
+  padding: 0 40px;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  background: var(--primary);
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+  right: -8px;
+}
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -8px;
+}
+
+.timeline-date {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.timeline-content {
+  background: var(--white);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(75, 44, 32, 0.1);
+}
+
+/* --- FOUNDER SECTION --- */
+.founder-section {
+  padding: 120px 10%;
+  background: var(--white);
+  text-align: center;
+}
+
+.founder-quote {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.founder-quote i {
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.3;
+  margin-bottom: 20px;
+}
+
+.founder-quote blockquote {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--primary);
+  margin-bottom: 30px;
+}
+
+.signature-container {
+  margin-top: 40px;
+}
+
+.signature-name {
+  font-family: var(--font-sign);
+  font-size: 5rem;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.founder-title {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: -10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .story-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+  .story-img img {
+    box-shadow: 10px 10px 0 var(--accent);
+  }
+  .timeline::before {
+    left: 30px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    text-align: left !important;
+  }
+  .timeline-dot {
+    left: 22px !important;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .signature-name {
+    font-size: 4rem;
+  }
+}

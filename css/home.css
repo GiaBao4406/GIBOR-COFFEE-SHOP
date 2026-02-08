@@ -7,6 +7,7 @@
 */
 
 /* =================================== PHẦN NỀN ======================================== */
+
 .hero {
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -30,6 +31,24 @@
   font-size: 1.5rem;
   margin-bottom: 30px;
   font-weight: 300;
+}
+
+/* --- INTRO SECTION --- */
+.intro {
+  padding: 100px 10%;
+  text-align: center;
+}
+.intro h2 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+.intro p {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
 
 /* =================================== PHẦN NÚT GỬI ======================================== */

@@ -12,7 +12,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COFFEE GIBOR SHOP</title>
+    <title>Giới thiệu về COFFEE GIBOR SHOP</title>
 
     <!-- THEME CHÍNH DÙNG CHUNG-->
     <link rel="stylesheet" href="css/style.css" />
@@ -27,10 +27,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <!-- THEME TRANG CHỦ -->
-    <link rel="stylesheet" href="css/home.css" />
+    <!-- THEME ABOUT -->
+    <link rel="stylesheet" href="css/about.css" />
   </head>
-
   <body>
     <!-- HEADER DÙNG CHUNG -->
     <header class="header">
@@ -58,70 +57,100 @@
             <span>Giỏ hàng</span>
             <span>0</span>
           </a>
-          <button class="theme-toggle" id="themeToggle">🌙</button>
         </div>
       </div>
     </header>
 
-    <main>
-      <div>
-        <section class="hero">
-          <div class="hero-content">
-            <h1>GIBOR COFFEE</h1>
-            <p>Thưởng thức hương vị Cà Phê nguyên bản.</p>
-            <div class="hero-btns">
-              <a href="menu.html" class="btn btn-primary">Đặt hàng ngay</a>
-              <a href="about.html" class="btn btn-secondary">Ghé thăm quán</a>
-            </div>
-          </div>
-        </section>
-      </div>
+    <main class="about-page">
+      <!-- Hero Section -->
+      <section class="about-hero">
+        <div class="hero-content">
+          <h1>GIBOR COFFEE</h1>
+          <p>Hành trình 5 năm kết tinh từ đam mê và sự tử tế</p>
+        </div>
+      </section>
 
-      <div>
-        <section class="intro">
-          <h2>Hơn cả một tách cà phê</h2>
+      <!-- Story Section -->
+      <section class="story-section">
+        <div class="story-img">
+          <img src="images/about1.jpg" alt="Founder Story" />
+        </div>
+        <div class="story-text">
+          <h2>Khởi Đầu Từ Tâm Huyết</h2>
           <p>
-            Tại GIBOR, chúng tôi tin rằng cà phê ngon nhất là khi nó giữ được sự
-            mộc mạc của đất trời và sự tử tế của người pha chế. Không hương
-            liệu, không tạp chất - chỉ có sự nguyên bản từ nông trại đến tách cà
-            phê trên tay bạn.
+            GIBOR không bắt đầu trong một văn phòng sang trọng. Nó bắt đầu từ
+            những buổi chiều muộn tại thành phố Hồ Chí Minh năm 2021, nơi một
+            cậu học sinh lớp 11 bị mê hoặc bởi mùi hương cà phê rang mộc.
           </p>
-          <div
-            class="featured-icons"
-            style="
-              display: flex;
-              justify-content: center;
-              gap: 50px;
-              flex-wrap: wrap;
-            "
-          >
-            <div>
-              <i
-                class="fas fa-leaf"
-                style="font-size: 2rem; color: var(--accent)"
-              ></i>
-              <p>100% Rang Mộc</p>
-            </div>
-            <div>
-              <i
-                class="fas fa-heart"
-                style="font-size: 2rem; color: var(--accent)"
-              ></i>
-              <p>Pha Chế Tận Tâm</p>
-            </div>
-            <div>
-              <i
-                class="fas fa-clock"
-                style="font-size: 2rem; color: var(--accent)"
-              ></i>
-              <p>Mở Cửa 07:00 - 22:00</p>
+          <p>
+            Với chúng tôi, cà phê không chỉ là thức uống. Đó là sự kiên trì, là
+            những lần thử sai, và là khát khao mang hương vị Cà Phê nguyên bản
+            trở lại với đúng giá trị của nó.
+          </p>
+        </div>
+      </section>
+
+      <!-- Timeline Section -->
+      <section class="timeline-section">
+        <div class="section-header">
+          <h2>Cột Mốc Phát Triển</h2>
+        </div>
+        <div class="timeline">
+          <!-- 2021 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2021</div>
+            <div class="timeline-content">
+              <h3>Hạt mầm ước mơ</h3>
+              <p>
+                Những mẻ cà phê đầu tiên được rang thủ công ngay tại căn bếp
+                nhỏ, nhen nhóm ý tưởng về một thương hiệu cà phê tử tế.
+              </p>
             </div>
           </div>
-        </section>
-      </div>
+          <!-- 2023 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2023</div>
+            <div class="timeline-content">
+              <h3>Vượt qua rào cản</h3>
+              <p>
+                Giai đoạn tìm kiếm nguồn nguyên liệu rang mộc tại các nông trại
+                Đắk Lắk. GIBOR bắt đầu với mô hình xe đẩy (Take-away) đầu tiên.
+              </p>
+            </div>
+          </div>
+          <!-- 2026 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026</div>
+            <div class="timeline-content">
+              <h3>Khẳng định vị thế</h3>
+              <p>
+                Chính thức xây dựng không gian thưởng thức cà phê chuyên nghiệp,
+                trở thành ngôi nhà của những người yêu cà phê nguyên bản.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Founder Signature Section -->
+      <section class="founder-section">
+        <div class="founder-quote">
+          <i class="fas fa-quote-left"></i>
+          <blockquote>
+            "GIBOR không chỉ bán cà phê, chúng tôi bán sự kiên trì của tuổi trẻ
+            và hương vị của sự thật."
+          </blockquote>
+          <div class="signature-container">
+            <div class="signature-name">Gia Bao</div>
+            <div class="founder-title">Founder of GIBOR COFFEE</div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!-- FOOTER DÙNG CHUNG -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -178,12 +207,3 @@
     <script src="js/main.js"></script>
   </body>
 </html>
-<!-- 
-
-========================================================================================
-
-                                KẾT THÚC CODE BỞI TRẦN GIA BẢO
-
-========================================================================================
-
--->
