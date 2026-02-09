@@ -1,0 +1,462 @@
+/* 
+========================================================================================
+
+                                    CODE BỞI NGUYỄN HOÀNG BẢO
+
+========================================================================================
+*/
+
+/* 
+=================================== DÙNG CHỦ ĐỀ CHUNG ==================================
+*/
+
+:root {
+  /* MÀU CHỦ ĐẠO */
+  --primary: #4b2c20;
+  --accent: #d4a373;
+  --bg: #fdf8f5;
+  --text: #2d2424;
+  --white: #ffffff;
+
+  /* Light mode */
+  --bg: #fdfcfb;
+  --text: #2c1b12;
+  --navbar: rgba(255, 255, 255, 0.9);
+  --card: #ffffff;
+
+  /* Coffee accent */
+  --accent-dark: #b08968;
+
+  /* Fonts */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Montserrat", sans-serif;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================================== NỀN TỐI ==================================  */
+body.dark {
+  --bg: #121212;
+  --text: #f5f5f5;
+  --navbar: rgba(75, 44, 32, 0.95);
+  --card: #1e1e1e;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+.navbar {
+  background: var(--navbar);
+}
+
+.card,
+.product-item {
+  background: var(--card);
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--accent);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: rotate(15deg);
+}
+
+/* 
+========================================== PHẦN HEADER ==================================
+*/
+.header {
+  position: sticky; /* cuộn xuống */
+  top: 0;
+  z-index: 999;
+  background: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--white);
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  transition: 0.4s ease;
+}
+
+.logo:hover img {
+  transform: rotate(8deg) scale(1.05);
+  box-shadow: 0 0 15px rgba(212, 163, 115, 0.7);
+}
+
+/* THANH ĐIỀU HƯỚNG */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8%;
+  background: rgba(75, 44, 32, 0.95);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+/* Gạch chân chạy */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Khi scroll */
+.header.scrolled {
+  background-color: var(
+    --primary-color
+  ); /* Sử dụng đúng tên biến đã khai báo ở :root */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Đổ bóng dùng rgba để chỉnh độ mờ cho đẹp */
+  padding: 10px 5%; /* Thu gọn header lại một chút khi cuộn cho tinh tế */
+  transition: all 0.4s ease; /* Giúp hiệu ứng biến đổi mượt mà */
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--accent);
+  color: var(--white);
+  font-size: 14px;
+}
+
+.icon-btn:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.icon-btn.cart {
+  font-size: 18px;
+  padding: 6px 12px;
+}
+
+.header.scrolled {
+  background: rgba(75, 44, 32, 0.9);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================== PHẦN THÂN ================================== */
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+
+/* ========================================== PHẦN FOOTER ================================== */
+.footer {
+  background: var(--primary);
+  color: var(--white);
+  padding: 60px 0 20px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-col h3 {
+  font-family: var(--font-heading);
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.footer-col h4 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a:hover {
+  color: var(--accent);
+  padding-left: 5px;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 15px 10px 0;
+  font-size: 14px;
+  border: 1px solid var(--white);
+  padding: 8px 18px;
+  border-radius: 20px;
+}
+
+.social-links a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* CĂN CHỈNH KÍCH THƯỚC PHÙ HỢP VỚI CẢ MOBILE */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav-links {
+    display: none;
+  }
+
+  .logo span {
+    display: none;
+  }
+}
+
+.menu-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+/* =========================================
+   TIÊU ĐỀ MENU (MENU GIBOR COFFEE)
+========================================= */
+.menu-title {
+  text-align: center;
+  font-size: 32px;
+  color: #5a2d1a;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* =========================================
+   MỖI NHÓM MENU (CÀ PHÊ / TRÀ / ...)
+========================================= */
+.menu-section {
+  margin-bottom: 50px; /* Tách các nhóm menu ra */
+}
+
+/* =========================================
+   TIÊU ĐỀ NHÓM (☕ CÀ PHÊ, 🍃 TRÀ...)
+========================================= */
+.section-title {
+  font-size: 24px;
+  color: #8b5e3c;
+  margin-bottom: 20px;
+  border-left: 5px solid #c9a063;
+  padding-left: 12px;
+}
+
+/* =========================================
+   GRID CHỨA CÁC MÓN (CARD)
+========================================= */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* =========================================
+   CARD SẢN PHẨM
+========================================= */
+.menu-card {
+  background: #fff7f0;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  position: relative;
+}
+
+/* Hiệu ứng khi rê chuột vào card */
+.menu-card:hover {
+  transform: translateY(-6px);
+}
+
+/* =========================================
+   ẢNH SẢN PHẨM
+========================================= */
+.menu-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* =========================================
+   TÊN SẢN PHẨM
+========================================= */
+.menu-card h4 {
+  margin: 12px 0 5px;
+  color: #5a2d1a;
+  font-size: 18px;
+}
+
+/* =========================================
+   MÔ TẢ NGẮN
+========================================= */
+.menu-card p {
+  font-size: 14px;
+  color: #777;
+}
+
+/* =========================================
+   GIÁ SẢN PHẨM
+========================================= */
+.price {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: bold;
+  color: #c27b43;
+}
+
+/* Nhãn dán best seller */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #ff9f1c, #ff5722);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transform: rotate(-8deg);
+
+  opacity: 1;
+  visibility: visible;
+
+  animation: bestSellerPulse 2.5s ease-in-out infinite;
+}
+
+.badge .icon {
+  font-size: 14px;
+  display: inline-block;
+  animation: fireWiggle 1.5s infinite;
+}
+/* 
+========================================================================================
+
+                                KẾT THÚC CODE BỞI NGUYỄN HOÀNG BẢO
+
+========================================================================================
+*/

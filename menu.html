@@ -1,0 +1,436 @@
+<!-- ======================================================================================== 
+                            CODE BỞI NGUYỄN HOÀNG BẢO
+
+=============================================================================================
+ -->
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Coffee Gibor</title>
+    <!-- THEME CHÍNH DÙNG CHUNG-->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/popup.css" />
+
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Mrs+Saint+Delafield&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <a href="index.html" class="logo">
+          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+          <span>GIBOR COFFEE SHOP</span>
+        </a>
+
+        <nav class="nav">
+          <ul class="nav-links">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="login.html" class="icon-btn">Đăng nhập</a>
+          <a href="cart.html" class="icon-btn cart">
+            🛒
+            <span>Giỏ hàng</span>
+            <span>0</span>
+          </a>
+          <button class="theme-toggle" id="themeToggle">🌙</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="menu-container">
+      <!-- Trần Gia Bảo bắt đầu chỉnh sửa -->
+      <!-- Loading Screen -->
+      <div class="logo" id="preloader">
+        <div class="loader-icon">
+          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+        </div>
+        <p
+          style="
+            color: white;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            font-weight: 600;
+          "
+        >
+          GIBOR COFFEE
+        </p>
+      </div>
+      <!-- Trần Gia Bảo kết thúc chỉnh sửa -->
+
+      <h2 class="menu-title">MENU GIBOR COFFEE</h2>
+      <!-- COFFEE -->
+      <section class="menu-section">
+        <h3 class="section-title">☕ CÀ PHÊ</h3>
+        <div class="menu-grid">
+          <div
+            class="menu-card"
+            onclick="openPopup('Cà phê đen', 'images/capheden.jpg', 25000)"
+          >
+            <img src="images/capheden.jpg" alt="Cà phê đen" />
+            <h4>Cà phê đen</h4>
+            <p>Đậm vị truyền thống</p>
+            <span class="price">25.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Cà phê sữa', 'images/caphesua.jpg', 30000)"
+          >
+            <img src="images/caphesua.jpg" alt="Cà phê sữa" />
+            <h4>Cà phê sữa</h4>
+            <p>Béo nhẹ – dễ uống</p>
+            <span class="price">30.000đ</span>
+          </div>
+
+          <div
+            class="menu-card best-seller"
+            onclick="openPopup('Bạc xỉu', 'images/bacxiu.jpg', 32000)"
+          >
+            <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
+            <img src="images/bacxiu.jpg" alt="Bạc xỉu" />
+            <h4>Bạc xỉu</h4>
+            <p>Sữa nhiều – cà phê ít</p>
+            <span class="price">32.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Cà phê muối', 'images/caphemuoi.jpg', 36000)"
+          >
+            <img src="images/caphemuoi.jpg" alt="Cà phê Muối" />
+            <h4>Cà phê Muối</h4>
+            <p>Đậm vị – đậm đà</p>
+            <span class="price">36.000đ</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trần Gia Bảo bắt đầu chỉnh sửa -->
+      <!-- MATHCHA -->
+      <section class="menu-section">
+        <h3 class="section-title">🍵 MATCHA</h3>
+        <div class="menu-grid">
+          <div
+            class="menu-card"
+            onclick="openPopup('Matcha Latte', 'images/matchalatte.jpg', 40000)"
+          >
+            <img src="images/matchalatte.jpg" alt="Matcha Latte" />
+            <h4>Matcha Latte</h4>
+            <p>Đậm vị – đậm đà</p>
+            <span class="price">40.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Matcha Dừa', 'images/matchadua.jpg', 36000)"
+          >
+            <img src="images/matchadua.jpg" alt="Matcha Dừa" />
+            <h4>Matcha Dừa</h4>
+            <p>Đậm vị – đậm đà – thơm dừa, thanh mát</p>
+            <span class="price">36.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Matcha Dâu', 'images/matchadau.jpg', 36000)"
+          >
+            <img src="images/matchadau.jpg" alt="Matcha Dâu" />
+            <h4>Matcha Dâu</h4>
+            <p>Đậm vị – đậm đà – thơm dâu, thanh mát</p>
+            <span class="price">36.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Matcha Xoài', 'images/matchaxoai.jpg', 36000)"
+          >
+            <img src="images/matchaxoai.jpg" alt="Matcha Xoài" />
+            <h4>Matcha Xoài</h4>
+            <p>Đậm vị – đậm đà – thơm xoài, thanh mát</p>
+            <span class="price">36.000đ</span>
+          </div>
+        </div>
+      </section>
+      <!-- Trần Gia Bảo kết thúc chỉnh sửa -->
+
+      <!-- TRÀ -->
+      <section class="menu-section">
+        <h3 class="section-title">🍃 TRÀ</h3>
+        <div class="menu-grid">
+          <div
+            class="menu-card"
+            onclick="openPopup('Trà Dâu', 'images/tradau.jpg', 30000)"
+          >
+            <img src="images/tradau.jpg" alt="Trà Dâu" />
+            <h4>Trà Dâu</h4>
+            <p>Thanh mát – Thơm dâu</p>
+            <span class="price">30.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Trà Vải', 'images/travai.jpg', 30000)"
+          >
+            <img src="images/travai.jpg" alt="Trà Vải" />
+            <h4>Trà Vải</h4>
+            <p>Giải khát mùa hè</p>
+            <span class="price">30.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="
+              openPopup('Trà Lựu Hibicus', 'images/luuhibicus.jpg', 30000)
+            "
+          >
+            <img src="images/luuhibicus.jpg" alt="Trà Lựu Hibicus" />
+            <h4>Trà Lựu Hibicus</h4>
+            <p>Thơm ngon – Thanh mát</p>
+            <span class="price">30.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Trà Đào', 'images/tradao.jpg', 30000)"
+          >
+            <img src="images/tradao.jpg" alt="Trà Đào" />
+            <h4>Trà Đào</h4>
+            <p>Thơm ngon – Thanh mát</p>
+            <span class="price">28.000đ</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- POPUP CHỌN SẢN PHẨM -->
+      <div
+        class="popup-overlay"
+        id="popup"
+        onclick="if (event.target === this) closePopup();"
+      >
+        <div class="popup-box">
+          <!-- Nút đóng popup -->
+          <span class="popup-close" onclick="closePopup()">✕</span>
+
+          <!-- Hình sản phẩm -->
+          <div class="popup-img-wrap">
+            <img id="popup-img" src="" alt="Sản phẩm" />
+          </div>
+
+          <!-- Thông tin sản phẩm -->
+          <div class="popup-info">
+            <h3 id="popup-name"></h3>
+            <p class="popup-desc">Chọn size để xem giá</p>
+
+            <!-- Chọn size - giá sẽ được cập nhật bởi JS -->
+            <div class="size-options" id="sizeOptions">
+              <button id="btn-size-s" class="size-btn">
+                <span class="size-label">S</span>
+                <span class="size-price" id="price-s"></span>
+              </button>
+              <button id="btn-size-m" class="size-btn">
+                <span class="size-label">M</span>
+                <span class="size-price" id="price-m"></span>
+              </button>
+              <button id="btn-size-l" class="size-btn">
+                <span class="size-label">L</span>
+                <span class="size-price" id="price-l"></span>
+              </button>
+            </div>
+
+            <!-- Lượng đường -->
+            <div class="option-group">
+              <label class="option-label">🍬 Lượng đường</label>
+              <div class="option-btns" id="sugarOptions">
+                <button
+                  class="option-btn"
+                  onclick="selectOption('sugar', '0%', this)"
+                >
+                  0%
+                </button>
+                <button
+                  class="option-btn"
+                  onclick="selectOption('sugar', '25%', this)"
+                >
+                  25%
+                </button>
+                <button
+                  class="option-btn active"
+                  onclick="selectOption('sugar', '50%', this)"
+                >
+                  50%
+                </button>
+                <button
+                  class="option-btn"
+                  onclick="selectOption('sugar', '75%', this)"
+                >
+                  75%
+                </button>
+                <button
+                  class="option-btn"
+                  onclick="selectOption('sugar', '100%', this)"
+                >
+                  100%
+                </button>
+              </div>
+            </div>
+
+            <!-- Lượng đá -->
+            <div class="option-group">
+              <label class="option-label">🧊 Lượng đá</label>
+              <div class="option-btns" id="iceOptions">
+                <button
+                  class="option-btn"
+                  onclick="selectOption('ice', '0%', this)"
+                >
+                  0%
+                </button>
+                <button
+                  class="option-btn"
+                  onclick="selectOption('ice', '25%', this)"
+                >
+                  25%
+                </button>
+                <button
+                  class="option-btn"
+                  onclick="selectOption('ice', '50%', this)"
+                >
+                  50%
+                </button>
+                <button
+                  class="option-btn"
+                  onclick="selectOption('ice', '75%', this)"
+                >
+                  75%
+                </button>
+                <button
+                  class="option-btn active"
+                  onclick="selectOption('ice', '100%', this)"
+                >
+                  100%
+                </button>
+              </div>
+            </div>
+
+            <!-- Ghi chú -->
+            <div class="option-group">
+              <label class="option-label">📝 Ghi chú</label>
+              <textarea
+                id="popupNote"
+                class="popup-note"
+                placeholder="VD: Ít đá, thêm sữa, không whipping..."
+                rows="2"
+              ></textarea>
+            </div>
+
+            <!-- Giá đang chọn -->
+            <div class="popup-price">
+              Giá: <strong><span id="price-value">0</span>đ</strong>
+            </div>
+
+            <!-- Nút thêm giỏ -->
+            <button class="add-cart" onclick="addToCart()">
+              <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast thông báo -->
+      <div class="popup-toast" id="popupToast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="popupToastMsg">Đã thêm vào giỏ hàng!</span>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-logo">GIBOR COFFEE</h3>
+          <ul>
+            <li>
+              <p>
+                Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất.
+                Chúng tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
+              </p>
+            </li>
+            <li>
+              <img src="images/logoHuit.png" alt="logo-huit" height="60" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Khám Phá</h4>
+          <ul>
+            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Liên Hệ</h4>
+          <ul>
+            <li>
+              <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
+            </li>
+            <li>
+              <p>📞 0909 999 999</p>
+            </li>
+          </ul>
+
+          <h4 style="margin-top: 25px">Theo Dõi GIBOR</h4>
+          <div class="social-links">
+            <a href="#" class="btn btn-secondary">Facebook</a>
+            <a href="#" class="btn btn-secondary">TikTok</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Vị Trí</h4>
+          <div class="google-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31352.538163214747!2d106.5926170349121!3d10.806159823201295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27d8b4f4d%3A0x92dcba2950430867!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBUaMawxqFuZyBUUC4gSOG7kyBDaMOtIE1pbmggKEhVSVQp!5e0!3m2!1svi!2s!4v1770452982001!5m2!1svi!2s"
+              width="100%"
+              height="150"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 GIBOR COFFEE. Designed by Team 3 Bảo & Anh.</p>
+      </div>
+    </footer>
+
+    <!-- Phần JS CHUNG -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
+<!-- ======================================================================================== 
+                             KẾT THÚC CODE BỞI NGUYỄN HOÀNG BẢO
+
+=============================================================================================
+ -->

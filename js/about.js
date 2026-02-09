@@ -1,3 +1,10 @@
+/* 
+========================================================================================
+
+                                    CODE BỞI TRẦN GIA BẢO
+
+========================================================================================
+*/
 // Xử lý Preloader
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
@@ -19,3 +26,11 @@ const observer = new IntersectionObserver((entries) => {
 document
   .querySelectorAll(".timeline-item")
   .forEach((item) => observer.observe(item));
+
+/* 
+========================================================================================
+
+                                KẾT THÚC CODE BỞI TRẦN GIA BẢO
+
+========================================================================================
+*/

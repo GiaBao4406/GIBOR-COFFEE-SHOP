@@ -1,0 +1,346 @@
+/* 
+========================================================================================
+
+                                     CODE BỞI NGUYỄN HOÀNG BẢO
+
+========================================================================================
+*/
+
+/* ===== LỚP PHỦ NỀN ===== */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* ===== KHUNG POPUP ===== */
+.popup-box {
+  background: var(--card, #fff);
+  width: 420px;
+  max-width: 92vw;
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow: hidden;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: popupSlideIn 0.35s ease;
+}
+
+@keyframes popupSlideIn {
+  from {
+    transform: translateY(40px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== NÚT ĐÓNG ===== */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  cursor: pointer;
+  font-size: 22px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.3s;
+}
+
+.popup-close:hover {
+  background: rgba(231, 76, 60, 0.9);
+}
+
+/* ===== ẢNH SẢN PHẨM ===== */
+.popup-img-wrap {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.popup-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.popup-box:hover .popup-img-wrap img {
+  transform: scale(1.03);
+}
+
+/* ===== PHẦN THÔNG TIN ===== */
+.popup-info {
+  padding: 20px 22px 22px;
+}
+
+/* Tên sản phẩm */
+.popup-info h3 {
+  font-family: var(--font-heading, serif);
+  font-size: 1.4rem;
+  color: var(--primary, #4b2c20);
+  margin-bottom: 4px;
+}
+
+body.dark .popup-info h3 {
+  color: var(--accent, #d4a373);
+}
+
+.popup-desc {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+/* ===== CHỌN SIZE ===== */
+.size-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.size-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 6px;
+  border-radius: 12px;
+  border: 2px solid var(--accent, #d4a373);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: var(--text, #2d2424);
+}
+
+.size-label {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.size-price {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+/* Hover */
+.size-btn:hover {
+  background: rgba(212, 163, 115, 0.15);
+  border-color: var(--primary, #4b2c20);
+  transform: translateY(-2px);
+}
+
+/* Đang chọn */
+.size-btn.active {
+  background: var(--accent, #d4a373);
+  border-color: var(--accent, #d4a373);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 163, 115, 0.45);
+}
+
+.size-btn.active .size-price {
+  opacity: 1;
+}
+
+/* ===== LƯỢNG ĐƯỜNG / ĐÁ / GHI CHÚ ===== */
+.option-group {
+  margin-bottom: 14px;
+}
+
+.option-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary, #4b2c20);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.dark .option-label {
+  color: var(--accent, #d4a373);
+}
+
+.option-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.option-btn {
+  flex: 1;
+  padding: 8px 4px;
+  border: 1.5px solid var(--accent, #d4a373);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text, #2d2424);
+  transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+  background: rgba(212, 163, 115, 0.15);
+  transform: translateY(-1px);
+}
+
+.option-btn.active {
+  background: var(--accent, #d4a373);
+  border-color: var(--accent, #d4a373);
+  color: #fff;
+}
+
+/* Ghi chú */
+.popup-note {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--accent, #d4a373);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text, #2d2424);
+  font-family: var(--font-body, sans-serif);
+  font-size: 13px;
+  resize: vertical;
+  min-height: 50px;
+  max-height: 100px;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.popup-note::placeholder {
+  color: var(--text, #999);
+  opacity: 0.5;
+}
+
+.popup-note:focus {
+  border-color: var(--primary, #4b2c20);
+  box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
+}
+
+/* ===== GIÁ ĐANG CHỌN ===== */
+.popup-price {
+  font-size: 18px;
+  color: var(--text, #2d2424);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.popup-price strong {
+  color: #e74c3c;
+  font-size: 22px;
+}
+
+/* ===== NÚT THÊM GIỎ HÀNG ===== */
+.add-cart {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary, #4b2c20);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.add-cart:hover {
+  background: var(--accent, #d4a373);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(212, 163, 115, 0.4);
+}
+
+.add-cart:active {
+  transform: translateY(0);
+}
+
+/* ===== TOAST THÔNG BÁO ===== */
+.popup-toast {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: #27ae60;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 6px 25px rgba(39, 174, 96, 0.4);
+  transform: translateX(400px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 10001;
+}
+
+.popup-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.popup-toast i {
+  font-size: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .popup-box {
+    width: 95vw;
+  }
+  .popup-img-wrap {
+    height: 200px;
+  }
+  .popup-info {
+    padding: 15px;
+  }
+  .size-btn {
+    padding: 10px 4px;
+  }
+  .size-label {
+    font-size: 15px;
+  }
+  .option-btn {
+    padding: 6px 2px;
+    font-size: 11px;
+  }
+  .popup-toast {
+    left: 15px;
+    right: 15px;
+    top: auto;
+    bottom: 20px;
+    justify-content: center;
+  }
+}
+
+/* 
+========================================================================================
+
+                                    KẾT THÚC CODE BỞI NGUYỄN HOÀNG BẢO
+
+========================================================================================
+*/
