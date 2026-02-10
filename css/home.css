@@ -41,7 +41,7 @@
   color: var(--white);
   position: relative;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  animation: float 6s ease-in-out infinite; /* Banner nhảy lên xuống nhẹ nhàng */
+  animation: float 6s ease-in-out infinite;
 }
 
 /* Lớp lấp lánh chạy qua banner */
@@ -67,6 +67,7 @@
   padding: 60px;
   z-index: 2;
 }
+
 .promo-tag {
   background: var(--accent);
   color: var(--primary);
@@ -77,7 +78,7 @@
   text-transform: uppercase;
   margin-bottom: 20px;
   display: inline-block;
-  animation: bounce 2s infinite; /* Thẻ tag nhảy */
+  animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
@@ -102,10 +103,27 @@
   margin-bottom: 15px;
   line-height: 1.2;
 }
+
 .promo-content p {
   font-size: 1.2rem;
   opacity: 0.9;
   margin-bottom: 30px;
+}
+
+.btn-cta {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--primary);
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+  background: var(--white);
+  transform: translateY(-3px);
 }
 
 .promo-image {
@@ -119,7 +137,7 @@
 }
 
 .promo-banner:hover .promo-image {
-  transform: scale(1.1); /* Hình ảnh phóng to khi rê chuột vào */
+  transform: scale(1.1);
 }
 
 .promo-banner::after {
@@ -185,6 +203,196 @@
   border-radius: 5px;
   display: inline-block;
   font-weight: bold;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--white);
+  color: #000;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* ===== RESPONSIVE HOME ===== */
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .promo-content {
+    padding: 40px;
+  }
+
+  .promo-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .promo-image {
+    height: 350px;
+  }
+
+  .intro {
+    padding: 70px 8%;
+  }
+
+  .intro h2 {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* HERO */
+  .hero {
+    height: 70vh;
+    min-height: 400px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hero-btns .btn {
+    width: 220px;
+    text-align: center;
+  }
+
+  /* PROMO BANNER */
+  .promo-banner {
+    margin: 30px 5%;
+    flex-direction: column;
+    border-radius: 20px;
+    animation: none;
+  }
+
+  .promo-content {
+    padding: 30px 25px;
+    text-align: center;
+  }
+
+  .promo-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .promo-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .promo-image {
+    height: 250px;
+    clip-path: none;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .promo-banner::after {
+    font-size: 4rem;
+    top: -10px;
+  }
+
+  /* INTRO */
+  .intro {
+    padding: 50px 5%;
+  }
+
+  .intro h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .intro p {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 60vh;
+    min-height: 350px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .hero-btns .btn {
+    width: 180px;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .promo-banner {
+    margin: 20px 3%;
+  }
+
+  .promo-content {
+    padding: 25px 18px;
+  }
+
+  .promo-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .promo-content p {
+    font-size: 0.85rem;
+  }
+
+  .promo-tag {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+  }
+
+  .promo-image {
+    height: 180px;
+  }
+
+  .intro {
+    padding: 35px 4%;
+  }
+
+  .intro h2 {
+    font-size: 1.6rem;
+  }
+
+  .intro p {
+    font-size: 0.85rem;
+  }
 }
 
 /* 

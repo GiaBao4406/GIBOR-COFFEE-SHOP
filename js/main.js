@@ -12,32 +12,64 @@ window.addEventListener("scroll", () => {
   navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
 
+// ==================== HAMBURGER MENU MOBILE ====================
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.querySelector(".nav");
+
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  });
+
+  // Đóng menu khi click vào link
+  const navLinks = navMenu.querySelectorAll(".nav-links a");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+      menuToggle.classList.remove("active");
+    });
+  });
+
+  // Đóng menu khi click bên ngoài
+  navMenu.addEventListener("click", (e) => {
+    if (e.target === navMenu) {
+      navMenu.classList.remove("active");
+      menuToggle.classList.remove("active");
+    }
+  });
+}
+
 // Hiệu ứng nền tối
 const toggleBtn = document.getElementById("themeToggle");
 
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 
-  const isDark = document.body.classList.contains("dark");
-  toggleBtn.textContent = isDark ? "☀️" : "🌙";
+    const isDark = document.body.classList.contains("dark");
+    toggleBtn.textContent = isDark ? "☀️" : "🌙";
 
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-});
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+}
 
 // Load lại trạng thái
 window.onload = () => {
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark");
-    toggleBtn.textContent = "☀️";
+    if (toggleBtn) toggleBtn.textContent = "☀️";
   }
 };
 
-// Xử lý Preloader
-window.addEventListener("load", () => {
+// Xử lý Preloader - dùng DOMContentLoaded để không đợi fonts/iframe
+document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
-  setTimeout(() => {
-    preloader.classList.add("preloader-hidden");
-  }, 1200); // Hiển thị 1.2 giây để khách thấy logo
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add("preloader-hidden");
+    }, 500); // Hiển thị 0.5 giây
+  }
 });
 
 /* 
@@ -142,6 +174,10 @@ function selectSize(size, price, btnElement) {
   document.getElementById("price-value").innerText =
     price.toLocaleString("vi-VN");
 
+  // Ẩn thông báo lỗi size khi đã chọn
+  const sizeError = document.getElementById("sizeError");
+  if (sizeError) sizeError.classList.remove("show");
+
   // Đánh dấu nút được chọn
   document.querySelectorAll(".size-options button").forEach((btn) => {
     btn.classList.remove("active");
@@ -167,6 +203,120 @@ function selectOption(type, value, btnElement) {
 ========================================================================================
 
                                 KẾT THÚC CODE BỞI NGUYỄN HOÀNG BẢO
+
+========================================================================================
+*/
+
+/* 
+========================================================================================
+
+                                    CODE BỞI TRẦN DƯƠNG GIA BẢO
+
+========================================================================================
+*/
+
+// ==================== THÊM VÀO GIỎ HÀNG ====================
+function addToCart() {
+  const sizeError = document.getElementById("sizeError");
+
+  // Kiểm tra đã chọn size chưa
+  if (!selectedSize || selectedPrice === 0) {
+    // Hiện thông báo lỗi màu đỏ
+    if (sizeError) sizeError.classList.add("show");
+    return;
+  }
+
+  // Ẩn thông báo lỗi nếu đã chọn size
+  if (sizeError) sizeError.classList.remove("show");
+
+  // Lấy giỏ hàng hiện tại
+  const cart = JSON.parse(localStorage.getItem("giborCart") || "[]");
+
+  // Lấy ghi chú
+  const noteEl = document.getElementById("popupNote");
+  const note = noteEl ? noteEl.value.trim() : "";
+
+  // Kiểm tra sản phẩm đã tồn tại chưa (cùng tên + size + đường + đá + ghi chú)
+  const existIndex = cart.findIndex(
+    (item) =>
+      item.name === currentProduct.name &&
+      item.size === selectedSize &&
+      item.sugar === selectedSugar &&
+      item.ice === selectedIce &&
+      item.note === note,
+  );
+
+  if (existIndex !== -1) {
+    // Nếu đã có (cùng tùy chọn) thì tăng số lượng
+    cart[existIndex].quantity += 1;
+  } else {
+    // Nếu chưa có thì thêm mới
+    cart.push({
+      name: currentProduct.name,
+      image: currentProduct.img,
+      size: selectedSize,
+      price: selectedPrice,
+      sugar: selectedSugar,
+      ice: selectedIce,
+      note: note,
+      quantity: 1,
+    });
+  }
+
+  // Lưu lại vào localStorage
+  localStorage.setItem("giborCart", JSON.stringify(cart));
+
+  // Cập nhật số lượng trên icon giỏ hàng
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartBadges = document.querySelectorAll(
+    ".icon-btn.cart span:last-child",
+  );
+  cartBadges.forEach((badge) => {
+    badge.textContent = totalItems;
+  });
+
+  // Đóng popup và hiện toast thông báo
+  closePopup();
+  showPopupToast(
+    'Đã thêm "' +
+      currentProduct.name +
+      '" (Size ' +
+      selectedSize +
+      ") vào giỏ hàng!",
+  );
+}
+
+// ==================== TOAST THÔNG BÁO (MENU PAGE) ====================
+function showPopupToast(message) {
+  const toast = document.getElementById("popupToast");
+  const toastMsg = document.getElementById("popupToastMsg");
+  if (!toast || !toastMsg) {
+    // Fallback nếu không có toast element
+    alert(message);
+    return;
+  }
+  toastMsg.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
+// Cập nhật số lượng giỏ hàng khi load trang
+document.addEventListener("DOMContentLoaded", () => {
+  const cart = JSON.parse(localStorage.getItem("giborCart") || "[]");
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartBadges = document.querySelectorAll(
+    ".icon-btn.cart span:last-child",
+  );
+  cartBadges.forEach((badge) => {
+    badge.textContent = totalItems;
+  });
+});
+/* 
+========================================================================================
+
+                                KẾT THÚC CODE BỞI TRẦN DƯƠNG GIA BẢO
 
 ========================================================================================
 */

@@ -1,0 +1,244 @@
+<!-- 
+
+========================================================================================
+
+                                    CODE BỞI TRẦN DƯƠNG GIA BẢO
+
+========================================================================================
+
+-->
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng - GIBOR COFFEE</title>
+
+    <!-- THEME CHÍNH DÙNG CHUNG-->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- CSS RIÊNG CHO CART -->
+    <link rel="stylesheet" href="css/cart.css" />
+
+    <!-- FONT DÙNG CHUNG -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Mrs+Saint+Delafield&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- HEADER DÙNG CHUNG -->
+    <header class="header">
+      <div class="header-container">
+        <!-- LOGO -->
+        <a href="index.html" class="logo">
+          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+          <span>GIBOR COFFEE</span>
+        </a>
+
+        <!-- NAV -->
+        <nav class="nav">
+          <ul class="nav-links">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+        </nav>
+
+        <!-- AUTH + CART -->
+        <div class="header-actions">
+          <a href="login.html" class="icon-btn">Đăng nhập</a>
+          <a href="cart.html" class="icon-btn cart">
+            🛒
+            <span>Giỏ hàng</span>
+            <span>0</span>
+          </a>
+          <button class="theme-toggle" id="themeToggle">🌙</button>
+          <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </header>
+
+    <main class="cart-container">
+      <!-- Loading Screen -->
+      <div class="logo" id="preloader">
+        <div class="loader-icon">
+          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+        </div>
+        <p
+          style="
+            color: white;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            font-weight: 600;
+          "
+        >
+          GIBOR COFFEE
+        </p>
+      </div>
+
+      <h2 class="cart-title">🛒 GIỎ HÀNG CỦA BẠN</h2>
+
+      <!-- Giỏ hàng trống -->
+      <div class="cart-empty" id="cartEmpty">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <p>Giỏ hàng của bạn đang trống!</p>
+        <a href="menu.html" class="btn-back-menu">Xem Menu</a>
+      </div>
+
+      <!-- Bảng giỏ hàng -->
+      <div class="cart-content" id="cartContent" style="display: none">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Sản phẩm</th>
+              <th>Size</th>
+              <th>Đơn giá</th>
+              <th>Số lượng</th>
+              <th>Thành tiền</th>
+              <th>Xóa</th>
+            </tr>
+          </thead>
+          <tbody id="cartBody">
+            <!-- Các sản phẩm sẽ được render bởi JS -->
+          </tbody>
+        </table>
+
+        <!-- Tổng cộng & Hành động -->
+        <div class="cart-summary">
+          <div class="cart-summary-info">
+            <p>Tổng sản phẩm: <strong id="totalItems">0</strong></p>
+            <p class="cart-total">
+              Tổng tiền: <strong id="totalPrice">0đ</strong>
+            </p>
+          </div>
+          <div class="cart-actions">
+            <button class="btn-clear" id="btnClearCart">
+              <i class="fa-solid fa-trash"></i> Xóa tất cả
+            </button>
+            <a href="menu.html" class="btn-continue">
+              <i class="fa-solid fa-arrow-left"></i> Tiếp tục mua
+            </a>
+            <button class="btn-checkout" id="btnCheckout">
+              <i class="fa-solid fa-credit-card"></i> Thanh toán
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popup xác nhận thanh toán -->
+      <div class="checkout-overlay" id="checkoutOverlay">
+        <div class="checkout-box">
+          <span class="checkout-close" id="checkoutClose">✕</span>
+          <h3>🧾 XÁC NHẬN ĐƠN HÀNG</h3>
+          <div class="checkout-details" id="checkoutDetails">
+            <!-- Chi tiết đơn hàng sẽ được render bởi JS -->
+          </div>
+          <div class="checkout-total">
+            Tổng thanh toán: <strong id="checkoutTotal">0đ</strong>
+          </div>
+          <div class="checkout-actions">
+            <button class="btn-cancel" id="btnCancelCheckout">Hủy</button>
+            <button class="btn-confirm" id="btnConfirmCheckout">
+              <i class="fa-solid fa-check"></i> Xác nhận đặt hàng
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thông báo thành công -->
+      <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMessage">Thao tác thành công!</span>
+      </div>
+    </main>
+
+    <!-- FOOTER DÙNG CHUNG -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="footer-logo">GIBOR COFFEE</h3>
+          <ul>
+            <li>
+              <p>
+                Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất.
+                Chúng tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
+              </p>
+            </li>
+            <li>
+              <img src="images/logoHuit.png" alt="logo-huit" height="60" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Khám Phá</h4>
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="contact.html">Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Liên Hệ</h4>
+          <ul>
+            <li>
+              <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
+            </li>
+            <li>
+              <p>📞 0909 999 999</p>
+            </li>
+          </ul>
+
+          <h4 style="margin-top: 25px">Theo Dõi GIBOR</h4>
+          <div class="social-links">
+            <a href="#" class="btn btn-secondary">Facebook</a>
+            <a href="#" class="btn btn-secondary">TikTok</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Vị Trí</h4>
+          <div class="google-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31352.538163214747!2d106.5926170349121!3d10.806159823201295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27d8b4f4d%3A0x92dcba2950430867!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBUaMawxqFuZyBUUC4gSOG7kyBDaMOtIE1pbmggKEhVSVQp!5e0!3m2!1svi!2s!4v1770452982001!5m2!1svi!2s"
+              width="100%"
+              height="150"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 GIBOR COFFEE. Designed by Team 3 Bảo & Anh.</p>
+      </div>
+    </footer>
+
+    <!-- Phần JS CHUNG -->
+    <script src="js/main.js"></script>
+    <!-- JS RIÊNG CHO CART -->
+    <script src="js/cart.js"></script>
+  </body>
+</html>
+
+<!-- 
+
+========================================================================================
+
+                                KẾT THÚC CODE BỞI TRẦN DƯƠNG GIA BẢO
+
+========================================================================================
+
+-->

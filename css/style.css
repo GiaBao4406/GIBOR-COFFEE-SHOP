@@ -33,6 +33,13 @@
   animation: coffee-bounce 1s ease-in-out infinite alternate;
 }
 
+.loader-icon img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 @keyframes coffee-bounce {
   from {
     transform: translateY(0);
@@ -260,6 +267,22 @@ body {
   padding: 6px 12px;
 }
 
+/* Số lượng giỏ hàng */
+.icon-btn.cart span:last-child {
+  background: var(--accent);
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 800;
+  height: 25px;
+  padding: 0 6px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  border: 2px solid var(--white);
+}
+
 .header.scrolled {
   background: rgba(75, 44, 32, 0.9);
   backdrop-filter: blur(6px);
@@ -377,17 +400,271 @@ a {
 }
 
 /* CĂN CHỈNH KÍCH THƯỚC PHÙ HỢP VỚI CẢ MOBILE */
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
+
+/* ===== NÚT HAMBURGER (ẨN TRÊN DESKTOP) ===== */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--accent);
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ===== TABLET (max-width: 992px) ===== */
+@media (max-width: 992px) {
+  .header-container {
+    padding: 10px 15px;
   }
+
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
   .nav-links {
-    display: none;
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .icon-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .footer-container {
+    gap: 20px;
+  }
+
+  .footer-col {
+    min-width: 180px;
+  }
+}
+
+/* ===== MOBILE (max-width: 768px) ===== */
+@media (max-width: 768px) {
+  /* HEADER */
+  .header-container {
+    padding: 8px 12px;
+  }
+
+  .logo img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logo {
+    font-size: 1rem;
+    gap: 8px;
   }
 
   .logo span {
     display: none;
+  }
+
+  /* Hiện nút hamburger */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Ẩn nav mặc định, hiện khi active */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(75, 44, 32, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .nav.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .nav.active .nav-links li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav.active .nav-links li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .nav.active .nav-links li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .nav.active .nav-links li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .nav-links a {
+    font-size: 22px;
+    padding: 18px 30px;
+    display: block;
+    letter-spacing: 3px;
+  }
+
+  /* Nút đóng menu */
+  .menu-toggle.active i::before {
+    content: "\f00d"; /* fa-xmark */
+  }
+
+  .menu-toggle {
+    z-index: 9999;
+  }
+
+  /* Header actions */
+  .header-actions {
+    gap: 8px;
+  }
+
+  .icon-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .icon-btn span:first-of-type {
+    display: none;
+  }
+
+  .icon-btn.cart {
+    font-size: 16px;
+    padding: 6px 8px;
+  }
+
+  .icon-btn.cart span:last-child {
+    font-size: 12px;
+    height: 20px;
+    padding: 0 5px;
+    margin-left: 2px;
+  }
+
+  .theme-toggle {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 0 15px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 15px;
+    gap: 25px;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+
+  .footer-col h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .social-links {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .social-links a {
+    margin: 0 5px 8px;
+  }
+
+  .footer-bottom {
+    margin-top: 25px;
+    font-size: 12px;
+  }
+
+  .google-map iframe {
+    height: 120px;
+  }
+}
+
+/* ===== MOBILE NHỎ (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 6px 10px;
+  }
+
+  .logo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .icon-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+    border-radius: 15px;
+  }
+
+  .icon-btn.cart {
+    font-size: 14px;
+  }
+
+  .theme-toggle {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .footer {
+    padding: 30px 0 12px;
   }
 }
 

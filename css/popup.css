@@ -161,6 +161,21 @@ body.dark .popup-info h3 {
   opacity: 1;
 }
 
+/* Thông báo lỗi khi chưa chọn size */
+.size-error {
+  display: none;
+  color: #e74c3c;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: -10px;
+  margin-bottom: 14px;
+  margin-left: 120px;
+}
+
+.size-error.show {
+  display: block;
+}
+
 /* ===== LƯỢNG ĐƯỜNG / ĐÁ / GHI CHÚ ===== */
 .option-group {
   margin-bottom: 14px;

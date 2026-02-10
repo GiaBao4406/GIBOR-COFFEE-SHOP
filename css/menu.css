@@ -311,17 +311,256 @@ a {
 }
 
 /* CĂN CHỈNH KÍCH THƯỚC PHÙ HỢP VỚI CẢ MOBILE */
+
+/* ===== NÚT HAMBURGER (ẨN TRÊN DESKTOP) ===== */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--accent);
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .header-container {
+    padding: 10px 15px;
+  }
+
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .menu-card img {
+    height: 280px;
+  }
+}
+
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
     text-align: center;
   }
-  .nav-links {
+
+  /* HEADER */
+  .logo span {
     display: none;
   }
 
-  .logo span {
+  .logo img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Nav overlay mobile */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(75, 44, 32, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .nav.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-links li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .nav.active .nav-links li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav.active .nav-links li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .nav.active .nav-links li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .nav.active .nav-links li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .nav-links a {
+    font-size: 22px;
+    padding: 18px 30px;
+    display: block;
+    letter-spacing: 3px;
+  }
+
+  .menu-toggle.active i::before {
+    content: "\f00d";
+  }
+
+  .menu-toggle {
+    z-index: 9999;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .icon-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .icon-btn span:first-of-type {
     display: none;
+  }
+
+  .icon-btn.cart {
+    font-size: 16px;
+    padding: 6px 8px;
+  }
+
+  .theme-toggle {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  /* MENU CONTENT */
+  .menu-container {
+    margin: 25px auto;
+    padding: 0 12px;
+  }
+
+  .menu-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .menu-card {
+    padding: 10px;
+  }
+
+  .menu-card img {
+    height: 200px;
+    border-radius: 8px;
+  }
+
+  .menu-card h4 {
+    font-size: 14px;
+    margin: 8px 0 3px;
+  }
+
+  .menu-card p {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 13px;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .menu-card img {
+    height: 250px;
+  }
+
+  .menu-card h4 {
+    font-size: 16px;
+  }
+
+  .menu-card p {
+    font-size: 13px;
+  }
+
+  .menu-title {
+    font-size: 20px;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .logo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .icon-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .theme-toggle {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
   }
 }
 

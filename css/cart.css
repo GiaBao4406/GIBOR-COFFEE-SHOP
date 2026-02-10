@@ -1,0 +1,660 @@
+/* 
+========================================================================================
+
+                                     CODE BỞI TRẦN DƯƠNG GIA BẢO
+
+========================================================================================
+*/
+
+/* ========================================== TỔNG THỂ CART ================================== */
+.cart-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  min-height: 60vh;
+}
+
+.cart-title {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+body.dark .cart-title {
+  color: var(--accent);
+}
+
+/* ========================================== GIỎ HÀNG TRỐNG ================================== */
+.cart-empty {
+  text-align: center;
+  padding: 60px 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+.cart-empty i {
+  font-size: 80px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.cart-empty p {
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: 25px;
+  opacity: 0.7;
+}
+
+.btn-back-menu {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-back-menu:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(75, 44, 32, 0.3);
+}
+
+/* ========================================== BẢNG GIỎ HÀNG ================================== */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: slideUp 0.4s ease;
+}
+
+.cart-table thead {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.cart-table th {
+  padding: 15px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cart-table td {
+  padding: 15px 12px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+}
+
+body.dark .cart-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cart-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.cart-table tbody tr:hover {
+  background: rgba(212, 163, 115, 0.08);
+}
+
+/* ===== Cột sản phẩm ===== */
+.cart-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.cart-product img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+}
+
+.cart-product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cart-product-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cart-product-options {
+  font-size: 11px;
+  opacity: 0.65;
+  color: var(--text);
+}
+
+.cart-product-note {
+  font-size: 11px;
+  font-style: italic;
+  opacity: 0.55;
+  color: var(--text);
+}
+
+/* ===== Size ===== */
+.cart-size {
+  background: var(--accent);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* ===== Giá ===== */
+.cart-price {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+body.dark .cart-price {
+  color: var(--accent);
+}
+
+/* ===== Số lượng ===== */
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cart-quantity button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark .cart-quantity button {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.cart-quantity button:hover {
+  background: var(--accent);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.cart-quantity span {
+  font-weight: 700;
+  font-size: 16px;
+  min-width: 25px;
+}
+
+/* ===== Thành tiền ===== */
+.cart-subtotal {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 15px;
+}
+
+body.dark .cart-subtotal {
+  color: var(--accent);
+}
+
+/* ===== Nút xóa ===== */
+.btn-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #e74c3c;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.btn-remove:hover {
+  background: #e74c3c;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* ========================================== TỔNG CỘNG ================================== */
+.cart-summary {
+  margin-top: 25px;
+  padding: 25px;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cart-summary-info p {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.cart-total {
+  font-size: 1.3rem !important;
+  color: var(--primary);
+}
+
+body.dark .cart-total {
+  color: var(--accent);
+}
+
+.cart-total strong {
+  color: #e74c3c;
+  font-size: 1.5rem;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===== Nút hành động ===== */
+.btn-clear,
+.btn-continue,
+.btn-checkout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-clear {
+  background: transparent;
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+}
+
+.btn-clear:hover {
+  background: #e74c3c;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-continue {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--primary);
+}
+
+body.dark .btn-continue {
+  color: var(--accent);
+}
+
+.btn-continue:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-checkout {
+  background: var(--primary);
+  color: var(--white);
+  border: 2px solid var(--primary);
+}
+
+.btn-checkout:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(212, 163, 115, 0.4);
+}
+
+/* ========================================== POPUP THANH TOÁN ================================== */
+.checkout-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.checkout-overlay.show {
+  display: flex;
+}
+
+.checkout-box {
+  background: var(--card);
+  width: 450px;
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 15px;
+  padding: 25px;
+  position: relative;
+  animation: popupFade 0.3s ease;
+  overflow-y: auto;
+}
+
+.checkout-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text);
+  transition: color 0.3s;
+}
+
+.checkout-close:hover {
+  color: #e74c3c;
+}
+
+.checkout-box h3 {
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--primary);
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+body.dark .checkout-box h3 {
+  color: var(--accent);
+}
+
+.checkout-details {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 15px;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+}
+
+body.dark .checkout-item {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.checkout-item-info {
+  flex: 1;
+}
+
+.checkout-item-name {
+  font-weight: 600;
+}
+
+.checkout-item-meta {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 3px;
+}
+
+.checkout-item-price {
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+body.dark .checkout-item-price {
+  color: var(--accent);
+}
+
+.checkout-total {
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid var(--accent);
+}
+
+.checkout-total strong {
+  color: #e74c3c;
+  font-size: 1.4rem;
+}
+
+.checkout-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.btn-cancel {
+  padding: 10px 25px;
+  border: 2px solid var(--text);
+  background: transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn-confirm {
+  padding: 10px 25px;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-confirm:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 163, 115, 0.4);
+}
+
+/* ========================================== TOAST THÔNG BÁO ================================== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #27ae60;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
+  transform: translateX(400px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 10000;
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast i {
+  font-size: 20px;
+}
+
+/* ========================================== HIỆU ỨNG ================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popupFade {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================== RESPONSIVE ================================== */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .cart-title {
+    font-size: 1.4rem;
+  }
+
+  /* Ẩn bảng, hiển thị dạng card trên mobile */
+  .cart-table thead {
+    display: none;
+  }
+
+  .cart-table,
+  .cart-table tbody,
+  .cart-table tr,
+  .cart-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .cart-table tr {
+    background: var(--card);
+    margin-bottom: 15px;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: relative;
+  }
+
+  .cart-table td {
+    padding: 6px 0;
+    text-align: left;
+    border: none;
+  }
+
+  .cart-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .cart-product {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .cart-product img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cart-summary {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cart-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-clear,
+  .btn-continue,
+  .btn-checkout {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .toast {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-actions {
+    flex-direction: column;
+  }
+
+  .checkout-box {
+    padding: 20px 15px;
+  }
+}
+
+/* 
+========================================================================================
+
+                                KẾT THÚC CODE BỞI TRẦN DƯƠNG GIA BẢO
+
+========================================================================================
+*/
