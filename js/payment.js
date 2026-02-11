@@ -92,8 +92,11 @@ function updateTotals(subtotal) {
 
   if (!subEl) return;
 
-  // Tính phí ship: miễn phí nếu đơn >= 200k hoặc có mã FREESHIP
-  let shippingFee = subtotal > 0 ? (subtotal >= 200000 ? 0 : 30000) : 0;
+  // Tính phí ship: miễn phí nếu uống tại quán, đơn >= 200k, hoặc có mã FREESHIP
+  let shippingFee = 0;
+  if (selectedShipping === "delivery") {
+    shippingFee = subtotal > 0 ? (subtotal >= 200000 ? 0 : 30000) : 0;
+  }
   if (isFreeShip && subtotal > 0) shippingFee = 0;
 
   const grand = subtotal - currentDiscount + shippingFee;
@@ -180,8 +183,138 @@ function selectPayment(method) {
   }
 }
 
+// ===== DỮ LIỆU CHI NHÁNH =====
+const BRANCHES = {
+  hcm: [
+    {
+      id: "hcm1",
+      name: "GIBOR Lê Trọng Tấn",
+      address: "140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, TP. Hồ Chí Minh",
+    },
+    {
+      id: "hcm2",
+      name: "GIBOR Nguyễn Huệ",
+      address: "263 Nguyễn Huệ, Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+    },
+    {
+      id: "hcm3",
+      name: "GIBOR Võ Văn Tần",
+      address: "108 Võ Văn Tần, Phường 6, Quận 3, TP. Hồ Chí Minh",
+    },
+    {
+      id: "hcm4",
+      name: "GIBOR Xa lộ Hà Nội",
+      address: "77 Xa lộ Hà Nội, Thảo Điền, TP. Thủ Đức, TP. Hồ Chí Minh",
+    },
+    {
+      id: "hcm5",
+      name: "GIBOR Điện Biên Phủ",
+      address: "23 Điện Biên Phủ, Phường 15, Bình Thạnh, TP. Hồ Chí Minh",
+    },
+  ],
+  hn: [
+    {
+      id: "hn1",
+      name: "GIBOR Trần Duy Hưng",
+      address: "81 Trần Duy Hưng, Trung Hòa, Cầu Giấy, Hà Nội",
+    },
+    {
+      id: "hn2",
+      name: "GIBOR Láng Hạ",
+      address: "66 Láng Hạ, Láng Hạ, Đống Đa, Hà Nội",
+    },
+    {
+      id: "hn3",
+      name: "GIBOR Bạch Mai",
+      address: "115 Bạch Mai, Bạch Mai, Hai Bà Trưng, Hà Nội",
+    },
+    {
+      id: "hn4",
+      name: "GIBOR Hoàng Hoa Thám",
+      address: "632 Hoàng Hoa Thám, Vĩnh Phúc, Ba Đình, Hà Nội",
+    },
+    {
+      id: "hn5",
+      name: "GIBOR Nguyễn Văn Cừ",
+      address: "334 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội",
+    },
+  ],
+  dn: [
+    {
+      id: "dn1",
+      name: "GIBOR Võ Nguyên Giáp",
+      address: "567 Võ Nguyên Giáp, Mỹ An, Ngũ Hành Sơn, Đà Nẵng",
+    },
+    {
+      id: "dn2",
+      name: "GIBOR Bạch Đằng",
+      address: "453 Bạch Đằng, Thạch Thang, Hải Châu, Đà Nẵng",
+    },
+    {
+      id: "dn3",
+      name: "GIBOR Nguyễn Văn Linh",
+      address: "638 Nguyễn Văn Linh, Nam Dương, Hải Châu, Đà Nẵng",
+    },
+    {
+      id: "dn4",
+      name: "GIBOR Tôn Đức Thắng",
+      address: "53 Tôn Đức Thắng, Hòa Khánh Bắc, Liên Chiểu, Đà Nẵng",
+    },
+    {
+      id: "dn5",
+      name: "GIBOR Cách Mạng Tháng Tám",
+      address: "55 Cách Mạng Tháng Tám, Khuê Trung, Cẩm Lệ, Đà Nẵng",
+    },
+  ],
+};
+
+let selectedBranch = null;
+
+function renderBranches(city) {
+  const branchList = document.getElementById("branchList");
+  if (!branchList) return;
+
+  selectedBranch = null;
+
+  if (!city || !BRANCHES[city]) {
+    branchList.innerHTML = "";
+    return;
+  }
+
+  let html = "";
+  BRANCHES[city].forEach((branch) => {
+    html += `
+      <label class="branch-card" data-branch-id="${branch.id}" onclick="selectBranch('${branch.id}', '${city}')">
+        <input type="radio" name="branch" value="${branch.id}" />
+        <span class="branch-radio"></span>
+        <div class="branch-info">
+          <span class="branch-name">${branch.name}</span>
+          <span class="branch-address"><i class="fa-solid fa-map-pin"></i> ${branch.address}</span>
+        </div>
+      </label>`;
+  });
+
+  branchList.innerHTML = html;
+}
+
+function selectBranch(branchId, city) {
+  selectedBranch = BRANCHES[city].find((b) => b.id === branchId);
+
+  document.querySelectorAll(".branch-card").forEach((card) => {
+    card.classList.remove("active");
+  });
+
+  const selected = document.querySelector(
+    `.branch-card[data-branch-id="${branchId}"]`,
+  );
+  if (selected) {
+    selected.classList.add("active");
+    selected.querySelector("input[type=radio]").checked = true;
+  }
+}
+
 // ===== CHỌN HÌNH THỨC NHẬN HÀNG =====
-let selectedShipping = "dine-in";
+let selectedShipping = "delivery";
 
 function selectShipping(method) {
   selectedShipping = method;
@@ -199,20 +332,42 @@ function selectShipping(method) {
 
   const shippingNotice = document.getElementById("shippingNotice");
   const requiredFields = document.querySelectorAll(".form-group .required");
+  const branchSection = document.getElementById("branchSection");
+  const addressFields = ["groupAddress", "groupCity", "groupWard"];
 
   if (method === "delivery") {
     // Hiện thông báo và bắt buộc các trường
     if (shippingNotice) shippingNotice.style.display = "flex";
     requiredFields.forEach((el) => (el.style.display = "inline"));
+    // Hiện địa chỉ, tỉnh/tp, phường/xã
+    addressFields.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "block";
+    });
+    // Ẩn chi nhánh
+    if (branchSection) branchSection.style.display = "none";
+    selectedBranch = null;
     // Xóa lỗi cũ
     clearAllErrors();
   } else {
     // Ẩn thông báo và không bắt buộc
     if (shippingNotice) shippingNotice.style.display = "none";
     requiredFields.forEach((el) => (el.style.display = "none"));
+    // Ẩn địa chỉ, tỉnh/tp, phường/xã
+    addressFields.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "none";
+    });
+    // Hiện chi nhánh
+    if (branchSection) branchSection.style.display = "block";
     // Xóa lỗi cũ
     clearAllErrors();
   }
+
+  // Cập nhật phí ship
+  const cart = getCart();
+  const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+  updateTotals(subtotal);
 }
 
 // ===== XÓA LỖI =====
@@ -258,11 +413,15 @@ function validateForm() {
   // Luôn yêu cầu tên khách hàng
   if (!name) errors.push({ id: "ckName", msg: "Vui lòng nhập họ tên" });
 
-  // Nếu sử dụng tại quán, chỉ cần validate tên
+  // Nếu sử dụng tại quán, validate tên + chi nhánh
   if (selectedShipping === "dine-in") {
     if (errors.length > 0) {
       showFieldError("ckName", "Vui lòng nhập họ tên", true);
       showToast("Vui lòng nhập tên khách hàng!");
+      return false;
+    }
+    if (!selectedBranch) {
+      showToast("Vui lòng chọn chi nhánh!");
       return false;
     }
     return true;
@@ -753,7 +912,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Khởi tạo trạng thái mặc định (sử dụng tại quán - ẩn dấu * bắt buộc)
-  selectShipping("dine-in");
+  selectShipping("delivery");
+
+  // Chọn khu vực chi nhánh
+  const branchCity = document.getElementById("branchCity");
+  if (branchCity) {
+    branchCity.addEventListener("change", () => {
+      renderBranches(branchCity.value);
+    });
+  }
 
   // Chọn tỉnh/thành phố - cập nhật phường/xã
   const citySelect = document.getElementById("ckCity");
@@ -778,6 +945,85 @@ document.addEventListener("DOMContentLoaded", () => {
 ========================================================================================
 
                             KẾT THÚC CODE BỞI TRẦN DƯƠNG GIA BẢO
+
+========================================================================================
+*/
+
+/* 
+========================================================================================
+
+                            BẮT ĐẦU CODE BỞI TRẦN GIA BẢO
+
+========================================================================================
+*/
+
+// Cấu hình ngân hàng
+const CONFIG = {
+  BANK_ID: "MB", // Ngân hàng MB Bank
+  ACC_NO: "398383979",
+  ACC_NAME: "TRAN GIA BAO",
+  TEMPLATE: "compact2", // 'compact', 'compact2', hoặc 'qr_only'
+};
+
+function selectPayment(method) {
+  const infoBox = document.getElementById("bankingInfo");
+  const options = document.querySelectorAll(".payment-option");
+
+  // Xóa class active cũ
+  options.forEach((opt) => opt.classList.remove("active"));
+
+  if (method === "banking") {
+    event.currentTarget.classList.add("active");
+    infoBox.style.display = "block";
+    updateQRCode();
+  } else {
+    infoBox.style.display = "none";
+    document.querySelector("label:first-child").classList.add("active");
+  }
+}
+
+function updateQRCode() {
+  const loader = document.getElementById("qrLoader");
+  const qrImg = document.getElementById("qrImage");
+
+  // 1. Lấy số tiền từ giao diện
+  let totalStr = document.getElementById("grandTotal").innerText;
+  let amount = totalStr.replace(/[^0-9]/g, ""); // Chỉ lấy số
+
+  // 2. Tạo nội dung chuyển khoản
+  let orderId = "GB" + Math.floor(1000 + Math.random() * 9000);
+  let desc = `GIBOR ${orderId}`;
+
+  // Cập nhật text hiển thị
+  document.getElementById("displayAmount").innerText =
+    parseInt(amount).toLocaleString() + "đ";
+  document.getElementById("displayDesc").innerText = desc;
+
+  // 3. Gọi API VietQR
+  // Cấu trúc: https://img.vietqr.io/image/<BANK_ID>-<ACCOUNT_NO>-<TEMPLATE>.png?amount=<AMOUNT>&addInfo=<DESCRIPTION>&accountName=<NAME>
+  const qrUrl = `https://img.vietqr.io/image/${CONFIG.BANK_ID}-${CONFIG.ACC_NO}-${CONFIG.TEMPLATE}.png?amount=${amount}&addInfo=${encodeURIComponent(desc)}&accountName=${encodeURIComponent(CONFIG.ACC_NAME)}`;
+
+  // Hiển thị loader trong khi tải ảnh
+  qrImg.style.display = "none";
+  loader.style.display = "block";
+
+  qrImg.src = qrUrl;
+
+  qrImg.onload = function () {
+    loader.style.display = "none";
+    qrImg.style.display = "block";
+  };
+
+  qrImg.onerror = function () {
+    loader.style.display = "none";
+    alert("Không thể tải mã QR. Vui lòng kiểm tra kết nối mạng.");
+  };
+}
+
+/* 
+========================================================================================
+
+                            KẾT THÚC CODE BỞI TRẦN GIA BẢO
 
 ========================================================================================
 */

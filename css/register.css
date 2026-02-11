@@ -1,0 +1,324 @@
+/* 
+  ========================================================================================
+                              CODE BỞI NGUYỄN THẾ ANH
+  ========================================================================================
+*/
+
+/* ===== TRANG ĐĂNG KÝ - BỐ CỤC CHÍNH ===== */
+.login-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px 40px;
+  /* Nền gradient nhẹ phong cách cà phê */
+  background: linear-gradient(135deg, #fdf8f5 0%, #f0e6dd 50%, #e8d5c4 100%);
+}
+
+/* ===== KHUNG FORM (CARD) ===== */
+.login-container {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 36px 36px;
+  /* Đổ bóng mềm */
+  box-shadow:
+    0 20px 60px rgba(75, 44, 32, 0.12),
+    0 4px 16px rgba(75, 44, 32, 0.08);
+  /* Hiệu ứng xuất hiện */
+  animation: fadeSlideUp 0.6s ease-out;
+}
+
+/* Hiệu ứng card xuất hiện từ dưới lên */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== ICON TRANG TRÍ ===== */
+.form-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #8b5a3c, #d4a373);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(139, 90, 60, 0.3);
+}
+
+.form-icon i {
+  font-size: 28px;
+  color: #fff;
+}
+
+/* ===== TIÊU ĐỀ FORM ===== */
+.form-top {
+  margin-bottom: 24px;
+}
+
+.form-top h1 {
+  font-family: var(--font-heading, "Playfair Display", serif);
+  color: #4b2c20;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+/* Dòng mô tả phụ */
+.form-subtitle {
+  color: #8b7355;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== FORM BOX ===== */
+.form-box {
+  width: 100%;
+}
+
+/* ===== HÀNG 2 CỘT (HỌ + TÊN) ===== */
+.input-row {
+  display: flex;
+  gap: 12px;
+}
+
+.input-row .input-group {
+  flex: 1;
+}
+
+/* ===== NHÓM INPUT ===== */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  background: #f9f5f2;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+/* Viền khi focus vào ô input */
+.input-group:focus-within {
+  border-color: #d4a373;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.15);
+}
+
+/* Icon trong ô input */
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #b08968;
+  font-size: 16px;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+/* Đổi màu icon khi focus */
+.input-group:focus-within .input-icon {
+  color: #8b5a3c;
+}
+
+/* Ô nhập liệu */
+.input-field {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px 0 42px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body, "Montserrat", sans-serif);
+  font-size: 14px;
+  color: #2d2424;
+}
+
+.input-field::placeholder {
+  color: #b5a08a;
+}
+
+/* ===== NÚT ẨN/HIỆN MẬT KHẨU ===== */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #b08968;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+  color: #8b5a3c;
+}
+
+/* ===== NÚT ĐĂNG KÝ ===== */
+.form-button-submit {
+  width: 100%;
+  height: 48px;
+  margin-top: 6px;
+  background: linear-gradient(135deg, #8b5a3c, #a0694b);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body, "Montserrat", sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(139, 90, 60, 0.3);
+}
+
+.form-button-submit:hover {
+  background: linear-gradient(135deg, #a0694b, #b5845e);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139, 90, 60, 0.4);
+}
+
+.form-button-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(139, 90, 60, 0.3);
+}
+
+/* ===== ĐƯỜNG CHIA CÁCH "HOẶC" ===== */
+.form-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.form-divider::before,
+.form-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d4a373, transparent);
+}
+
+.form-divider span {
+  padding: 0 16px;
+  color: #8b7355;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ===== NÚT ĐĂNG KÝ MẠNG XÃ HỘI ===== */
+.form-social {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.form-button-social {
+  flex: 1;
+  min-width: 140px;
+  max-width: 200px;
+  height: 46px;
+  border: 2px solid #e8ddd4;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body, "Montserrat", sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b2c20;
+  transition: all 0.3s ease;
+}
+
+.form-button-social img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.form-button-social:hover {
+  border-color: #d4a373;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Viền riêng cho Google & Facebook */
+.btn-google:hover {
+  border-color: #ea4335;
+}
+
+.btn-facebook:hover {
+  border-color: #1877f2;
+}
+
+/* ===== PHẦN CUỐI: LINK ĐĂNG NHẬP ===== */
+.form-down {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-down p {
+  color: #8b7355;
+  font-size: 14px;
+}
+
+.form-register {
+  color: #8b5a3c;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.form-register:hover {
+  color: #d4a373;
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE: MÀN HÌNH NHỎ ===== */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 28px 18px;
+    border-radius: 16px;
+  }
+
+  .form-top h1 {
+    font-size: 22px;
+  }
+
+  /* Hàng Họ+Tên chuyển thành 1 cột trên mobile */
+  .input-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-social {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-button-social {
+    max-width: 100%;
+  }
+}
+
+/* 
+  ========================================================================================
+                          KẾT THÚC CODE BỞI NGUYỄN THẾ ANH
+  ========================================================================================
+*/

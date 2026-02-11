@@ -109,11 +109,11 @@
                 <input type="tel" id="ckPhone" placeholder="0909 xxx xxx" required />
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="groupAddress">
               <label for="ckAddress">Địa chỉ <span class="required">*</span></label>
               <input type="text" id="ckAddress" placeholder="Số nhà, tên đường..." />
             </div>
-            <div class="form-group">
+            <div class="form-group" id="groupCity">
               <label for="ckCity">Tỉnh/Thành phố <span class="required">*</span></label>
               <select id="ckCity">
                 <option value="">--- Chọn ---</option>
@@ -122,7 +122,7 @@
                 <option value="hcm">TP. Hồ Chí Minh</option>
               </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="groupWard">
               <label for="ckWard">Phường/Xã <span class="required">*</span></label>
               <select id="ckWard">
                 <option value="">--- Chọn ---</option>
@@ -138,22 +138,39 @@
           <section class="checkout-section">
             <h3>Hình thức nhận hàng</h3>
             <div class="shipping-options">
-              <label class="shipping-option active" data-method="dine-in">
-                <input type="radio" name="shipping" value="dine-in" checked />
-                <span class="shipping-radio"></span>
-                <span class="shipping-label">Sử dụng tại quán</span>
-                <i class="fa-solid fa-store"></i>
-              </label>
-              <label class="shipping-option" data-method="delivery">
-                <input type="radio" name="shipping" value="delivery" />
+              <label class="shipping-option active" data-method="delivery">
+                <input type="radio" name="shipping" value="delivery" checked />
                 <span class="shipping-radio"></span>
                 <span class="shipping-label">Giao hàng tận nơi</span>
                 <i class="fa-solid fa-truck"></i>
+              </label>
+              <label class="shipping-option" data-method="dine-in">
+                <input type="radio" name="shipping" value="dine-in" />
+                <span class="shipping-radio"></span>
+                <span class="shipping-label">Sử dụng tại quán</span>
+                <i class="fa-solid fa-store"></i>
               </label>
             </div>
             <div class="shipping-notice" id="shippingNotice" style="display: none;">
               <i class="fa-solid fa-circle-info"></i>
               <span>Vui lòng nhập đầy đủ thông tin giao hàng ở trên</span>
+            </div>
+
+            <!-- CHỌN CHI NHÁNH (chỉ hiện khi uống tại quán) -->
+            <div class="branch-section" id="branchSection">
+              <h4><i class="fa-solid fa-location-dot"></i> Chọn chi nhánh</h4>
+              <div class="form-group">
+                <label for="branchCity">Khu vực</label>
+                <select id="branchCity">
+                  <option value="">--- Chọn khu vực ---</option>
+                  <option value="hcm">TP. Hồ Chí Minh</option>
+                  <option value="hn">Hà Nội</option>
+                  <option value="dn">Đà Nẵng</option>
+                </select>
+              </div>
+              <div class="branch-list" id="branchList">
+                <!-- Các chi nhánh sẽ được render bởi JS -->
+              </div>
             </div>
           </section>
 
@@ -176,14 +193,33 @@
             </div>
 
             <!-- Thông tin chuyển khoản (ẩn mặc định) -->
-            <div class="banking-info" id="bankingInfo" style="display: none;">
+            <!-- <div class="banking-info" id="bankingInfo" style="display: none;">
               <p><strong>Ngân hàng:</strong> Vietcombank</p>
               <p><strong>Số TK:</strong> 1234567890</p>
               <p><strong>Chủ TK:</strong> GIBOR COFFEE SHOP</p>
               <p><strong>Nội dung CK:</strong> <span id="bankingContent">GIBOR [Tên] [SĐT]</span></p>
+            </div> -->
+            
+            <!-- CODE BỞI TRẦN GIA BẢO -->
+            <!-- Vùng hiển thị QR -->
+            <div class="banking-info" id="bankingInfo">
+                <p style="font-weight: 600; margin-bottom: 10px;">Quét để thanh toán đơn hàng</p>
+                
+                <div class="loader" id="qrLoader"></div>
+                <img id="qrImage" src="" alt="Mã QR thanh toán">
+
+                <div class="qr-details">
+                    <p><strong>Chủ TK:</strong> <span id="bankName">TRAN GIA BAO</span></p>
+                    <p><strong>Số TK:</strong> 0909999999 <button class="copy-btn">Sao chép</button></p>
+                    <p><strong>Số tiền:</strong> <span id="displayAmount" style="color: var(--accent-color); font-weight: bold;">0đ</span></p>
+                    <p><strong>Nội dung:</strong> <span id="displayDesc" style="color: #007bff; font-weight: bold;"></span></p>
+                </div>
+                <p style="font-size: 11px; color: #888; margin-top: 10px;">* Giao dịch hoàn toàn bảo mật qua VietQR</p>
             </div>
           </section>
         </div>
+
+        <!-- KẾT THÚC CODE BỞI TRẦN GIA BẢO -->
 
         <!-- ===== CỘT PHẢI: ĐƠN HÀNG ===== -->
         <div class="checkout-right">
