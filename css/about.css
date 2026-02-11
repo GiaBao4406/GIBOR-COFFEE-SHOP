@@ -18,6 +18,18 @@ body {
   background-color: var(--white);
 }
 
+/* Nền tối */
+body.dark {
+  .story-text {
+    color: black;
+  }
+
+  .timeline-content h3,
+  .timeline-content p {
+    color: black;
+  }
+}
+
 /* --- HERO SECTION --- */
 .about-hero {
   position: relative;

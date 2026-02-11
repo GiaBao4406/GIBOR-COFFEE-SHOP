@@ -153,6 +153,21 @@
 
 /* =================================== PHẦN NỀN ======================================== */
 
+/* PHẦN NỀN TỐI */
+body.dark {
+  --bg: #121212;
+  --text: #f5f5f5;
+  --navbar: rgba(75, 44, 32, 0.95);
+  --card: #1e1e1e;
+  .intro h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+}
+
 .hero {
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
