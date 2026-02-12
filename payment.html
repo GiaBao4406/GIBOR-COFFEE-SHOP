@@ -191,28 +191,8 @@
                 <i class="fa-solid fa-building-columns"></i>
               </label>
             </div>
-
-            <!-- Thông tin chuyển khoản (ẩn mặc định, chỉ hiện khi chọn Banking) -->
-            <!-- CODE BỜI TRẦN GIA BẢO -->
-            <!-- Vùng hiển thị QR -->
-            <div class="banking-info" id="bankingInfo" style="display: none;">
-                <p style="font-weight: 600; margin-bottom: 10px;">Quét để thanh toán đơn hàng</p>
-                
-                <div class="loader" id="qrLoader"></div>
-                <img id="qrImage" src="" alt="Mã QR thanh toán">
-
-                <div class="qr-details">
-                    <p><strong>Chủ TK:</strong> <span id="bankName">TRAN GIA BAO</span></p>
-                    <p><strong>Số TK:</strong> 398383979 <button class="copy-btn">Sao chép</button></p>
-                    <p><strong>Số tiền:</strong> <span id="displayAmount" style="color: var(--accent-color); font-weight: bold;">0đ</span></p>
-                    <p><strong>Nội dung:</strong> <span id="displayDesc" style="color: #007bff; font-weight: bold;"></span></p>
-                </div>
-                <p style="font-size: 11px; color: #888; margin-top: 10px;">* Giao dịch hoàn toàn bảo mật qua VietQR</p>
-            </div>
           </section>
         </div>
-
-        <!-- KẾT THÚC CODE BỞI TRẦN GIA BẢO -->
 
         <!-- ===== CỘT PHẢI: ĐƠN HÀNG ===== -->
         <div class="checkout-right">
@@ -277,21 +257,40 @@
             <i class="fa-solid fa-circle-question"></i>
           </div>
           <h3>Xác nhận thanh toán</h3>
-          <p>Bạn đã hoàn tất chuyển khoản thanh toán chưa?</p>
+
+          <!-- CODE BỜI TRẦN GIA BẢO -->
+          <div class="banking-info" id="bankingInfo" style="display: none;">
+            <p style="font-weight: 600; margin-bottom: 10px;">Quét để thanh toán đơn hàng</p>
+              
+            <div class="loader" id="qrLoader"></div>
+            <img id="qrImage" src="" alt="Mã QR thanh toán">
+
+            <div class="qr-details">
+              <p><strong>Chủ TK:</strong> <span id="bankName">TRAN GIA BAO</span></p>
+              <p><strong>Số TK:</strong> 398383979 <button class="copy-btn">Sao chép</button></p>
+              <p><strong>Số tiền:</strong> <span id="displayAmount" style="color: var(--accent-color); font-weight: bold;">0đ</span></p>
+              <p><strong>Nội dung:</strong> <span id="displayDesc" style="color: #007bff; font-weight: bold;"></span></p>
+            </div>
+          </div>
+
           <p style="font-size: 13px; color: #666; margin-top: 8px;">
             Nhấn <strong>Xác nhận</strong> nếu đã chuyển khoản thành công.<br>
             Nhấn <strong>Hủy</strong> để kiểm tra lại thông tin.
           </p>
+
           <div class="confirm-actions">
             <button class="btn-confirm-cancel" id="btnConfirmCancel">
               <i class="fa-solid fa-times"></i> Hủy
             </button>
+
             <button class="btn-confirm-ok" id="btnConfirmOk">
               <i class="fa-solid fa-check"></i> Xác nhận
             </button>
+            
           </div>
         </div>
       </div>
+              <!-- KẾT THÚC CODE BỞI TRẦN GIA BẢO -->
 
       <!-- Popup đặt hàng thành công -->
       <div class="success-overlay" id="successOverlay">
@@ -377,6 +376,10 @@
         <p>© 2026 GIBOR COFFEE. Designed by Team 3 Bảo & Anh.</p>
       </div>
     </footer>
+
+    <!-- Firebase SDK cho xác thực Google -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>

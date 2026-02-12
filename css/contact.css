@@ -157,10 +157,10 @@ body.dark {
 /* Nội dung cửa sổ chính */
 .modal-content {
   background-color: white;
-  margin: 15% auto;
+  margin: 50% auto;
   padding: 30px;
   border-radius: 8px;
-  width: 50%;
+  width: 90%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

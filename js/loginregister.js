@@ -154,6 +154,102 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/**
+ * Xử lý đăng nhập bằng Google qua Firebase Auth
+ * Dùng cho cả trang Login và Register
+ */
+function handleGoogleSignIn() {
+  if (typeof firebase === "undefined" || !firebase.auth) {
+    showGiborPopup({
+      type: "error",
+      title: "Lỗi hệ thống",
+      message: "Không thể kết nối Firebase. Vui lòng thử lại sau.",
+      confirmText: "Đã hiểu",
+    });
+    return;
+  }
+
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope("email");
+  provider.addScope("profile");
+
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      const googleUser = {
+        displayName: result.user.displayName || "",
+        email: result.user.email || "",
+        photoURL: result.user.photoURL || "",
+        uid: result.user.uid,
+      };
+
+      const loginResult = UserManager.loginWithGoogle(googleUser);
+
+      if (loginResult.success) {
+        const welcomeMsg = loginResult.isNew
+          ? "Chào mừng " +
+            loginResult.user.displayName +
+            " đến với GIBOR Coffee!"
+          : "Chào mừng " +
+            loginResult.user.displayName +
+            " quay trở lại GIBOR Coffee!";
+
+        showGiborPopup({
+          type: "success",
+          title: loginResult.isNew
+            ? "Đăng ký thành công!"
+            : "Đăng nhập thành công!",
+          message: welcomeMsg,
+          confirmText: loginResult.isNew ? "Bắt đầu khám phá" : "Tiếp tục",
+          onConfirm: () => {
+            redirectAfterLogin();
+          },
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Google Sign-In error:", error);
+
+      // Nếu user đóng popup → không hiện lỗi
+      if (
+        error.code === "auth/popup-closed-by-user" ||
+        error.code === "auth/cancelled-popup-request"
+      ) {
+        return;
+      }
+
+      let errorMsg = "Không thể đăng nhập bằng Google. Vui lòng thử lại.";
+      if (error.code === "auth/network-request-failed") {
+        errorMsg = "Lỗi kết nối mạng. Vui lòng kiểm tra internet và thử lại.";
+      } else if (
+        error.code === "auth/account-exists-with-different-credential"
+      ) {
+        errorMsg = "Email này đã được liên kết với phương thức đăng nhập khác.";
+      }
+
+      showGiborPopup({
+        type: "error",
+        title: "Đăng nhập Google thất bại",
+        message: errorMsg,
+        confirmText: "Thử lại",
+      });
+    });
+}
+
+// Gắn sự kiện cho nút Google trên trang Login
+const btnGoogleLogin = document.getElementById("btnGoogleLogin");
+if (btnGoogleLogin) {
+  btnGoogleLogin.addEventListener("click", handleGoogleSignIn);
+}
+
+// Gắn sự kiện cho nút Google trên trang Register
+const btnGoogleRegister = document.getElementById("btnGoogleRegister");
+if (btnGoogleRegister) {
+  btnGoogleRegister.addEventListener("click", handleGoogleSignIn);
+}
+
 /* 
   ========================================================================================
                           KẾT THÚC CODE BỞI NGUYỄN THẾ ANH

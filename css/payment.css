@@ -340,16 +340,6 @@ body.dark {
   color: var(--accent);
 }
 
-.banking-info {
-  margin-top: 12px;
-  padding: 14px 16px;
-  background: rgba(212, 163, 115, 0.06);
-  border-radius: 8px;
-  border-left: 3px solid var(--accent);
-  font-size: 13px;
-  line-height: 1.8;
-}
-
 /* ===== CHI NHÁNH (UỐNG TẠI QUÁN) ===== */
 .branch-section {
   margin-top: 18px;
@@ -698,7 +688,7 @@ body.dark {
 }
 
 .confirm-popup {
-  background: var(--card);
+  background: var(--white);
   border-radius: 16px;
   padding: 32px;
   max-width: 440px;
@@ -706,6 +696,8 @@ body.dark {
   text-align: center;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.4s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .confirm-icon {
@@ -796,7 +788,7 @@ body.dark {
 }
 
 .success-box {
-  background: var(--card);
+  background: var(--white);
   width: 420px;
   max-width: 90vw;
   border-radius: 16px;
@@ -1017,15 +1009,29 @@ body.dark {
   border-color: var(--primary-color);
   background: #fdf8f5;
 }
+
 .banking-info {
-  display: none;
+  /* Hiển thị */
+  display: none; /* Giữ nguyên nếu bạn dùng JS để đóng/mở */
+
+  /* Kích thước và Khoảng cách */
+  margin-top: 10px;
+  padding: 10px 14px; /* Giảm padding để nhỏ lại */
+  max-width: auto; /* Giới hạn chiều rộng nếu cần */
+  max-height: auto; /* Giới hạn chiều rộng nếu cần */
+  margin: center; /* Căn giữa nếu muốn */
+
+  /* Font chữ */
+  font-size: 12px; /* Nhỏ hơn một chút so với 13px cũ */
+  line-height: 1.5; /* Thu hẹp khoảng cách dòng */
   text-align: center;
-  border: 2px dashed #d3bba3;
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 15px;
-  background: #fff;
+
+  /* Trang trí */
+  background: rgba(212, 163, 115, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #d3bba3; /* Thay var(--accent) bằng mã màu nếu biến chưa chạy */
 }
+
 #qrImage {
   max-width: 220px;
   height: auto;
