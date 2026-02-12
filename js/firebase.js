@@ -6,10 +6,10 @@
 
 /**
  * firebase.js - Cấu hình Firebase cho toàn bộ ứng dụng
- * 
+ *
  * File này khởi tạo Firebase App và export đối tượng `auth`
  * để các module khác (loginregister.js,...) sử dụng.
- * 
+ *
  * SDK: Firebase v10 modular (tree-shakable)
  */
 

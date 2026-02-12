@@ -696,6 +696,36 @@ a {
   display: inline-block;
   animation: fireWiggle 1.5s infinite;
 }
+
+/* Animation Best Seller */
+@keyframes bestSellerPulse {
+  0% {
+    transform: rotate(-8deg) scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    transform: rotate(-8deg) scale(1.08);
+    box-shadow: 0 6px 14px rgba(255, 87, 34, 0.6);
+  }
+  100% {
+    transform: rotate(-8deg) scale(1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* ANIMATION CHO IC0N*/
+@keyframes fireWiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
 /* 
 ========================================================================================
 

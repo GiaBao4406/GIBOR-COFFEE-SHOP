@@ -129,7 +129,7 @@
 .promo-image {
   flex: 0.8;
   height: 450px;
-  background: url("../images/khuyenmai.jpg");
+  background: url("../images/banner/khuyenmai.jpg");
   background-size: cover;
   background-position: center;
   clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -171,7 +171,7 @@ body.dark {
 .hero {
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../images/hero-bg.jpg") center/cover no-repeat;
+    url("../images/banner/hero-bg.jpg") center/cover no-repeat;
   height: 100vh;
   display: flex;
   justify-content: center;

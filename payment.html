@@ -36,7 +36,7 @@
       <div class="header-container">
         <!-- LOGO -->
         <a href="index.html" class="logo">
-          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+          <img src="images/logo/logo.jpg" alt="GIBOR Coffee" />
           <span>GIBOR COFFEE</span>
         </a>
 
@@ -52,7 +52,7 @@
 
         <!-- AUTH + CART -->
         <div class="header-actions">
-          <a href="login.html" class="icon-btn">Đăng nhập</a>
+          <a href="login.html" class="icon-btn" id="authLink">Đăng nhập</a>
           <a href="cart.html" class="icon-btn cart">
             🛒
             <span>Giỏ hàng</span>
@@ -69,7 +69,7 @@
       <!-- Loading Screen -->
       <div class="logo" id="preloader">
         <div class="loader-icon">
-          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+          <img src="images/logo/logo.jpg" alt="GIBOR Coffee" />
         </div>
         <p
           style="
@@ -192,17 +192,10 @@
               </label>
             </div>
 
-            <!-- Thông tin chuyển khoản (ẩn mặc định) -->
-            <!-- <div class="banking-info" id="bankingInfo" style="display: none;">
-              <p><strong>Ngân hàng:</strong> Vietcombank</p>
-              <p><strong>Số TK:</strong> 1234567890</p>
-              <p><strong>Chủ TK:</strong> GIBOR COFFEE SHOP</p>
-              <p><strong>Nội dung CK:</strong> <span id="bankingContent">GIBOR [Tên] [SĐT]</span></p>
-            </div> -->
-            
-            <!-- CODE BỞI TRẦN GIA BẢO -->
+            <!-- Thông tin chuyển khoản (ẩn mặc định, chỉ hiện khi chọn Banking) -->
+            <!-- CODE BỜI TRẦN GIA BẢO -->
             <!-- Vùng hiển thị QR -->
-            <div class="banking-info" id="bankingInfo">
+            <div class="banking-info" id="bankingInfo" style="display: none;">
                 <p style="font-weight: 600; margin-bottom: 10px;">Quét để thanh toán đơn hàng</p>
                 
                 <div class="loader" id="qrLoader"></div>
@@ -210,7 +203,7 @@
 
                 <div class="qr-details">
                     <p><strong>Chủ TK:</strong> <span id="bankName">TRAN GIA BAO</span></p>
-                    <p><strong>Số TK:</strong> 0909999999 <button class="copy-btn">Sao chép</button></p>
+                    <p><strong>Số TK:</strong> 398383979 <button class="copy-btn">Sao chép</button></p>
                     <p><strong>Số tiền:</strong> <span id="displayAmount" style="color: var(--accent-color); font-weight: bold;">0đ</span></p>
                     <p><strong>Nội dung:</strong> <span id="displayDesc" style="color: #007bff; font-weight: bold;"></span></p>
                 </div>
@@ -264,7 +257,7 @@
                 <i class="fa-solid fa-chevron-left"></i> Quay về giỏ hàng
               </a>
               <button class="btn-place-order" id="btnPlaceOrder">
-                ĐẶT HÀNG
+                <i class="fa-solid fa-check"></i> ĐẶT HÀNG
               </button>
             </div>
           </section>
@@ -275,6 +268,29 @@
       <div class="toast" id="toast">
         <i class="fa-solid fa-circle-check"></i>
         <span id="toastMessage">Thao tác thành công!</span>
+      </div>
+
+      <!-- Popup xác nhận thanh toán -->
+      <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-popup">
+          <div class="confirm-icon">
+            <i class="fa-solid fa-circle-question"></i>
+          </div>
+          <h3>Xác nhận thanh toán</h3>
+          <p>Bạn đã hoàn tất chuyển khoản thanh toán chưa?</p>
+          <p style="font-size: 13px; color: #666; margin-top: 8px;">
+            Nhấn <strong>Xác nhận</strong> nếu đã chuyển khoản thành công.<br>
+            Nhấn <strong>Hủy</strong> để kiểm tra lại thông tin.
+          </p>
+          <div class="confirm-actions">
+            <button class="btn-confirm-cancel" id="btnConfirmCancel">
+              <i class="fa-solid fa-times"></i> Hủy
+            </button>
+            <button class="btn-confirm-ok" id="btnConfirmOk">
+              <i class="fa-solid fa-check"></i> Xác nhận
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Popup đặt hàng thành công -->
@@ -308,7 +324,7 @@
               </p>
             </li>
             <li>
-              <img src="images/logoHuit.png" alt="logo-huit" height="60" />
+              <img src="images/logo/logoHuit.png" alt="logo-huit" height="60" />
             </li>
           </ul>
         </div>
@@ -362,6 +378,7 @@
       </div>
     </footer>
 
+    <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script src="js/payment.js"></script>
 </body>

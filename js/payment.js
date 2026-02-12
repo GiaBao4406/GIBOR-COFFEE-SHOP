@@ -164,11 +164,17 @@ function applyCoupon() {
 }
 
 // ===== CHỌN PHƯƠNG THỨC THANH TOÁN =====
+let selectedPayment = "cod"; // Biến lưu phương thức thanh toán: 'cod' hoặc 'banking'
+
 function selectPayment(method) {
+  selectedPayment = method; // Lưu phương thức đã chọn
+
+  // Xóa class active cũ
   document
     .querySelectorAll(".payment-option")
     .forEach((el) => el.classList.remove("active"));
 
+  // Thêm class active cho option được chọn
   const selected = document.querySelector(
     `.payment-option[data-method="${method}"]`,
   );
@@ -177,9 +183,25 @@ function selectPayment(method) {
     selected.querySelector("input[type=radio]").checked = true;
   }
 
+  // Ẩn/hiện phần thông tin chuyển khoản + QR code
   const bankInfo = document.getElementById("bankingInfo");
-  if (bankInfo) {
-    bankInfo.style.display = method === "banking" ? "block" : "none";
+  const btnPlace = document.getElementById("btnPlaceOrder");
+
+  if (method === "banking") {
+    // Hiện QR thanh toán
+    if (bankInfo) bankInfo.style.display = "block";
+    // Đổi text nút thành "XÁC NHẬN ĐÃ THANH TOÁN"
+    if (btnPlace)
+      btnPlace.innerHTML =
+        '<i class="fa-solid fa-credit-card"></i> XÁC NHẬN ĐÃ THANH TOÁN';
+    // Cập nhật QR code với số tiền hiện tại
+    updateQRCode();
+  } else {
+    // Ẩn QR thanh toán khi chọn COD
+    if (bankInfo) bankInfo.style.display = "none";
+    // Đổi text nút về "ĐẶT HÀNG"
+    if (btnPlace)
+      btnPlace.innerHTML = '<i class="fa-solid fa-check"></i> ĐẶT HÀNG';
   }
 }
 
@@ -424,6 +446,11 @@ function validateForm() {
       showToast("Vui lòng chọn chi nhánh!");
       return false;
     }
+    // Kiểm tra phương thức thanh toán nếu chọn banking
+    if (selectedPayment === "banking") {
+      // Sẽ được xử lý bằng popup tùy chỉnh trong placeOrder()
+      return "NEED_CONFIRM";
+    }
     return true;
   }
 
@@ -452,11 +479,50 @@ function validateForm() {
     return false;
   }
 
+  // Kiểm tra xác nhận thanh toán nếu chọn chuyển khoản ngân hàng
+  if (selectedPayment === "banking") {
+    // Sẽ được xử lý bằng popup tùy chỉnh trong placeOrder()
+    return "NEED_CONFIRM";
+  }
+
   return true;
 }
 
+// ===== HIỆN POPUP XÁC NHẬN THANH TOÁN =====
+function showConfirmPayment() {
+  return new Promise((resolve) => {
+    const overlay = document.getElementById("confirmOverlay");
+    const btnOk = document.getElementById("btnConfirmOk");
+    const btnCancel = document.getElementById("btnConfirmCancel");
+
+    if (!overlay) {
+      resolve(true);
+      return;
+    }
+
+    overlay.classList.add("show");
+
+    const handleOk = () => {
+      overlay.classList.remove("show");
+      btnOk.removeEventListener("click", handleOk);
+      btnCancel.removeEventListener("click", handleCancel);
+      resolve(true);
+    };
+
+    const handleCancel = () => {
+      overlay.classList.remove("show");
+      btnOk.removeEventListener("click", handleOk);
+      btnCancel.removeEventListener("click", handleCancel);
+      resolve(false);
+    };
+
+    btnOk.addEventListener("click", handleOk);
+    btnCancel.addEventListener("click", handleCancel);
+  });
+}
+
 // ===== ĐẶT HÀNG =====
-function placeOrder() {
+async function placeOrder() {
   const cart = getCart();
 
   if (cart.length === 0) {
@@ -464,12 +530,61 @@ function placeOrder() {
     return;
   }
 
-  if (!validateForm()) return;
+  const validationResult = validateForm();
+
+  // Nếu cần xác nhận thanh toán (chọn Banking)
+  if (validationResult === "NEED_CONFIRM") {
+    const confirmed = await showConfirmPayment();
+    if (!confirmed) {
+      showToast("Vui lòng hoàn tất thanh toán trước khi đặt hàng!");
+      return;
+    }
+  } else if (!validationResult) {
+    // Validate thất bại
+    return;
+  }
 
   // Tạo mã đơn hàng
   const code = "GBR-" + Date.now().toString(36).toUpperCase();
   const orderCodeEl = document.getElementById("orderCode");
   if (orderCodeEl) orderCodeEl.textContent = code;
+
+  // Lưu đơn hàng vào lịch sử (nếu đã đăng nhập)
+  if (
+    typeof OrderManager !== "undefined" &&
+    typeof UserManager !== "undefined" &&
+    UserManager.isLoggedIn()
+  ) {
+    const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+    // Lấy thông tin người đặt hàng từ form
+    const ckNameEl = document.getElementById("ckName");
+    const ckPhoneEl = document.getElementById("ckPhone");
+    const ckEmailEl = document.getElementById("ckEmail");
+    const ckAddressEl = document.getElementById("ckAddress");
+    OrderManager.saveOrder({
+      code: code,
+      customer: {
+        name: ckNameEl ? ckNameEl.value.trim() : "",
+        phone: ckPhoneEl ? ckPhoneEl.value.trim() : "",
+        email: ckEmailEl ? ckEmailEl.value.trim() : "",
+        address: ckAddressEl ? ckAddressEl.value.trim() : "",
+      },
+      items: cart.map((i) => ({
+        name: i.name,
+        size: i.size,
+        price: i.price,
+        quantity: i.quantity,
+        sugar: i.sugar,
+        ice: i.ice,
+      })),
+      total: subtotal,
+      payment:
+        selectedPayment === "banking"
+          ? "Chuyển khoản"
+          : "Thanh toán khi nhận hàng",
+      shipping: selectedShipping === "delivery" ? "Giao hàng" : "Uống tại quán",
+    });
+  }
 
   // Xóa giỏ hàng
   localStorage.removeItem("giborCart");
@@ -911,8 +1026,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Khởi tạo trạng thái mặc định (sử dụng tại quán - ẩn dấu * bắt buộc)
-  selectShipping("delivery");
+  // Khởi tạo trạng thái mặc định
+  selectShipping("delivery"); // Giao hàng tận nơi
+  selectPayment("cod"); // Thanh toán khi giao hàng
 
   // Chọn khu vực chi nhánh
   const branchCity = document.getElementById("branchCity");
@@ -965,23 +1081,7 @@ const CONFIG = {
   TEMPLATE: "compact2", // 'compact', 'compact2', hoặc 'qr_only'
 };
 
-function selectPayment(method) {
-  const infoBox = document.getElementById("bankingInfo");
-  const options = document.querySelectorAll(".payment-option");
-
-  // Xóa class active cũ
-  options.forEach((opt) => opt.classList.remove("active"));
-
-  if (method === "banking") {
-    event.currentTarget.classList.add("active");
-    infoBox.style.display = "block";
-    updateQRCode();
-  } else {
-    infoBox.style.display = "none";
-    document.querySelector("label:first-child").classList.add("active");
-  }
-}
-
+// Hàm updateQRCode() - Cập nhật mã QR thanh toán với số tiền hiện tại
 function updateQRCode() {
   const loader = document.getElementById("qrLoader");
   const qrImg = document.getElementById("qrImage");

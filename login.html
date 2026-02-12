@@ -33,7 +33,7 @@
       <div class="header-container">
         <!-- LOGO -->
         <a href="index.html" class="logo">
-          <img src="images/logo.jpg" alt="GIBOR Coffee" />
+          <img src="images/logo/logo.jpg" alt="GIBOR Coffee" />
           <span>GIBOR COFFEE</span>
         </a>
 
@@ -63,6 +63,25 @@
 
     <!-- ==================== NỘI DUNG TRANG ĐĂNG NHẬP ==================== -->
     <main class="login-page">
+      <!-- Trần Gia Bảo bắt đầu chỉnh sửa -->
+      <!-- Loading Screen -->
+      <div class="logo" id="preloader">
+        <div class="loader-icon">
+          <img src="images/logo/logo.jpg" alt="GIBOR Coffee" />
+        </div>
+        <p
+          style="
+            color: white;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            font-weight: 600;
+          "
+        >
+          GIBOR COFFEE
+        </p>
+      </div>
+      <!-- Trần Gia Bảo kết thúc chỉnh sửa -->
+
       <div class="login-container">
         <!-- ICON CÀ PHÊ TRANG TRÍ -->
         <div class="form-icon">
@@ -139,7 +158,7 @@
               class="form-button-social btn-google"
               id="btnGoogleLogin"
             >
-              <img src="images/icons8-google-48.png" alt="Google" />
+              <img src="images/logo/icons8-google-48.png" alt="Google" />
               <span>Google</span>
             </button>
             <button
@@ -147,7 +166,7 @@
               class="form-button-social btn-facebook"
               id="btnFacebookLogin"
             >
-              <img src="images/icons8-facebook-48.png" alt="Facebook" />
+              <img src="images/logo/icons8-facebook-48.png" alt="Facebook" />
               <span>Facebook</span>
             </button>
           </div>
@@ -175,7 +194,7 @@
               </p>
             </li>
             <li>
-              <img src="images/logoHuit.png" alt="logo-huit" height="60" />
+              <img src="images/logo/logoHuit.png" alt="logo-huit" height="60" />
             </li>
           </ul>
         </div>
@@ -230,11 +249,9 @@
     </footer>
 
     <!-- Phần JS CHUNG -->
+    <script src="js/data.js"></script>
     <script src="js/main.js"></script>
-
-    <!-- JS: Firebase SDK modular (v9+) đã config trong firebase.js -->
-    <!-- JS: Logic đăng nhập/đăng ký -->
-    <script type="module" src="js/loginregister.js"></script>
+    <script src="js/loginregister.js"></script>
   </body>
 </html>
 <!-- 

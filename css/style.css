@@ -93,6 +93,12 @@ body.dark {
   --text: #f5f5f5;
   --navbar: rgba(75, 44, 32, 0.95);
   --card: #1e1e1e;
+  .gibor-popup-title {
+    font-family: var(--font-heading, "Playfair Display", serif);
+    font-size: 1.4rem;
+    color: var(--accent, var(--accent));
+    margin-bottom: 8px;
+  }
 }
 
 body {
@@ -114,14 +120,18 @@ body {
 
 .theme-toggle {
   background: transparent;
-  border: 2px solid var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
   cursor: pointer;
   color: var(--accent);
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .theme-toggle:hover {
@@ -249,11 +259,16 @@ body {
 }
 
 .icon-btn {
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: 20px;
   border: 1px solid var(--accent);
   color: var(--white);
   font-size: 14px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .icon-btn:hover {
@@ -263,8 +278,10 @@ body {
 }
 
 .icon-btn.cart {
-  font-size: 18px;
-  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  height: 36px;
 }
 
 /* Số lượng giỏ hàng */
@@ -672,6 +689,465 @@ a {
 ========================================================================================
 
                                 KẾT THÚC CODE BỞI TRẦN GIA BẢO
+
+========================================================================================
+*/
+
+/* 
+========================================================================================
+
+                                CODE BỞI TRẦN DƯƠNG GIA BẢO
+
+========================================================================================
+*/
+
+/* ===== POPUP THÔNG BÁO (TOAST NOTIFICATION) ===== */
+.gibor-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.gibor-popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gibor-popup-box {
+  background: var(--card, #fff);
+  border-radius: 16px;
+  padding: 32px 28px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8) translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.gibor-popup-overlay.show .gibor-popup-box {
+  transform: scale(1) translateY(0);
+}
+
+.gibor-popup-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.gibor-popup-icon.success {
+  color: #27ae60;
+}
+
+.gibor-popup-icon.error {
+  color: #e74c3c;
+}
+
+.gibor-popup-icon.warning {
+  color: #f39c12;
+}
+
+.gibor-popup-title {
+  font-family: var(--font-heading, "Playfair Display", serif);
+  font-size: 1.4rem;
+  color: var(--primary, #4b2c20);
+  margin-bottom: 8px;
+}
+
+.gibor-popup-message {
+  font-family: var(--font-body, "Montserrat", sans-serif);
+  font-size: 0.95rem;
+  color: var(--text, #2d2424);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.gibor-popup-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.gibor-popup-btn {
+  padding: 10px 28px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body, "Montserrat", sans-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gibor-popup-btn.primary {
+  background: var(--primary, #4b2c20);
+  color: #fff;
+}
+
+.gibor-popup-btn.primary:hover {
+  background: var(--accent-dark, #b08968);
+}
+
+.gibor-popup-btn.secondary {
+  background: #e0d6d0;
+  color: var(--primary, #4b2c20);
+}
+
+.gibor-popup-btn.secondary:hover {
+  background: #d0c4bc;
+}
+
+/* ===== USER DROPDOWN POPUP ===== */
+.user-dropdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.user-dropdown-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: var(--card, #fff);
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 260px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  transition: transform 0.2s ease;
+}
+
+.user-dropdown-overlay.show .user-dropdown {
+  transform: translateY(0);
+}
+
+.user-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e8e0db;
+  margin-bottom: 12px;
+}
+
+.user-dropdown-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary, #4b2c20);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: var(--font-body, "Montserrat", sans-serif);
+}
+
+.user-dropdown-info {
+  flex: 1;
+}
+
+.user-dropdown-name {
+  font-family: var(--font-heading, "Playfair Display", serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary, #4b2c20);
+}
+
+.user-dropdown-email {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+.user-dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-dropdown-menu li {
+  margin-bottom: 4px;
+}
+
+.user-dropdown-menu li a,
+.user-dropdown-menu li button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  font-family: var(--font-body, "Montserrat", sans-serif);
+  font-size: 0.9rem;
+  color: var(--text, #2d2424);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-decoration: none;
+}
+
+.user-dropdown-menu li a:hover,
+.user-dropdown-menu li button:hover {
+  background: #f5ebe4;
+}
+
+.user-dropdown-menu li button.logout-btn {
+  color: #e74c3c;
+}
+
+.user-dropdown-menu li button.logout-btn:hover {
+  background: #fde8e8;
+}
+
+/* ===== AUTH LINK STYLE KHI ĐÃ ĐĂNG NHẬP ===== */
+#authLink.logged-in {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+#authLink.logged-in:hover {
+  background: var(--accent-dark, #b08968);
+}
+
+#authLink.logged-in i {
+  font-size: 0.9rem;
+}
+
+/* ===== ORDER HISTORY POPUP ===== */
+.order-history-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.order-history-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.order-history-box {
+  background: var(--card, #fff);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 550px;
+  width: 92%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8) translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.order-history-overlay.show .order-history-box {
+  transform: scale(1) translateY(0);
+}
+
+.order-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--accent, #d4a373);
+}
+
+.order-history-header h3 {
+  font-family: var(--font-heading, "Playfair Display", serif);
+  font-size: 1.3rem;
+  color: var(--primary, #4b2c20);
+  margin: 0;
+}
+
+.order-history-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.order-history-close:hover {
+  background: #f0e8e2;
+  color: var(--primary, #4b2c20);
+}
+
+.order-history-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+}
+
+.order-history-empty i {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+  color: #ccc;
+}
+
+.order-card {
+  background: #faf6f3;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid var(--accent, #d4a373);
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.order-card-code {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--primary, #4b2c20);
+}
+
+.order-card-date {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.order-card-items {
+  margin-bottom: 10px;
+}
+
+.order-card-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 0.85rem;
+  color: var(--text, #2d2424);
+  gap: 12px;
+}
+
+.order-card-item-name {
+  flex: 1;
+}
+
+.order-card-item-detail {
+  color: #888;
+  font-size: 0.8rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+.order-card-item-price {
+  font-weight: 600;
+  min-width: 80px;
+  text-align: right;
+  color: var(--primary, #4b2c20);
+}
+
+/* Thông tin người đặt hàng */
+.order-card-customer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  background: #f0e8e2;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.order-card-customer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.order-card-customer i {
+  color: var(--accent, #d4a373);
+  font-size: 0.75rem;
+  width: 14px;
+  text-align: center;
+}
+
+.order-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #e8e0db;
+  font-size: 0.85rem;
+}
+
+.order-card-meta {
+  color: #888;
+}
+
+.order-card-total {
+  font-weight: 700;
+  color: var(--primary, #4b2c20);
+  font-size: 1rem;
+}
+
+/* Scrollbar đẹp cho order history */
+.order-history-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.order-history-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.order-history-box::-webkit-scrollbar-thumb {
+  background: var(--accent, #d4a373);
+  border-radius: 3px;
+}
+
+/* 
+========================================================================================
+
+                                KẾT THÚC CODE BỞI TRẦN DƯƠNG GIA BẢO
 
 ========================================================================================
 */
