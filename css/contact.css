@@ -18,6 +18,10 @@ body.dark {
     border: 1px solid var(--accent);
     color: var(--accent);
   }
+  .modal-content h2,
+  .modal-content p {
+    color: black;
+  }
 }
 
 .contact-page {
@@ -136,6 +140,63 @@ body.dark {
   background: var(--accent);
   color: var(--primary);
   transform: translateY(-2px);
+}
+
+/* Nền tối bao phủ toàn màn hình */
+.modal {
+  display: none; /* Ẩn mặc định */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen mờ */
+}
+
+/* Nội dung cửa sổ chính */
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 8px;
+  width: 50%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Container chứa nút bấm để căn lề phải */
+.modal-footer {
+  margin-top: 20px;
+  text-align: right;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.modal-content p {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* Kiểu dáng nút đóng */
+.closeBtn {
+  background-color: #f44336; /* Màu đỏ hoặc màu chủ đạo của bạn */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.closeBtn:hover {
+  background-color: #d32f2f; /* Đậm hơn khi di chuột vào */
 }
 
 /* ==================================== PHẦN THÔNG TIN CONTACT ================================== */
