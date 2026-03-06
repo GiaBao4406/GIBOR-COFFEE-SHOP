@@ -281,7 +281,7 @@ const UserManager = {
 
 /**
  * Quản lý điểm tích lũy - lưu vào localStorage theo userId
- * Quy tắc: 1.000đ = 1 điểm (tích), 100 điểm = 1.000đ (dùng)
+ * Quy tắc: 1.000đ = 1 điểm (tích), 1 điểm = 10đ (dùng)
  */
 const PointsManager = {
   /**
@@ -333,10 +333,10 @@ const PointsManager = {
   /**
    * Tính số tiền giảm từ điểm
    * @param {number} points - Số điểm dùng
-   * @returns {number} Số tiền giảm (VNĐ)
+   * @returns {number} Số tiền giảm (VNĐ) — 1 điểm = 10đ
    */
   pointsToMoney(points) {
-    return Math.floor(points / 100) * 1000;
+    return points * 10;
   },
 
   /**
