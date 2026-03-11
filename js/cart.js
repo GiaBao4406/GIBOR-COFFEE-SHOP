@@ -89,6 +89,14 @@ function renderCart() {
     totalItems += item.quantity;
     totalPrice += subtotal;
 
+    const comboItems =
+      Array.isArray(item.comboItems) && item.comboItems.length > 0
+        ? item.comboItems
+        : typeof window.getComboItemsByName === "function"
+          ? window.getComboItemsByName(item.name)
+          : [];
+    const isCombo = comboItems.length > 0;
+    const comboSuffix = isCombo ? ` (${comboItems.join(" + ")})` : "";
     const sugarText = item.sugar ? `Đường: ${item.sugar}` : "";
     const iceText = item.ice ? `Đá: ${item.ice}` : "";
     const noteText = item.note ? `📝 ${item.note}` : "";
@@ -103,7 +111,7 @@ function renderCart() {
           <div class="cart-product">
             <img src="${item.image}" alt="${item.name}">
             <div class="cart-product-info">
-              <span class="cart-product-name">${item.name}</span>
+              <span class="cart-product-name">${item.name}${comboSuffix}</span>
               ${!isFood ? `<span class="cart-product-options">🍬 ${sugarText} &nbsp;|&nbsp; 🧊 ${iceText}</span>` : ""}
               ${toppingText ? `<span class="cart-product-options">🧁 ${toppingText}</span>` : ""}
               ${noteText ? `<span class="cart-product-note">${noteText}</span>` : ""}

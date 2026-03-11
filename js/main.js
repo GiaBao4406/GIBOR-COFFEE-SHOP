@@ -6,11 +6,22 @@
 ========================================================================================
 */
 
-// Cuộn xuống thanh vẫn theo
-window.addEventListener("scroll", () => {
+// Cuộn xuống thanh vẫn theo (desktop). Mobile giữ nguyên header nâu.
+const updateHeaderScrollState = () => {
   const navbar = document.querySelector(".header");
+  if (!navbar) return;
+
+  if (window.innerWidth <= 768) {
+    navbar.classList.remove("scrolled");
+    return;
+  }
+
   navbar.classList.toggle("scrolled", window.scrollY > 50);
-});
+};
+
+window.addEventListener("scroll", updateHeaderScrollState);
+window.addEventListener("resize", updateHeaderScrollState);
+document.addEventListener("DOMContentLoaded", updateHeaderScrollState);
 
 // ==================== HAMBURGER MENU MOBILE ====================
 const menuToggle = document.getElementById("menuToggle");
@@ -420,6 +431,34 @@ function selectOption(type, value, btnElement) {
 */
 
 // ==================== THÊM VÀO GIỎ HÀNG ====================
+const COMBO_ITEM_DETAILS = Object.freeze({
+  "Combo 1": ["Bạc xỉu", "Bánh ChesseCake"],
+  "Combo 2": ["Espresso", "Bánh tiramisu"],
+  "Combo 3": ["Latte", "Bánh mì bơ tỏi"],
+  "Combo 4": ["Cold Brew", "Bánh Croissant"],
+  "Combo 5": ["Americano", "Bánh sừng bò"],
+  "Combo 6": ["Cappuccino", "Bánh pancake"],
+  "Combo 7": ["Mocha", "Bánh kem phô mai"],
+  "Combo 8": ["Caramel Macchiato", "Bánh su kem"],
+  "Combo 9": ["Trà đào", "Bánh donut"],
+});
+
+function getComboItemsByName(productName) {
+  if (!productName) return [];
+  const normalizedName = String(productName).trim().toLowerCase();
+  const keys = Object.keys(COMBO_ITEM_DETAILS);
+
+  const exactKey = keys.find((key) => key.toLowerCase() === normalizedName);
+  if (exactKey) return [...COMBO_ITEM_DETAILS[exactKey]];
+
+  const includesKey = keys.find((key) =>
+    normalizedName.includes(key.toLowerCase()),
+  );
+  return includesKey ? [...COMBO_ITEM_DETAILS[includesKey]] : [];
+}
+
+window.getComboItemsByName = getComboItemsByName;
+
 function addToCart() {
   const sizeError = document.getElementById("sizeError");
   const isFood = currentCategory === "food" || currentCategory === "topping";
@@ -462,10 +501,18 @@ function addToCart() {
   // Tính giá đơn vị (size + topping)
   const toppingTotal = selectedToppings.reduce((sum, t) => sum + t.price, 0);
   const unitPrice = selectedPrice + toppingTotal;
+  const comboItems = getComboItemsByName(currentProduct.name);
 
   if (existIndex !== -1) {
     // Nếu đã có (cùng tùy chọn) thì tăng số lượng
     cart[existIndex].quantity += isFood ? popupQuantity : 1;
+    if (
+      comboItems.length > 0 &&
+      (!Array.isArray(cart[existIndex].comboItems) ||
+        cart[existIndex].comboItems.length === 0)
+    ) {
+      cart[existIndex].comboItems = [...comboItems];
+    }
   } else {
     // Nếu chưa có thì thêm mới
     cart.push({
@@ -477,6 +524,7 @@ function addToCart() {
       ice: isFood ? "" : selectedIce,
       toppings: isFood ? [] : [...selectedToppings],
       note: note,
+      comboItems: comboItems,
       quantity: isFood ? popupQuantity : 1,
     });
   }
@@ -670,6 +718,12 @@ function showOrderHistoryPopup() {
 
         // Dòng chi tiết
         let detailParts = [];
+        const comboItems =
+          Array.isArray(item.comboItems) && item.comboItems.length > 0
+            ? item.comboItems
+            : getComboItemsByName(item.name);
+        if (comboItems.length > 0)
+          detailParts.push("Gồm: " + comboItems.join(" + "));
         if (!isFood && item.size) detailParts.push("Size " + item.size);
         if (item.sugar) detailParts.push("Đường " + item.sugar);
         if (item.ice) detailParts.push("Đá " + item.ice);

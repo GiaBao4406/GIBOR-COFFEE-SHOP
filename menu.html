@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/popup.css" />
+
     <!-- MOBILE RESPONSIVE -->
     <link rel="stylesheet" href="css/mobile.css" />
 
@@ -30,6 +31,43 @@
   </head>
 
   <body>
+    <!-- BẮT ĐẦU CHỈNH SỬA BỞI TRẦN GIA BẢO -->
+    <!-- POP-UP BANNER QUẢNG CÁO MỚI NHẤT -->
+    <!-- CẤU TRÚC POP-UP -->
+    <div id="promoPopup" class="popup-overlay-ads">
+      <div class="popup-content-ads">
+        <div class="close-btn-ads" id="closePopup">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="banner-img-container-ads">
+          <!-- Chèn link ảnh banner GIBOR của bạn vào src bên dưới -->
+          <img
+            src="images/banner/ads8326.jpg"
+            alt="Banner GIBOR Coffee Khuyến Mãi"
+            onerror="this.src = 'images/logo/logo.jpg'"
+          />
+        </div>
+
+        <div class="promo-details-ads">
+          <h2>ƯU ĐÃI ĐẾN 50%</h2>
+          <p>
+            Thưởng thức cà phê đậm đà cùng người thương với ưu đãi tối đa 100k.
+          </p>
+
+          <div class="code-box-ads">
+            <span class="code-text" id="promoCode">QUOCTEPHUNU2026</span>
+            <span class="copy-link" onclick="copyPromoCode()">SAO CHÉP</span>
+          </div>
+
+          <button class="btn-claim-ads" onclick="closePopupHandler()">
+            NHẬN ƯU ĐÃI NGAY
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- KẾT THÚC CHỈNH SỬA CỦA TRẦN GIA BẢO -->
+
     <!-- HEADER DÙNG CHUNG -->
     <header class="header">
       <div class="header-container">
@@ -60,6 +98,7 @@
           <button class="theme-toggle" id="themeToggle">🌙</button>
           <button class="menu-toggle" id="menuToggle" aria-label="Menu">
             <i class="fas fa-bars"></i>
+          </button>
         </div>
       </div>
     </header>
@@ -122,7 +161,9 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Cà phê muối', 'images/menu/caphemuoi.jpg', 36000)"
+            onclick="
+              openPopup('Cà phê muối', 'images/menu/caphemuoi.jpg', 36000)
+            "
           >
             <img src="images/menu/caphemuoi.jpg" alt="Cà phê Muối" />
             <h4>Cà phê Muối</h4>
@@ -139,7 +180,9 @@
         <div class="menu-grid">
           <div
             class="menu-card"
-            onclick="openPopup('Matcha Latte', 'images/menu/matchalatte.jpg', 40000)"
+            onclick="
+              openPopup('Matcha Latte', 'images/menu/matchalatte.jpg', 40000)
+            "
           >
             <img src="images/menu/matchalatte.jpg" alt="Matcha Latte" />
             <h4>Matcha Latte</h4>
@@ -149,7 +192,9 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Matcha Dừa', 'images/menu/matchadua.jpg', 36000)"
+            onclick="
+              openPopup('Matcha Dừa', 'images/menu/matchadua.jpg', 36000)
+            "
           >
             <img src="images/menu/matchadua.jpg" alt="Matcha Dừa" />
             <h4>Matcha Dừa</h4>
@@ -159,7 +204,9 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Matcha Dâu', 'images/menu/matchadau.jpg', 36000)"
+            onclick="
+              openPopup('Matcha Dâu', 'images/menu/matchadau.jpg', 36000)
+            "
           >
             <img src="images/menu/matchadau.jpg" alt="Matcha Dâu" />
             <h4>Matcha Dâu</h4>
@@ -169,7 +216,9 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Matcha Xoài', 'images/menu/matchaxoai.jpg', 36000)"
+            onclick="
+              openPopup('Matcha Xoài', 'images/menu/matchaxoai.jpg', 36000)
+            "
           >
             <img src="images/menu/matchaxoai.jpg" alt="Matcha Xoài" />
             <h4>Matcha Xoài</h4>
@@ -227,17 +276,26 @@
           </div>
         </div>
       </section>
-      
-        <!-- TRÀ SỮA -->
+
+      <!-- TRÀ SỮA -->
       <section class="menu-section">
         <h3 class="section-title">🥤 TRÀ SỮA</h3>
         <div class="menu-grid">
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Trân Châu Đường Đen', 'images/menu/tranchauduongden.jpg', 30000)"
+            onclick="
+              openPopup(
+                'Trà Sữa Trân Châu Đường Đen',
+                'images/menu/tranchauduongden.jpg',
+                30000,
+              )
+            "
           >
-          <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
-            <img src="images/menu/tranchauduongden.jpg" alt="Trà Sữa Trân Châu Đường Đen" />
+            <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
+            <img
+              src="images/menu/tranchauduongden.jpg"
+              alt="Trà Sữa Trân Châu Đường Đen"
+            />
             <h4>Trà Sữa Trân Châu Đường Đen</h4>
             <p>Thơm ngon – Thanh mát, Ngọt nhẹ</p>
             <span class="price">30.000đ</span>
@@ -245,7 +303,13 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Truyền Thống', 'images/menu/truyenthong.jpg', 25000)"
+            onclick="
+              openPopup(
+                'Trà Sữa Truyền Thống',
+                'images/menu/truyenthong.jpg',
+                25000,
+              )
+            "
           >
             <img src="images/menu/truyenthong.jpg" alt="Trà Sữa Truyền Thống" />
             <h4>Trà Sữa Truyền Thống</h4>
@@ -255,7 +319,9 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Thái Xanh', 'images/menu/thaixanh.jpg', 20000)"
+            onclick="
+              openPopup('Trà Sữa Thái Xanh', 'images/menu/thaixanh.jpg', 20000)
+            "
           >
             <img src="images/menu/thaixanh.jpg" alt="Trà Sữa Thái Xanh" />
             <h4>Trà Sữa Thái Xanh</h4>
@@ -265,9 +331,15 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Caramel', 'images/menu/trasuacaramel.jpg', 35000)"
+            onclick="
+              openPopup(
+                'Trà Sữa Caramel',
+                'images/menu/trasuacaramel.jpg',
+                35000,
+              )
+            "
           >
-          <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
+            <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
             <img src="images/menu/trasuacaramel.jpg" alt="Trà Sữa Caramel" />
             <h4>Trà Sữa Caramel</h4>
             <p>Ngọt thanh vị trà sữa – Lớp caramel béo ngậy</p>
@@ -276,7 +348,13 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Gạo Rang', 'images/menu/trasuagaorang.jpg', 30000)"
+            onclick="
+              openPopup(
+                'Trà Sữa Gạo Rang',
+                'images/menu/trasuagaorang.jpg',
+                30000,
+              )
+            "
           >
             <img src="images/menu/trasuagaorang.jpg" alt="Trà Sữa Gạo Rang" />
             <h4>Trà Sữa Gạo Rang</h4>
@@ -286,17 +364,35 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Kem Cheese', 'images/menu/trasuakemcheese.jpg', 38000)"
+            onclick="
+              openPopup(
+                'Trà Sữa Kem Cheese',
+                'images/menu/trasuakemcheese.jpg',
+                38000,
+              )
+            "
           >
-            <img src="images/menu/trasuakemcheese.jpg" alt="Trà Sữa Kem Cheese" />
+            <img
+              src="images/menu/trasuakemcheese.jpg"
+              alt="Trà Sữa Kem Cheese"
+            />
             <h4>Trà Sữa Kem Cheese</h4>
-            <p>Thanh mát của trà – Lớp kem cheese mặn mặn hòa cùng vị ngọt tạo cảm giác "gây nghiện"</p>
+            <p>
+              Thanh mát của trà – Lớp kem cheese mặn mặn hòa cùng vị ngọt tạo
+              cảm giác "gây nghiện"
+            </p>
             <span class="price">38.000đ</span>
           </div>
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Khoai Môn', 'images/menu/trasuakhoaimon.jpg', 32000)"
+            onclick="
+              openPopup(
+                'Trà Sữa Khoai Môn',
+                'images/menu/trasuakhoaimon.jpg',
+                32000,
+              )
+            "
           >
             <img src="images/menu/trasuakhoaimon.jpg" alt="Trà Sữa Khoai Môn" />
             <h4>Trà Sữa Khoai Môn</h4>
@@ -306,17 +402,28 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Oreo', 'images/menu/trasuaoreo.jpg', 30000)"
+            onclick="
+              openPopup('Trà Sữa Oreo', 'images/menu/trasuaoreo.jpg', 30000)
+            "
           >
             <img src="images/menu/trasuaoreo.jpg" alt="Trà Sữa Oreo" />
             <h4>Trà Sữa Oreo</h4>
-            <p>Thơm nhẹ vị trà, vị béo của sữa tươi – Lớp kem cake cream cùng với vụn bánh Oreo giòn rụm tạo nên sự hấp dẫn</p>
+            <p>
+              Thơm nhẹ vị trà, vị béo của sữa tươi – Lớp kem cake cream cùng với
+              vụn bánh Oreo giòn rụm tạo nên sự hấp dẫn
+            </p>
             <span class="price">30.000đ</span>
           </div>
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Pudding', 'images/menu/trasuapudding.jpg', 35000)"
+            onclick="
+              openPopup(
+                'Trà Sữa Pudding',
+                'images/menu/trasuapudding.jpg',
+                35000,
+              )
+            "
           >
             <img src="images/menu/trasuapudding.jpg" alt="Trà Sữa Pudding" />
             <h4>Trà Sữa Pudding</h4>
@@ -326,23 +433,35 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trà Sữa Socola', 'images/menu/trasuasocola.jpg', 20000)"
+            onclick="
+              openPopup('Trà Sữa Socola', 'images/menu/trasuasocola.jpg', 20000)
+            "
           >
             <img src="images/menu/trasuasocola.jpg" alt="Trà Sữa Socola" />
             <h4>Trà Sữa Socola</h4>
-            <p> Vị sữa béo nhẹ và socola đậm đà tạo nên một thức uống thơm ngon, ngọt dịu và rất dễ uống</p>
+            <p>
+              Vị sữa béo nhẹ và socola đậm đà tạo nên một thức uống thơm ngon,
+              ngọt dịu và rất dễ uống
+            </p>
             <span class="price">20.000đ</span>
           </div>
         </div>
       </section>
-      
-        <!-- ĐỒ ĂN THÊM -->
+
+      <!-- ĐỒ ĂN THÊM -->
       <section class="menu-section">
         <h3 class="section-title">🍪 BÁNH NGỌT</h3>
         <div class="menu-grid">
           <div
             class="menu-card"
-            onclick="openPopup('Bánh Cheesecake', 'images/menu/cheesecake.jpg', 35000, 'food')"
+            onclick="
+              openPopup(
+                'Bánh Cheesecake',
+                'images/menu/cheesecake.jpg',
+                35000,
+                'food',
+              )
+            "
           >
             <img src="images/menu/cheesecake.jpg" alt="Bánh Cheesecake" />
             <h4>Bánh Cheesecake</h4>
@@ -352,7 +471,14 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Bánh Cupcake', 'images/menu/cupcake.jpg', 33000, 'food')"
+            onclick="
+              openPopup(
+                'Bánh Cupcake',
+                'images/menu/cupcake.jpg',
+                33000,
+                'food',
+              )
+            "
           >
             <img src="images/menu/cupcake.jpg" alt="Bánh Cupcake" />
             <h4>Bánh Cupcake</h4>
@@ -363,9 +489,18 @@
           <div
             class="menu-card"
             onclick="
-              openPopup('Bánh Bông Lan Kem Tươi', 'images/menu/bonglankemtuoi.jpg', 30000, 'food')"
+              openPopup(
+                'Bánh Bông Lan Kem Tươi',
+                'images/menu/bonglankemtuoi.jpg',
+                30000,
+                'food',
+              )
+            "
           >
-            <img src="images/menu/bonglankemtuoi.jpg" alt="Bánh Bông Lan Kem Tươi" />
+            <img
+              src="images/menu/bonglankemtuoi.jpg"
+              alt="Bánh Bông Lan Kem Tươi"
+            />
             <h4>Bánh Bông Lan Kem Tươi</h4>
             <p>Thơm ngon – Mềm mịn, dễ ăn</p>
             <span class="price">30.000đ</span>
@@ -373,7 +508,9 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Bánh Cookie', 'images/menu/cookie.jpg', 36000, 'food')"
+            onclick="
+              openPopup('Bánh Cookie', 'images/menu/cookie.jpg', 36000, 'food')
+            "
           >
             <img src="images/menu/cookie.jpg" alt="Bánh Cookie" />
             <h4>Bánh Cookie</h4>
@@ -382,29 +519,48 @@
           </div>
           <div
             class="menu-card"
-            onclick="openPopup('Bánh Brownie Socola', 'images/menu/brownie.jpg', 40000, 'food')"
+            onclick="
+              openPopup(
+                'Bánh Brownie Socola',
+                'images/menu/brownie.jpg',
+                40000,
+                'food',
+              )
+            "
           >
             <img src="images/menu/brownie.jpg" alt="Bánh Brownie Socola" />
             <h4>Bánh Brownie Socola</h4>
             <p>Ngọt – mềm bên trong, giòn giòn bên ngoài</p>
             <span class="price">40.000đ</span>
           </div>
-        
 
-        <div
+          <div
             class="menu-card"
-            onclick="openPopup('Bánh Mousse Chanh Dây', 'images/menu/mousse.jpg', 38000, 'food')"
+            onclick="
+              openPopup(
+                'Bánh Mousse Chanh Dây',
+                'images/menu/mousse.jpg',
+                38000,
+                'food',
+              )
+            "
           >
             <img src="images/menu/mousse.jpg" alt="Bánh Mousse Dâu" />
             <h4>Bánh Mousse Dâu</h4>
             <p>Ngọt ngào – Mềm mịn, thơm dâu tây</p>
             <span class="price">38.000đ</span>
           </div>
-        
 
-        <div
+          <div
             class="menu-card"
-            onclick="openPopup('Bánh Tiramisu', 'images/menu/tiramisu.jpg', 35000, 'food')"
+            onclick="
+              openPopup(
+                'Bánh Tiramisu',
+                'images/menu/tiramisu.jpg',
+                35000,
+                'food',
+              )
+            "
           >
             <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
             <img src="images/menu/tiramisu.jpg" alt="Bánh Tiramisu" />
@@ -412,11 +568,17 @@
             <p>Ngọt ngào – Mềm mịn</p>
             <span class="price">35.000đ</span>
           </div>
-        
 
-        <div
+          <div
             class="menu-card"
-            onclick="openPopup('Bánh Red Velvet', 'images/menu/redvelvet.jpg', 45000, 'food')"
+            onclick="
+              openPopup(
+                'Bánh Red Velvet',
+                'images/menu/redvelvet.jpg',
+                45000,
+                'food',
+              )
+            "
           >
             <img src="images/menu/redvelvet.jpg" alt="Bánh Red Velvet" />
             <h4>Bánh Red Velvet</h4>
@@ -425,9 +587,9 @@
           </div>
         </div>
       </section>
-      
+
       <!-- COMBO BASIC -->
-     <section class="menu-section">
+      <section class="menu-section">
         <h3 class="section-title">🎁 COMBO BASIC</h3>
         <div class="menu-grid">
           <div
@@ -460,6 +622,16 @@
             <p>Cà phê sữa + Bánh Cupcake</p>
             <span class="price">52.000đ</span>
           </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Combo 4', 'images/menu/combo4.jpg', 60000)"
+          >
+            <img src="images/menu/combo4.jpg" alt="Combo 4" />
+            <h4>Combo 4</h4>
+            <p>Cà phê muối + Bánh CupCake</p>
+            <span class="price">60.000đ</span>
+          </div>
         </div>
       </section>
 
@@ -469,22 +641,43 @@
         <div class="menu-grid">
           <div
             class="menu-card"
-            onclick="openPopup('Combo 4', 'images/menu/combo4.jpg', 60000)"
-          >
-            <img src="images/menu/combo4.jpg" alt="Combo 4" />
-            <h4>Combo 4</h4>
-            <p>Matcha Latte + Bánh Bông Lan Kem Tươi</p>
-            <span class="price">60.000đ</span>
-          </div>
-
-          <div
-            class="menu-card"
             onclick="openPopup('Combo 5', 'images/menu/combo5.jpg', 62000)"
           >
             <img src="images/menu/combo5.jpg" alt="Combo 5" />
             <h4>Combo 5</h4>
             <p>Matcha Dâu + Bánh Mousse Dâu</p>
             <span class="price">62.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Combo 6', 'images/menu/combo6.jpg', 65000)"
+          >
+            <img src="images/menu/combo6.jpg" alt="Combo 6" />
+            <h4>Combo 6</h4>
+            <p>Matcha Xoài + Bánh Tiramisu</p>
+            <span class="price">65.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Combo 7', 'images/menu/combo7.jpg', 55000)"
+          >
+            <img src="images/menu/combo7.jpg" alt="Combo 7" />
+            <h4>Combo 7</h4>
+            <p>Matcha Dừa + Bánh CheeseCake</p>
+            <span class="price">55.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Combo 8', 'images/menu/combo8.jpg', 60000)"
+          >
+            <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
+            <img src="images/menu/combo8.jpg" alt="Combo 8" />
+            <h4>Combo 8</h4>
+            <p>Matcha Latte + Bánh Bông Lan Kem Tươi</p>
+            <span class="price">60.000đ</span>
           </div>
         </div>
       </section>
@@ -495,43 +688,44 @@
         <div class="menu-grid">
           <div
             class="menu-card"
-            onclick="openPopup('Combo 6', 'images/menu/combo6.jpg', 65000)"
-          >
-            <img src="images/menu/combo6.jpg" alt="Combo 6" />
-            <h4>Combo 6</h4>
-            <p>Trà Lựu Hibicus + Bánh Red Velvet</p>
-            <span class="price">65.000đ</span>
-          </div>
-
-          <div
-            class="menu-card"
-            onclick="openPopup('Combo 7', 'images/menu/combo7.jpg', 55000)"
-          >
-            <img src="images/menu/combo7.jpg" alt="Combo 7" />
-            <h4>Combo 7</h4>
-            <p>Trà Dâu + Bánh Tiramisu</p>
-            <span class="price">55.000đ</span>
-          </div>
-
-          <div
-            class="menu-card"
-            onclick="openPopup('Combo 8', 'images/menu/combo8.jpg', 60000)"
-          >
-            <img src="images/menu/combo8.jpg" alt="Combo 8" />
-            <h4>Combo 8</h4>
-            <p>Trà Vải + Bánh Brownie Socola</p>
-            <span class="price">60.000đ</span>
-          </div>
-
-          <div
-            class="menu-card"
-            onclick="openPopup('Combo 9', 'images/menu/combo9.jpg', 65000)"
+            onclick="openPopup('Combo 9', 'images/menu/combo9.jpg', 50000)"
           >
             <img src="images/menu/combo9.jpg" alt="Combo 9" />
             <h4>Combo 9</h4>
+            <p>Trà Vải + Bánh Brownie Socola</p>
+            <span class="price">50.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Combo 10', 'images/menu/combo10.jpg', 48000)"
+          >
+            <span class="badge"> <i class="icon">🔥</i> BÁN CHẠY NHẤT </span>
+            <img src="images/menu/combo10.jpg" alt="Combo 10" />
+            <h4>Combo 10</h4>
+            <p>Trà Lựu Hibicus + Bánh Red Velvet</p>
+            <span class="price">48.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Combo 11', 'images/menu/combo11.jpg', 52000)"
+          >
+            <img src="images/menu/combo11.jpg" alt="Combo 11" />
+            <h4>Combo 11</h4>
             <p>Trà Đào + Bánh Bông Lan Kem Tươi</p>
-            <span class="price">65.000đ</span>
-          </div>  
+            <span class="price">52.000đ</span>
+          </div>
+
+          <div
+            class="menu-card"
+            onclick="openPopup('Combo 12', 'images/menu/combo12.jpg', 55000)"
+          >
+            <img src="images/menu/combo12.jpg" alt="Combo 12" />
+            <h4>Combo 12</h4>
+            <p>Trà Dâu + Bánh Tiramisu</p>
+            <span class="price">55.000đ</span>
+          </div>
         </div>
       </section>
 
@@ -541,7 +735,14 @@
         <div class="menu-grid">
           <div
             class="menu-card"
-            onclick="openPopup('Trân Châu Đen', 'images/menu/tranchauden.jpg', 10000, 'topping')"
+            onclick="
+              openPopup(
+                'Trân Châu Đen',
+                'images/menu/tranchauden.jpg',
+                10000,
+                'topping',
+              )
+            "
           >
             <img src="images/menu/tranchauden.jpg" alt="Trân Châu Đen" />
             <h4>Trân Châu Đen</h4>
@@ -551,9 +752,16 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Trân châu trắng', 'images/menu/3Q.jpg', 10000, 'topping')"
+            onclick="
+              openPopup(
+                'Trân châu trắng',
+                'images/menu/3Q.jpg',
+                10000,
+                'topping',
+              )
+            "
           >
-            <img src="images/menu/3Q.jpg" alt="Trân châu trắng"/>
+            <img src="images/menu/3Q.jpg" alt="Trân châu trắng" />
             <h4>Trân châu trắng</h4>
             <p>Thanh mát – Dẻo, mềm</p>
             <span class="price">10.000đ</span>
@@ -561,7 +769,14 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Thạch trái cây', 'images/menu/thachtraicay.jpg', 10000, 'topping')"
+            onclick="
+              openPopup(
+                'Thạch trái cây',
+                'images/menu/thachtraicay.jpg',
+                10000,
+                'topping',
+              )
+            "
           >
             <img src="images/menu/thachtraicay.jpg" alt="Thạch trái cây" />
             <h4>Thạch trái cây</h4>
@@ -571,7 +786,14 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Thạch dừa', 'images/menu/thachdua.jpg', 10000, 'topping')"
+            onclick="
+              openPopup(
+                'Thạch dừa',
+                'images/menu/thachdua.jpg',
+                10000,
+                'topping',
+              )
+            "
           >
             <img src="images/menu/thachdua.jpg" alt="Thạch dừa" />
             <h4>Thạch dừa</h4>
@@ -581,7 +803,14 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Thạch matcha', 'images/menu/thachmatcha.jpg', 15000, 'topping')"
+            onclick="
+              openPopup(
+                'Thạch matcha',
+                'images/menu/thachmatcha.jpg',
+                15000,
+                'topping',
+              )
+            "
           >
             <img src="images/menu/thachmatcha.jpg" alt="Thạch matcha" />
             <h4>Thạch matcha</h4>
@@ -591,7 +820,14 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Thạch củ năng', 'images/menu/thachcunang.jpg', 15000, 'topping')"
+            onclick="
+              openPopup(
+                'Thạch củ năng',
+                'images/menu/thachcunang.jpg',
+                15000,
+                'topping',
+              )
+            "
           >
             <img src="images/menu/thachcunang.jpg" alt="Thạch củ năng" />
             <h4>Thạch củ năng</h4>
@@ -601,7 +837,14 @@
 
           <div
             class="menu-card"
-            onclick="openPopup('Khoai môn bóng', 'images/menu/khoaimonbong.jpg', 15000, 'topping')"
+            onclick="
+              openPopup(
+                'Khoai môn bóng',
+                'images/menu/khoaimonbong.jpg',
+                15000,
+                'topping',
+              )
+            "
           >
             <img src="images/menu/khoaimonbong.jpg" alt="Khoai môn bóng" />
             <h4>Khoai môn bóng</h4>
@@ -725,12 +968,62 @@
             <div class="option-group" id="toppingGroup">
               <label class="option-label">Topping:</label>
               <div class="topping-btns" id="toppingOptions">
-                <button class="topping-btn" data-name="Thạch trái cây" data-price="10000" onclick="toggleTopping(this)">Thạch trái cây</button>
-                <button class="topping-btn" data-name="Trân châu trắng" data-price="10000" onclick="toggleTopping(this)">Trân châu trắng</button>
-                <button class="topping-btn" data-name="Thạch dừa" data-price="10000" onclick="toggleTopping(this)">Thạch dừa</button>
-                <button class="topping-btn" data-name="Thạch matcha" data-price="15000" onclick="toggleTopping(this)">Thạch matcha</button>
-                <button class="topping-btn" data-name="Thạch củ năng" data-price="15000" onclick="toggleTopping(this)">Thạch củ năng</button>
-                <button class="topping-btn" data-name="Khoai môn bóng" data-price="15000" onclick="toggleTopping(this)">Khoai môn bóng</button>
+                <button
+                  class="topping-btn"
+                  data-name="Thạch trái cây"
+                  data-price="10000"
+                  onclick="toggleTopping(this)"
+                >
+                  Thạch trái cây
+                </button>
+                <button
+                  class="topping-btn"
+                  data-name="Trân châu trắng"
+                  data-price="10000"
+                  onclick="toggleTopping(this)"
+                >
+                  Trân châu trắng
+                </button>
+                <button
+                  class="topping-btn"
+                  data-name="Thạch dừa"
+                  data-price="10000"
+                  onclick="toggleTopping(this)"
+                >
+                  Thạch dừa
+                </button>
+                <button
+                  class="topping-btn"
+                  data-name="Thạch matcha"
+                  data-price="15000"
+                  onclick="toggleTopping(this)"
+                >
+                  Thạch matcha
+                </button>
+                <button
+                  class="topping-btn"
+                  data-name="Thạch củ năng"
+                  data-price="15000"
+                  onclick="toggleTopping(this)"
+                >
+                  Thạch củ năng
+                </button>
+                <button
+                  class="topping-btn"
+                  data-name="Khoai môn bóng"
+                  data-price="15000"
+                  onclick="toggleTopping(this)"
+                >
+                  Khoai môn bóng
+                </button>
+                <button
+                  class="topping-btn"
+                  data-name="Trân châu đen"
+                  data-price="10000"
+                  onclick="toggleTopping(this)"
+                >
+                  Trân châu đen
+                </button>
               </div>
             </div>
 
@@ -746,7 +1039,11 @@
             </div>
 
             <!-- Số lượng (hiện cho bánh/topping) -->
-            <div class="popup-quantity" id="popupQuantity" style="display: none;">
+            <div
+              class="popup-quantity"
+              id="popupQuantity"
+              style="display: none"
+            >
               <label class="option-label">Số lượng:</label>
               <div class="quantity-control">
                 <button class="qty-btn" onclick="changePopupQty(-1)">−</button>
@@ -849,6 +1146,7 @@
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script src="js/mobile.js"></script>
+    <script src="js/ads.js"></script>
   </body>
 </html>
 <!-- ======================================================================================== 

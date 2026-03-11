@@ -58,6 +58,21 @@ function renderOrderSummary() {
   let html = "";
   cart.forEach((item) => {
     const total = item.price * item.quantity;
+    const comboItems =
+      Array.isArray(item.comboItems) && item.comboItems.length > 0
+        ? item.comboItems
+        : typeof window.getComboItemsByName === "function"
+          ? window.getComboItemsByName(item.name)
+          : [];
+    const metaParts = [];
+    if (comboItems.length > 0) metaParts.push("Gồm: " + comboItems.join(" + "));
+    if (item.size && item.size !== "Mặc định") metaParts.push("Size " + item.size);
+    if (item.sugar) metaParts.push("Đường " + item.sugar);
+    if (item.ice) metaParts.push("Đá " + item.ice);
+    if (item.toppings && item.toppings.length > 0) {
+      metaParts.push("Topping: " + item.toppings.map((t) => t.name).join(", "));
+    }
+
     html += `
       <div class="order-item">
         <div class="order-item-img">
@@ -66,7 +81,7 @@ function renderOrderSummary() {
         </div>
         <div class="order-item-info">
           <div class="order-item-name">${item.name}</div>
-          <div class="order-item-meta">${item.size === "Mặc định" ? "" : "Size " + item.size}${item.sugar ? " | Đường " + item.sugar : ""}${item.ice ? " | Đá " + item.ice : ""}${item.toppings && item.toppings.length > 0 ? " | Topping: " + item.toppings.map((t) => t.name).join(", ") : ""}</div>
+          ${metaParts.length > 0 ? `<div class="order-item-meta">${metaParts.join(" | ")}</div>` : ""}
           ${item.note ? `<div class="order-item-note">Ghi chú: ${item.note}</div>` : ""}
         </div>
         <div class="order-item-price">${formatPrice(total)}</div>
@@ -728,6 +743,7 @@ async function placeOrder() {
         ice: i.ice || "",
         toppings: i.toppings || [],
         note: i.note || "",
+        comboItems: i.comboItems || [],
       })),
       total: Math.max(0, subtotal - currentDiscount - pointsDiscount),
       subtotal: subtotal,
