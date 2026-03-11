@@ -41,7 +41,11 @@
   }
   body.m-lock-scroll {
     overflow: hidden;
-    touch-action: none;
+    height: 100dvh;
+    overscroll-behavior: none;
+  }
+  body.m-lock-scroll .m-drawer {
+    touch-action: pan-y;
   }
 
   /* Keep preloader full-screen; avoid collisions with header logo rules. */

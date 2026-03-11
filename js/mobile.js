@@ -28,6 +28,12 @@
     document.body.classList.toggle('m-lock-scroll', !!locked);
   }
 
+  function recoverScrollLockState() {
+    const overlay = document.getElementById('m-drawer-overlay');
+    const shouldLock = !!(overlay && overlay.classList.contains('open') && isMobile());
+    setBodyScrollLock(shouldLock);
+  }
+
   function cleanupDesktopArtifacts() {
     const overlay = document.getElementById('m-drawer-overlay');
     if (overlay) overlay.remove();
@@ -156,7 +162,10 @@
     if (toggle.dataset.mDrawerBound === '1') return;
     toggle.dataset.mDrawerBound = '1';
     toggle.addEventListener('click', function (e) {
-      if (!isMobile()) return;
+      if (!isMobile()) {
+        recoverScrollLockState();
+        return;
+      }
       e.preventDefault();
       e.stopPropagation();
       const overlay = document.getElementById('m-drawer-overlay');
@@ -389,6 +398,8 @@
     window.addEventListener('resize', syncHeaderHeightVar);
     window.addEventListener('orientationchange', syncHeaderHeightVar);
     window.addEventListener('pageshow', syncHeaderHeightVar);
+    window.addEventListener('orientationchange', recoverScrollLockState);
+    window.addEventListener('pageshow', recoverScrollLockState);
 
     bindMenuToggle();
 
@@ -422,9 +433,13 @@
     ['focus', 'pageshow', 'visibilitychange', 'storage'].forEach((evt) => {
       window.addEventListener(evt, () => {
         if (evt === 'visibilitychange' && document.hidden) return;
+        recoverScrollLockState();
         window.updateBottomNavBadge();
       });
     });
+
+    // Safety net: if drawer is closed but class remains, unlock scroll.
+    recoverScrollLockState();
   }
 
   if (document.readyState === 'loading') {

@@ -533,8 +533,22 @@ body.dark .add-cart {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.popup-overlay-ads.show .popup-content {
-  transform: scale(1);
+/* Responsive pop-up ads */
+@media (max-width: 1024px) {
+  .popup-content-ads {
+    width: 70%;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .popup-content-ads {
+    width: 90%;
+    max-width: 95%;
+  }
+  .popup-content-ads {
+    border-radius: 14px;
+  }
 }
 
 /* Nút đóng (X) */
