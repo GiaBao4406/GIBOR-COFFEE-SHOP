@@ -1,0 +1,53 @@
+/* CSS cho trang khuyến mãi (ads.html) */
+
+.ads-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: var(--surface-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+}
+
+.the-title h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.the-date {
+    text-align: center;
+    color: var(--text-secondary-color);
+    margin-bottom: 30px;
+}
+
+.the-content {
+    line-height: 1.8;
+}
+
+.the-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: var(--border-radius-md);
+}
+
+.the-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+}
+
+.the-content th,
+.the-content td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+
+.the-content th {
+    background-color: var(--primary-color-light);
+    color: var(--primary-color);
+}

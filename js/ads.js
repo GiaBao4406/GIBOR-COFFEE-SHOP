@@ -27,3 +27,9 @@ window.onclick = function (event) {
     closePopupHandler();
   }
 };
+
+// JavaScript cho trang khuyến mãi (ads.html)
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Trang khuyến mãi đã sẵn sàng!");
+  // Bạn có thể thêm các chức năng cho trang ads tại đây
+});

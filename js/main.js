@@ -21,60 +21,58 @@ const updateHeaderScrollState = () => {
 
 window.addEventListener("scroll", updateHeaderScrollState);
 window.addEventListener("resize", updateHeaderScrollState);
-document.addEventListener("DOMContentLoaded", updateHeaderScrollState);
 
-// ==================== HAMBURGER MENU MOBILE ====================
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.querySelector(".nav");
+// ==================== KHỞI TẠO CÁC TÍNH NĂNG CHUNG ====================
+const initApp = () => {
+  updateHeaderScrollState();
 
-if (menuToggle && navMenu) {
-  menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-    menuToggle.classList.toggle("active");
-  });
+  // ==================== HAMBURGER MENU MOBILE ====================
+  const menuToggle = document.getElementById("menuToggle");
+  const navMenu = document.querySelector(".nav");
 
-  // Đóng menu khi click vào link
-  const navLinks = navMenu.querySelectorAll(".nav-links a");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      menuToggle.classList.remove("active");
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      menuToggle.classList.toggle("active");
     });
-  });
 
-  // Đóng menu khi click bên ngoài
-  navMenu.addEventListener("click", (e) => {
-    if (e.target === navMenu) {
-      navMenu.classList.remove("active");
-      menuToggle.classList.remove("active");
-    }
-  });
-}
+    // Đóng menu khi click vào link
+    const navLinks = navMenu.querySelectorAll(".nav-links a");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+        menuToggle.classList.remove("active");
+      });
+    });
 
-// Hiệu ứng nền tối
-const toggleBtn = document.getElementById("themeToggle");
-
-if (toggleBtn) {
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-
-    const isDark = document.body.classList.contains("dark");
-    toggleBtn.textContent = isDark ? "☀️" : "🌙";
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-}
-
-// Load lại trạng thái
-window.onload = () => {
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    if (toggleBtn) toggleBtn.textContent = "☀️";
+    // Đóng menu khi click bên ngoài
+    navMenu.addEventListener("click", (e) => {
+      if (e.target === navMenu) {
+        navMenu.classList.remove("active");
+        menuToggle.classList.remove("active");
+      }
+    });
   }
-};
 
-// Xử lý Preloader - dùng DOMContentLoaded để không đợi fonts/iframe
-document.addEventListener("DOMContentLoaded", () => {
+  // ==================== CHẾ ĐỘ NỀN TỐI (DARK MODE) ====================
+  const toggleBtn = document.getElementById("themeToggle");
+
+  if (toggleBtn) {
+    // Load lại trạng thái
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+      toggleBtn.textContent = "☀️";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      toggleBtn.textContent = isDark ? "☀️" : "🌙";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  }
+
+  // ==================== XỬ LÝ PRELOADER ====================
   const preloader = document.getElementById("preloader");
   if (preloader) {
     setTimeout(() => {
@@ -82,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500); // Hiển thị 0.5 giây
   }
 
-  // ===== HIỂN THỊ TRẠNG THÁI ĐĂNG NHẬP TRÊN HEADER =====
+  // ==================== HIỂN THỊ TRẠNG THÁI ĐĂNG NHẬP ====================
   const authLink = document.getElementById("authLink");
   if (authLink && typeof UserManager !== "undefined") {
     const currentUser = UserManager.getCurrentUser();
@@ -95,109 +93,142 @@ document.addEventListener("DOMContentLoaded", () => {
       authLink.title = "Tài khoản của bạn";
       authLink.style.cursor = "pointer";
 
-      // Tạo user dropdown popup
-      const dropdownOverlay = document.createElement("div");
-      dropdownOverlay.className = "user-dropdown-overlay";
-      dropdownOverlay.id = "userDropdownOverlay";
+      // Tạo user dropdown popup (nếu chưa có)
+      if (!document.getElementById("userDropdownOverlay")) {
+        const dropdownOverlay = document.createElement("div");
+        dropdownOverlay.className = "user-dropdown-overlay";
+        dropdownOverlay.id = "userDropdownOverlay";
 
-      // Lấy chữ cái đầu của tên
-      const initials = (
-        currentUser.lastName.charAt(0) + currentUser.firstName.charAt(0)
-      ).toUpperCase();
+        // Lấy chữ cái đầu của tên
+        const initials = (
+          (currentUser.lastName ? currentUser.lastName.charAt(0) : "") +
+          (currentUser.firstName ? currentUser.firstName.charAt(0) : "")
+        ).toUpperCase();
 
-      // Lấy điểm tích lũy
-      const userPoints = (typeof PointsManager !== "undefined") ? PointsManager.getPoints() : 0;
+        // Lấy điểm tích lũy
+        const userPoints =
+          typeof PointsManager !== "undefined" ? PointsManager.getPoints() : 0;
 
-      dropdownOverlay.innerHTML =
-        '<div class="user-dropdown">' +
-        '<div class="user-dropdown-header">' +
-        '<div class="user-dropdown-avatar">' +
-        initials +
-        "</div>" +
-        '<div class="user-dropdown-info">' +
-        '<div class="user-dropdown-name">' +
-        currentUser.displayName +
-        "</div>" +
-        '<div class="user-dropdown-email">' +
-        currentUser.email +
-        "</div>" +
-        '<div class="user-dropdown-points"><i class="fas fa-coins"></i> ' +
-        userPoints.toLocaleString("vi-VN") +
-        " điểm</div>" +
-        "</div>" +
-        "</div>" +
-        '<ul class="user-dropdown-menu">' +
-        '<li><a href="#" id="btnMyAccount"><i class="fas fa-user"></i> Tài khoản của tôi</a></li>' +
-        '<li><a href="#" id="btnOrderHistory"><i class="fas fa-shopping-bag"></i> Đơn hàng</a></li>' +
-        '<li><button class="logout-btn" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></li>' +
-        "</ul>" +
-        "</div>";
+        dropdownOverlay.innerHTML =
+          '<div class="user-dropdown">' +
+          '<div class="user-dropdown-header">' +
+          '<div class="user-dropdown-avatar">' +
+          initials +
+          "</div>" +
+          '<div class="user-dropdown-info">' +
+          '<div class="user-dropdown-name">' +
+          currentUser.displayName +
+          "</div>" +
+          '<div class="user-dropdown-email">' +
+          currentUser.email +
+          "</div>" +
+          '<div class="user-dropdown-points"><i class="fas fa-coins"></i> ' +
+          userPoints.toLocaleString("vi-VN") +
+          " điểm</div>" +
+          "</div>" +
+          "</div>" +
+          '<ul class="user-dropdown-menu">' +
+          '<li><a href="#" id="btnMyAccount"><i class="fas fa-user"></i> Tài khoản của tôi</a></li>' +
+          '<li><a href="#" id="btnOrderHistory"><i class="fas fa-shopping-bag"></i> Đơn hàng</a></li>' +
+          '<li><button class="logout-btn" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></li>' +
+          "</ul>" +
+          "</div>";
 
-      document.body.appendChild(dropdownOverlay);
+        document.body.appendChild(dropdownOverlay);
 
-      // Click vào tên → mở/đóng dropdown
-      authLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dropdownOverlay.classList.toggle("show");
-      });
-
-      // Click overlay → đóng dropdown
-      dropdownOverlay.addEventListener("click", (e) => {
-        if (e.target === dropdownOverlay) {
-          dropdownOverlay.classList.remove("show");
-        }
-      });
-
-      // Nút đăng xuất → hiện popup xác nhận
-      document.getElementById("btnLogout").addEventListener("click", () => {
-        dropdownOverlay.classList.remove("show");
-        showGiborPopup({
-          type: "warning",
-          title: "Đăng xuất",
-          message: "Bạn có chắc muốn đăng xuất khỏi tài khoản?",
-          confirmText: "Đăng xuất",
-          cancelText: "Hủy",
-          onConfirm: () => {
-            UserManager.logout();
-            showGiborPopup({
-              type: "success",
-              title: "Đã đăng xuất",
-              message: "Hẹn gặp lại bạn tại GIBOR Coffee!",
-              confirmText: "OK",
-              onConfirm: () => {
-                window.location.reload();
-              },
-            });
-          },
-        });
-      });
-
-      // Nút đơn hàng → hiện popup lịch sử đơn hàng
-      document
-        .getElementById("btnOrderHistory")
-        .addEventListener("click", (e) => {
+        // Click vào tên → mở/đóng dropdown
+        authLink.addEventListener("click", (e) => {
           e.preventDefault();
-          dropdownOverlay.classList.remove("show");
-          showOrderHistoryPopup();
+          e.stopPropagation();
+          dropdownOverlay.classList.toggle("show");
         });
 
-      // Nút tài khoản của tôi → hiện popup quản lý tài khoản
-      document.getElementById("btnMyAccount").addEventListener("click", (e) => {
-        e.preventDefault();
-        dropdownOverlay.classList.remove("show");
-        showProfilePopup();
-      });
+        // Click overlay → đóng dropdown
+        dropdownOverlay.addEventListener("click", (e) => {
+          if (e.target === dropdownOverlay) {
+            dropdownOverlay.classList.remove("show");
+          }
+        });
+
+        // Nút đăng xuất
+        const btnLogout = document.getElementById("btnLogout");
+        if (btnLogout) {
+          btnLogout.addEventListener("click", () => {
+            dropdownOverlay.classList.remove("show");
+            if (typeof showGiborPopup === "function") {
+              showGiborPopup({
+                type: "warning",
+                title: "Đăng xuất",
+                message: "Bạn có chắc muốn đăng xuất khỏi tài khoản?",
+                confirmText: "Đăng xuất",
+                cancelText: "Hủy",
+                onConfirm: () => {
+                  UserManager.logout();
+                  showGiborPopup({
+                    type: "success",
+                    title: "Đã đăng xuất",
+                    message: "Hẹn gặp lại bạn tại GIBOR Coffee!",
+                    confirmText: "OK",
+                    onConfirm: () => {
+                      window.location.reload();
+                    },
+                  });
+                },
+              });
+            } else {
+              if (confirm("Bạn có chắc muốn đăng xuất?")) {
+                UserManager.logout();
+                window.location.reload();
+              }
+            }
+          });
+        }
+
+        // Nút đơn hàng
+        const btnOrderHistory = document.getElementById("btnOrderHistory");
+        if (btnOrderHistory) {
+          btnOrderHistory.addEventListener("click", (e) => {
+            e.preventDefault();
+            dropdownOverlay.classList.remove("show");
+            if (typeof showOrderHistoryPopup === "function")
+              showOrderHistoryPopup();
+          });
+        }
+
+        // Nút tài khoản của tôi
+        const btnMyAccount = document.getElementById("btnMyAccount");
+        if (btnMyAccount) {
+          btnMyAccount.addEventListener("click", (e) => {
+            e.preventDefault();
+            dropdownOverlay.classList.remove("show");
+            if (typeof showProfilePopup === "function") showProfilePopup();
+          });
+        }
+      }
     }
-    // Nếu chưa đăng nhập → giữ nguyên link "Đăng nhập"
   }
+};
+
+// Đảm bảo loadComponents (nếu có) chạy trước khi initApp
+document.addEventListener("DOMContentLoaded", () => {
+  // Nếu có components.js thì loadComponents đã được gọi bằng DOMContentLoaded trong file đó.
+  // Tuy nhiên để chắc chắn, ta có thể kiểm tra xem placeholder còn tồn tại không.
+  if (typeof loadComponents === "function") {
+    const headerPlaceholder = document.getElementById("header-placeholder");
+    const footerPlaceholder = document.getElementById("footer-placeholder");
+    if (headerPlaceholder || footerPlaceholder) {
+      loadComponents();
+    }
+  }
+
+  initApp();
 });
 
 /* 
 ========================================================================================
 
                                 KẾT THÚC CODE BỞI TRẦN GIA BẢO
-
+                                
 ========================================================================================
 */
 
@@ -261,7 +292,8 @@ function openPopup(name, img, basePrice, category) {
     // Tự động set giá = giá gốc
     selectedSize = "Mặc định";
     selectedPrice = basePrice;
-    document.getElementById("price-value").innerText = basePrice.toLocaleString("vi-VN");
+    document.getElementById("price-value").innerText =
+      basePrice.toLocaleString("vi-VN");
   } else {
     // Hiện lại cho đồ uống
     if (sizeOptions) sizeOptions.style.display = "";
@@ -370,7 +402,8 @@ function changePopupQty(delta) {
   if (qtyEl) qtyEl.textContent = popupQuantity;
   // Cập nhật giá hiển thị theo số lượng
   const totalPrice = selectedPrice * popupQuantity;
-  document.getElementById("price-value").innerText = totalPrice.toLocaleString("vi-VN");
+  document.getElementById("price-value").innerText =
+    totalPrice.toLocaleString("vi-VN");
 }
 
 // Toggle topping (bật/tắt)
@@ -397,7 +430,8 @@ function toggleTopping(btnElement) {
 function updatePopupPrice() {
   const toppingTotal = selectedToppings.reduce((sum, t) => sum + t.price, 0);
   const total = selectedPrice + toppingTotal;
-  document.getElementById("price-value").innerText = total.toLocaleString("vi-VN");
+  document.getElementById("price-value").innerText =
+    total.toLocaleString("vi-VN");
 }
 
 // Chọn lượng đường / đá
@@ -487,14 +521,22 @@ function addToCart() {
   const note = noteEl ? noteEl.value.trim() : "";
 
   // Kiểm tra sản phẩm đã tồn tại chưa (cùng tên + size + đường + đá + topping + ghi chú)
-  const toppingKey = isFood ? "" : selectedToppings.map((t) => t.name).sort().join(",");
+  const toppingKey = isFood
+    ? ""
+    : selectedToppings
+        .map((t) => t.name)
+        .sort()
+        .join(",");
   const existIndex = cart.findIndex(
     (item) =>
       item.name === currentProduct.name &&
       item.size === selectedSize &&
       item.sugar === (isFood ? "" : selectedSugar) &&
       item.ice === (isFood ? "" : selectedIce) &&
-      (item.toppings || []).map((t) => t.name).sort().join(",") === toppingKey &&
+      (item.toppings || [])
+        .map((t) => t.name)
+        .sort()
+        .join(",") === toppingKey &&
       item.note === note,
   );
 
@@ -728,7 +770,9 @@ function showOrderHistoryPopup() {
         if (item.sugar) detailParts.push("Đường " + item.sugar);
         if (item.ice) detailParts.push("Đá " + item.ice);
         if (item.toppings && item.toppings.length > 0) {
-          detailParts.push("Topping: " + item.toppings.map(t => t.name).join(", "));
+          detailParts.push(
+            "Topping: " + item.toppings.map((t) => t.name).join(", "),
+          );
         }
         if (item.note) detailParts.push('Ghi chú: "' + item.note + '"');
 
@@ -742,7 +786,11 @@ function showOrderHistoryPopup() {
           " x" +
           item.quantity +
           "</span>" +
-          (detailStr ? '<span class="order-card-item-detail-scroll"><span class="order-card-item-detail-inner">' + detailStr + "</span></span>" : "") +
+          (detailStr
+            ? '<span class="order-card-item-detail-scroll"><span class="order-card-item-detail-inner">' +
+              detailStr +
+              "</span></span>"
+            : "") +
           "</div>" +
           '<span class="order-card-item-price">' +
           itemTotal.toLocaleString("vi-VN") +

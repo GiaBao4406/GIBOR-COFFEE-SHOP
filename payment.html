@@ -8,11 +8,11 @@
 
 -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thanh toán - COFFEE GIBOR SHOP</title>
 
     <!-- THEME CHÍNH DÙNG CHUNG-->
@@ -31,42 +31,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-</head>
-<body>
+  </head>
+  <body>
     <!-- HEADER DÙNG CHUNG -->
-    <header class="header">
-      <div class="header-container">
-        <!-- LOGO -->
-        <a href="index.html" class="logo">
-          <img src="images/logo/logo.jpg" alt="GIBOR Coffee" />
-          <span>GIBOR COFFEE</span>
-        </a>
-
-        <!-- NAV -->
-        <nav class="nav">
-          <ul class="nav-links">
-            <li><a href="index.html">Trang chủ</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="about.html">Giới thiệu</a></li>
-            <li><a href="contact.html">Liên hệ</a></li>
-          </ul>
-        </nav>
-
-        <!-- AUTH + CART -->
-        <div class="header-actions">
-          <a href="login.html" class="icon-btn" id="authLink">Đăng nhập</a>
-          <a href="cart.html" class="icon-btn cart">
-            🛒
-            <span>Giỏ hàng</span>
-            <span>0</span>
-          </a>
-          <button class="theme-toggle" id="themeToggle">🌙</button>
-          <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-      </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <main class="checkout-container">
       <!-- Loading Screen -->
@@ -91,7 +59,6 @@
       <div class="checkout-layout">
         <!-- ===== CỘT TRÁI: THÔNG TIN NHẬN HÀNG + VẬN CHUYỂN + THANH TOÁN ===== -->
         <div class="checkout-left">
-
           <!-- THÔNG TIN NHẬN HÀNG -->
           <section class="checkout-section">
             <div class="section-header">
@@ -99,25 +66,51 @@
             </div>
             <div class="form-group">
               <label for="ckEmail">Email <span class="required">*</span></label>
-              <input type="email" id="ckEmail" placeholder="email@example.com" />
+              <input
+                type="email"
+                id="ckEmail"
+                placeholder="email@example.com"
+              />
             </div>
             <div class="form-group">
-              <label for="ckName">Họ và tên <span class="required">*</span></label>
-              <input type="text" id="ckName" placeholder="Nguyễn Văn A" required />
+              <label for="ckName"
+                >Họ và tên <span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="ckName"
+                placeholder="Nguyễn Văn A"
+                required
+              />
             </div>
             <div class="form-group">
-              <label for="ckPhone">Số điện thoại <span class="required">*</span></label>
+              <label for="ckPhone"
+                >Số điện thoại <span class="required">*</span></label
+              >
               <div class="phone-input">
                 <span class="phone-prefix">🇻🇳 +84</span>
-                <input type="tel" id="ckPhone" placeholder="0909 xxx xxx" required />
+                <input
+                  type="tel"
+                  id="ckPhone"
+                  placeholder="0909 xxx xxx"
+                  required
+                />
               </div>
             </div>
             <div class="form-group" id="groupAddress">
-              <label for="ckAddress">Địa chỉ <span class="required">*</span></label>
-              <input type="text" id="ckAddress" placeholder="Số nhà, tên đường..." />
+              <label for="ckAddress"
+                >Địa chỉ <span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="ckAddress"
+                placeholder="Số nhà, tên đường..."
+              />
             </div>
             <div class="form-group" id="groupCity">
-              <label for="ckCity">Tỉnh/Thành phố <span class="required">*</span></label>
+              <label for="ckCity"
+                >Tỉnh/Thành phố <span class="required">*</span></label
+              >
               <select id="ckCity">
                 <option value="">--- Chọn ---</option>
                 <option value="hn">Hà Nội</option>
@@ -126,14 +119,20 @@
               </select>
             </div>
             <div class="form-group" id="groupWard">
-              <label for="ckWard">Phường/Xã <span class="required">*</span></label>
+              <label for="ckWard"
+                >Phường/Xã <span class="required">*</span></label
+              >
               <select id="ckWard">
                 <option value="">--- Chọn ---</option>
               </select>
             </div>
             <div class="form-group">
               <label for="ckNote">Ghi chú đơn hàng</label>
-              <textarea id="ckNote" rows="3" placeholder="VD: Giao hàng giờ hành chính, gọi trước 15 phút..."></textarea>
+              <textarea
+                id="ckNote"
+                rows="3"
+                placeholder="VD: Giao hàng giờ hành chính, gọi trước 15 phút..."
+              ></textarea>
             </div>
           </section>
 
@@ -154,7 +153,11 @@
                 <i class="fa-solid fa-store"></i>
               </label>
             </div>
-            <div class="shipping-notice" id="shippingNotice" style="display: none;">
+            <div
+              class="shipping-notice"
+              id="shippingNotice"
+              style="display: none"
+            >
               <i class="fa-solid fa-circle-info"></i>
               <span>Vui lòng nhập đầy đủ thông tin giao hàng ở trên</span>
             </div>
@@ -184,7 +187,9 @@
               <label class="payment-option active" data-method="cod">
                 <input type="radio" name="payment" value="cod" checked />
                 <span class="payment-radio"></span>
-                <span class="payment-label">Thanh toán khi giao hàng (COD)</span>
+                <span class="payment-label"
+                  >Thanh toán khi giao hàng (COD)</span
+                >
                 <i class="fa-solid fa-money-bill-wave"></i>
               </label>
               <label class="payment-option" data-method="banking">
@@ -201,29 +206,47 @@
         <div class="checkout-right">
           <section class="checkout-section order-section">
             <h3>Đơn hàng (<span id="orderCount">0</span> sản phẩm)</h3>
-            
+
             <div class="order-items" id="orderItems">
               <!-- Sản phẩm sẽ được render bởi JS -->
             </div>
 
             <!-- Mã giảm giá -->
             <div class="coupon-row">
-              <input type="text" id="couponCode" placeholder="Nhập mã giảm giá" />
+              <input
+                type="text"
+                id="couponCode"
+                placeholder="Nhập mã giảm giá"
+              />
               <button class="btn-coupon" id="btnCoupon">Áp dụng</button>
             </div>
 
             <!-- Điểm tích lũy -->
-            <div class="points-section" id="pointsSection" style="display: none;">
+            <div
+              class="points-section"
+              id="pointsSection"
+              style="display: none"
+            >
               <div class="points-header">
-                <span class="points-icon"><i class="fa-solid fa-coins"></i></span>
+                <span class="points-icon"
+                  ><i class="fa-solid fa-coins"></i
+                ></span>
                 <span class="points-title">Điểm tích lũy</span>
                 <span class="points-current" id="pointsCurrent">0 điểm</span>
               </div>
               <div class="points-body">
                 <div class="points-input-row">
                   <label>Dùng điểm:</label>
-                  <input type="number" id="pointsInput" min="0" value="0" placeholder="Nhập số điểm" />
-                  <button class="btn-use-points" id="btnUsePoints">Áp dụng</button>
+                  <input
+                    type="number"
+                    id="pointsInput"
+                    min="0"
+                    value="0"
+                    placeholder="Nhập số điểm"
+                  />
+                  <button class="btn-use-points" id="btnUsePoints">
+                    Áp dụng
+                  </button>
                 </div>
                 <div class="points-info">
                   <div class="points-info-row-1">
@@ -233,9 +256,15 @@
                     <span>Điểm nhận được từ đơn này:</span>
                     <span class="points-earn" id="pointsEarn">+0 điểm</span>
                   </div>
-                  <div class="points-info-row" id="pointsDiscountRow" style="display: none;">
+                  <div
+                    class="points-info-row"
+                    id="pointsDiscountRow"
+                    style="display: none"
+                  >
                     <span>Giảm giá từ điểm:</span>
-                    <span class="points-discount" id="pointsDiscountAmount">-0đ</span>
+                    <span class="points-discount" id="pointsDiscountAmount"
+                      >-0đ</span
+                    >
                   </div>
                 </div>
               </div>
@@ -251,13 +280,23 @@
                 <span>Phí vận chuyển</span>
                 <span id="shippingFee">-</span>
               </div>
-              <div class="calc-row discount-row" id="discountRow" style="display: none;">
+              <div
+                class="calc-row discount-row"
+                id="discountRow"
+                style="display: none"
+              >
                 <span>Giảm giá</span>
                 <span id="discountAmount">-0đ</span>
               </div>
-              <div class="calc-row points-discount-calc" id="pointsDiscountCalcRow" style="display: none;">
+              <div
+                class="calc-row points-discount-calc"
+                id="pointsDiscountCalcRow"
+                style="display: none"
+              >
                 <span>Quy đổi điểm</span>
-                <span id="pointsDiscountCalc" class="points-discount-green">-0đ</span>
+                <span id="pointsDiscountCalc" class="points-discount-green"
+                  >-0đ</span
+                >
               </div>
             </div>
 
@@ -295,22 +334,42 @@
           <h3>Xác nhận thanh toán</h3>
 
           <!-- CODE BỜI TRẦN GIA BẢO -->
-          <div class="banking-info" id="bankingInfo" style="display: none;">
-            <p style="font-weight: 600; margin-bottom: 10px;">Quét để thanh toán đơn hàng</p>
-              
+          <div class="banking-info" id="bankingInfo" style="display: none">
+            <p style="font-weight: 600; margin-bottom: 10px">
+              Quét để thanh toán đơn hàng
+            </p>
+
             <div class="loader" id="qrLoader"></div>
-            <img id="qrImage" src="" alt="Mã QR thanh toán">
+            <img id="qrImage" src="" alt="Mã QR thanh toán" />
 
             <div class="qr-details">
-              <p><strong>Chủ TK:</strong> <span id="bankName">TRAN GIA BAO</span></p>
-              <p><strong>Số TK:</strong> 398383979 <button class="copy-btn">Sao chép</button></p>
-              <p><strong>Số tiền:</strong> <span id="displayAmount" style="color: var(--accent-color); font-weight: bold;">0đ</span></p>
-              <p><strong>Nội dung:</strong> <span id="displayDesc" style="color: #007bff; font-weight: bold;"></span></p>
+              <p>
+                <strong>Chủ TK:</strong> <span id="bankName">TRAN GIA BAO</span>
+              </p>
+              <p>
+                <strong>Số TK:</strong> 398383979
+                <button class="copy-btn">Sao chép</button>
+              </p>
+              <p>
+                <strong>Số tiền:</strong>
+                <span
+                  id="displayAmount"
+                  style="color: var(--accent-color); font-weight: bold"
+                  >0đ</span
+                >
+              </p>
+              <p>
+                <strong>Nội dung:</strong>
+                <span
+                  id="displayDesc"
+                  style="color: #007bff; font-weight: bold"
+                ></span>
+              </p>
             </div>
           </div>
 
-          <p style="font-size: 13px; color: #666; margin-top: 8px;">
-            Nhấn <strong>Xác nhận</strong> nếu đã chuyển khoản thành công.<br>
+          <p style="font-size: 13px; color: #666; margin-top: 8px">
+            Nhấn <strong>Xác nhận</strong> nếu đã chuyển khoản thành công.<br />
             Nhấn <strong>Hủy</strong> để kiểm tra lại thông tin.
           </p>
 
@@ -322,11 +381,10 @@
             <button class="btn-confirm-ok" id="btnConfirmOk">
               <i class="fa-solid fa-check"></i> Xác nhận
             </button>
-            
           </div>
         </div>
       </div>
-              <!-- KẾT THÚC CODE BỞI TRẦN GIA BẢO -->
+      <!-- KẾT THÚC CODE BỞI TRẦN GIA BẢO -->
 
       <!-- Popup đặt hàng thành công -->
       <div class="success-overlay" id="successOverlay">
@@ -337,7 +395,9 @@
           <h3>Đặt hàng thành công!</h3>
           <p>Cảm ơn bạn đã đặt hàng tại <strong>GIBOR COFFEE</strong>.</p>
           <p>Chúng tôi sẽ liên hệ xác nhận đơn hàng sớm nhất.</p>
-          <p class="order-code">Mã đơn: <strong id="orderCode">#GB0000</strong></p>
+          <p class="order-code">
+            Mã đơn: <strong id="orderCode">#GB0000</strong>
+          </p>
           <div class="success-actions">
             <a href="menu.html" class="btn-success-menu">Tiếp tục mua sắm</a>
             <a href="index.html" class="btn-success-home">Về trang chủ</a>
@@ -347,71 +407,7 @@
     </main>
 
     <!-- FOOTER DÙNG CHUNG -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-col">
-          <h3 class="footer-logo">GIBOR COFFEE</h3>
-          <ul>
-            <li>
-              <p>
-                Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất.
-                Chúng tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
-              </p>
-            </li>
-            <li>
-              <img src="images/logo/logoHuit.png" alt="logo-huit" height="60" />
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Khám Phá</h4>
-          <ul>
-            <li><a href="index.html">Trang chủ</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="about.html">Giới thiệu</a></li>
-            <li><a href="contact.html">Liên hệ</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Liên Hệ</h4>
-          <ul>
-            <li>
-              <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
-            </li>
-            <li>
-              <p>📞 0909 999 999</p>
-            </li>
-          </ul>
-
-          <h4 style="margin-top: 25px">Theo Dõi GIBOR</h4>
-          <div class="social-links">
-            <a href="#" class="btn btn-secondary">Facebook</a>
-            <a href="#" class="btn btn-secondary">TikTok</a>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Vị Trí</h4>
-          <div class="google-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31352.538163214747!2d106.5926170349121!3d10.806159823201295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27d8b4f4d%3A0x92dcba2950430867!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBUaMawxqFuZyBUUC4gSOG7kyBDaMOtIE1pbmggKEhVSVQp!5e0!3m2!1svi!2s!4v1770452982001!5m2!1svi!2s"
-              width="100%"
-              height="150"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2026 GIBOR COFFEE. Designed by Team 3 Bảo & Anh.</p>
-      </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <!-- Firebase SDK cho xác thực Google -->
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
@@ -433,11 +429,12 @@
       }
     </script>
 
+    <script src="js/components.js"></script>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script src="js/payment.js"></script>
     <script src="js/mobile.js"></script>
-</body>
+  </body>
 </html>
 
 <!-- 
