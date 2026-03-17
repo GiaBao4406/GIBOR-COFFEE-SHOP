@@ -1501,6 +1501,11 @@ function updateQRCode() {
 
   const qrUrls = Array.from(new Set(builtUrls));
 
+  // Ảnh QR nằm trong popup nên cần tải ngay, tránh bị mobile lazy-load trì hoãn.
+  qrImg.removeAttribute("loading");
+  qrImg.setAttribute("fetchpriority", "high");
+  qrImg.setAttribute("decoding", "async");
+
   // Hiển thị loader trong khi tải ảnh
   qrImg.style.display = "none";
   loader.style.display = "block";
