@@ -9,8 +9,8 @@
 const NAV_ITEMS = [
   { href: "index.html", label: "Trang chủ" },
   { href: "menu.html", label: "Menu" },
-  { href: "about.html", label: "Giới thiệu" },
   { href: "branches.html", label: "Chi nhánh" },
+  { href: "about.html", label: "Giới thiệu" },
   { href: "contact.html", label: "Liên hệ" },
 ];
 
@@ -68,24 +68,26 @@ function renderHeaderComponent() {
 const FooterComponent = `
     <footer class="footer">
       <div class="footer-container">
-        <div class="footer-col">
-          <h3 class="footer-logo">GIBOR COFFEE</h3>
-          <ul>
-            <li>
-              <p>
-                Khơi nguồn cảm hứng từ những hạt cà phê rang xay nguyên chất.
-                Chúng tôi mang đến trải nghiệm hương vị mộc mạc và tinh tế nhất.
-              </p>
-            </li>
-            <li>
-              <img src="images/logo/logoHuit.png" alt="logo-huit" height="60" />
-            </li>
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-brand-link" aria-label="GIBOR Coffee">
+            <img src="images/logo/logo.jpg" alt="Logo GIBOR Coffee" />
+            <div>
+              <h3 class="footer-logo">GIBOR COFFEE</h3>
+            </div>
+          </a>
+          <p class="footer-description">
+            GIBOR là thương hiệu cà phê rang mộc tập trung vào chất lượng hạt,
+            quy trình minh bạch và trải nghiệm phục vụ tử tế mỗi ngày.
+          </p>
+          <ul class="footer-badges">
+            <li><i class="fas fa-seedling"></i> Rang mộc nguyên bản</li>
+            <li><i class="fas fa-award"></i> Chất lượng ổn định</li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Khám Phá</h4>
-          <ul>
+          <h4>Khám phá</h4>
+          <ul class="footer-links">
             <li><a href="index.html">Trang chủ</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="branches.html">Chi nhánh</a></li>
@@ -96,40 +98,44 @@ const FooterComponent = `
 
         <div class="footer-col">
           <h4>Liên Hệ</h4>
-          <ul>
+          <ul class="footer-contact">
             <li>
-              <p>📍 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
+              <i class="fas fa-location-dot"></i>
+              <span>140 Lê Trọng Tấn, Tân Phú, TP.HCM</span>
             </li>
             <li>
-              <p>📞 0909 999 999</p>
+              <i class="fas fa-phone-volume"></i>
+              <a href="tel:0909999999">0909 999 999</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:hello@giborcoffee.vn">hello@giborcoffee.vn</a>
+            </li>
+            <li>
+              <a href="branches.html" class="footer-branch-link">Xem tất cả chi nhánh</a>
             </li>
           </ul>
-
-          <h4 style="margin-top: 25px">Theo Dõi GIBOR</h4>
-          <div class="social-links">
-            <a href="#" class="btn btn-secondary">Facebook</a>
-            <a href="#" class="btn btn-secondary">TikTok</a>
-          </div>
         </div>
 
         <div class="footer-col">
-          <h4>Vị Trí</h4>
-          <div class="google-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31352.538163214747!2d106.5926170349121!3d10.806159823201295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27d8b4f4d%3A0x92dcba2950430867!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBUaMawxqFuZyBUUC4gSOG7kyBDaMOtIE1pbmggKEhVSVQp!5e0!3m2!1svi!2s!4v1770452982001!5m2!1svi!2s"
-              width="100%"
-              height="150"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <h4>Kết Nối</h4>
+          <ul class="footer-social-note">
+            <li>Theo dõi GIBOR để cập nhật menu mới và ưu đãi mỗi tuần.</li>
+          </ul>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 GIBOR COFFEE. Designed by Team 3 Bảo & Anh.</p>
+        <p>© 2026 GIBOR COFFEE. </p>
+        <div class="footer-bottom-links">
+          <a href="about.html">Về thương hiệu</a>
+          <a href="contact.html">Hỗ trợ khách hàng</a>
+        </div>
       </div>
     </footer>
 `;

@@ -5,8 +5,8 @@
 
 ========================================================================================
 */
-//Reveal Timeline on scroll
-const observerOptions = { threshold: 0.5 };
+// Reveal timeline cards on scroll
+const observerOptions = { threshold: 0.25 };
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -16,7 +16,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document
-  .querySelectorAll(".timeline-item")
+  .querySelectorAll(".about-timeline-item")
   .forEach((item) => observer.observe(item));
 
 /* 
