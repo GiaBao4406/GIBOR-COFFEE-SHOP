@@ -126,6 +126,7 @@ const FooterComponent = `
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <img src="images/logo/logoHuit.png" alt="GIBOR Coffee" class="logo-footer-huit" />
           </div>
         </div>
       </div>
