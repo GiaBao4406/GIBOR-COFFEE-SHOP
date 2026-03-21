@@ -19,6 +19,13 @@
     var(--bg);
 }
 
+body.dark .about-page {
+  background:
+    radial-gradient(circle at 12% 0, rgba(212, 163, 115, 0.16), transparent 34%),
+    radial-gradient(circle at 88% 0, rgba(255, 255, 255, 0.05), transparent 24%),
+    linear-gradient(180deg, #141414 0%, #171313 44%, #1b1411 100%);
+}
+
 .about-modern-hero {
   min-height: 72vh;
   padding: 110px 20px 90px;
@@ -28,6 +35,14 @@
   text-align: center;
   background:
     linear-gradient(rgba(18, 10, 7, 0.62), rgba(18, 10, 7, 0.62)),
+    url("../images/about/about.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+body.dark .about-modern-hero {
+  background:
+    linear-gradient(rgba(10, 7, 6, 0.78), rgba(10, 7, 6, 0.78)),
     url("../images/about/about.jpg");
   background-size: cover;
   background-position: center;
@@ -433,6 +448,8 @@
     ),
     linear-gradient(150deg, #3f2418 0%, #4b2c20 50%, #2a1811 100%);
   color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 34px rgba(19, 10, 7, 0.36);
 }
 
 .about-cta-box h2 {
@@ -449,15 +466,39 @@
 
 .about-cta-actions {
   margin-top: 24px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 460px;
   gap: 12px;
-  flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .about-cta-actions .btn {
-  min-width: 185px;
-  border-radius: 999px;
+  min-width: 0;
+  width: 100%;
+  min-height: 46px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
   font-weight: 700;
+}
+
+.about-cta-actions .btn-primary {
+  box-shadow: 0 10px 20px rgba(212, 163, 115, 0.24);
+}
+
+.about-cta-actions .btn-secondary {
+  border-color: rgba(255, 255, 255, 0.58);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.about-cta-actions .btn-secondary:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #1f1f1f;
 }
 
 body.dark .about-overview__intro,
@@ -465,8 +506,13 @@ body.dark .about-overview__stats,
 body.dark .about-highlight-card,
 body.dark .about-values__content,
 body.dark .about-timeline-content {
-  background: #1f1f1f;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    160deg,
+    rgba(36, 30, 28, 0.96) 0%,
+    rgba(28, 24, 23, 0.96) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
 }
 
 body.dark .about-overview__intro p,
@@ -474,13 +520,80 @@ body.dark .about-stat-card p,
 body.dark .about-highlight-card p,
 body.dark .about-values__content p,
 body.dark .about-values-list li,
-body.dark .about-timeline-content p {
+body.dark .about-timeline-content p,
+body.dark .about-section-heading p {
   color: rgba(255, 255, 255, 0.8);
 }
 
 body.dark .about-stat-card {
-  background: #2b2b2b;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    150deg,
+    rgba(57, 45, 40, 0.9) 0%,
+    rgba(46, 36, 33, 0.9) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .about-overview__intro h2,
+body.dark .about-section-heading h2,
+body.dark .about-highlight-card h3,
+body.dark .about-values__content h2,
+body.dark .about-timeline-content h3,
+body.dark .about-stat-card h3,
+body.dark .about-timeline-year {
+  color: #f7e5d3;
+}
+
+body.dark .about-highlight-card i {
+  color: #ffd3ab;
+  background: rgba(212, 163, 115, 0.22);
+}
+
+body.dark .about-values-list li::before,
+body.dark .about-values__panel li::before,
+body.dark .about-timeline-item::before {
+  background: #e8b687;
+}
+
+body.dark .about-values__panel {
+  background: linear-gradient(
+    160deg,
+    rgba(69, 42, 29, 0.98) 0%,
+    rgba(37, 24, 18, 0.98) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
+}
+
+body.dark .about-link-pill {
+  background: #e1ac78;
+  color: #2d1a12;
+}
+
+body.dark .about-link-pill:hover {
+  background: #f0bf8f;
+}
+
+body.dark .about-timeline::before {
+  background: rgba(232, 182, 135, 0.42);
+}
+
+body.dark .about-cta-box {
+  background:
+    radial-gradient(circle at 85% 0, rgba(255, 255, 255, 0.1), transparent 32%),
+    linear-gradient(145deg, #2f1c14 0%, #3c2418 48%, #24140f 100%);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.dark .about-cta-actions .btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark .about-cta-actions .btn-secondary:hover {
+  background: #f4ece5;
+  border-color: #f4ece5;
+  color: #21120d;
 }
 
 @media (max-width: 992px) {
@@ -511,6 +624,11 @@ body.dark .about-stat-card {
   .about-hero-actions .btn,
   .about-cta-actions .btn {
     width: 100%;
+  }
+
+  .about-cta-actions {
+    grid-template-columns: 1fr;
+    max-width: 100%;
   }
 
   .about-overview,
