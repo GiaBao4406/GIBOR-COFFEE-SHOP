@@ -140,7 +140,7 @@
             <ul class="order-items">${itemRows || "<li>Không có chi tiết sản phẩm</li>"}</ul>
             <div class="order-card-foot">
               <span>${order.payment || "Chưa rõ thanh toán"} · ${order.shipping || "Chưa rõ giao hàng"}</span>
-              <strong>${total}d</strong>
+              <strong>${total}đ</strong>
             </div>
           </article>
         `;

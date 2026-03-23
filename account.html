@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tai Khoan - GIBOR COFFEE SHOP</title>
+    <title>Tài Khoản - GIBOR COFFEE SHOP</title>
 
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/account.css" />
@@ -28,20 +28,20 @@
           <div class="account-user-head">
             <div class="account-avatar" id="accountAvatar">G</div>
             <div>
-              <h1 id="accountDisplayName">Tai khoan</h1>
+              <h1 id="accountDisplayName">Tài khoản</h1>
               <p id="accountEmail">-</p>
             </div>
           </div>
 
-          <nav class="account-menu" aria-label="Dieu huong tai khoan">
+          <nav class="account-menu" aria-label="Điều hướng tài khoản">
             <button class="account-menu-btn active" data-tab="profile">
-              <i class="fas fa-user"></i> Tai khoan cua toi
+              <i class="fas fa-user"></i> Tài khoản của tôi
             </button>
             <button class="account-menu-btn" data-tab="orders">
-              <i class="fas fa-bag-shopping"></i> Don hang
+              <i class="fas fa-bag-shopping"></i> Đơn hàng
             </button>
             <button class="account-menu-btn logout" id="accountLogoutBtn">
-              <i class="fas fa-sign-out-alt"></i> Dang xuat
+              <i class="fas fa-sign-out-alt"></i> Đăng xuất
             </button>
           </nav>
         </aside>
@@ -49,28 +49,28 @@
         <section class="account-content">
           <div class="account-panel active" data-panel="profile">
             <header class="panel-header">
-              <h2>Tai khoan cua toi</h2>
-              <p>Cap nhat thong tin va bao mat tai khoan.</p>
+              <h2>Tài khoản của tôi</h2>
+              <p>Cập nhật thông tin và bảo mật tài khoản.</p>
             </header>
 
             <div class="subtabs">
-              <button class="subtab-btn active" data-subtab="info">Thong tin</button>
-              <button class="subtab-btn" data-subtab="security">Bao mat</button>
+              <button class="subtab-btn active" data-subtab="info">Thông tin</button>
+              <button class="subtab-btn" data-subtab="security">Bảo mật</button>
             </div>
 
             <div class="subtab-panel active" data-subpanel="info">
               <form id="profileInfoForm" class="account-form" novalidate>
                 <div class="form-grid">
                   <label>
-                    Ho
+                    Họ
                     <input type="text" id="profileLastName" required />
                   </label>
                   <label>
-                    Ten
+                    Tên
                     <input type="text" id="profileFirstName" required />
                   </label>
                   <label>
-                    So dien thoai
+                    Số điện thoại
                     <input type="tel" id="profilePhone" />
                   </label>
                   <label>
@@ -79,7 +79,7 @@
                   </label>
                 </div>
                 <button type="submit" class="account-btn primary">
-                  <i class="fas fa-save"></i> Luu thay doi
+                  <i class="fas fa-save"></i> Lưu thay đổi
                 </button>
               </form>
             </div>
@@ -87,19 +87,19 @@
             <div class="subtab-panel" data-subpanel="security">
               <form id="profileSecurityForm" class="account-form" novalidate>
                 <label>
-                  Mat khau hien tai
+                  Mật khẩu hiện tại
                   <input type="password" id="oldPassword" required />
                 </label>
                 <label>
-                  Mat khau moi
+                  Mật khẩu mới
                   <input type="password" id="newPassword" minlength="6" required />
                 </label>
                 <label>
-                  Xac nhan mat khau moi
+                  Xác nhận mật khẩu mới
                   <input type="password" id="confirmPassword" minlength="6" required />
                 </label>
                 <button type="submit" class="account-btn primary">
-                  <i class="fas fa-lock"></i> Doi mat khau
+                  <i class="fas fa-lock"></i> Đổi mật khẩu
                 </button>
               </form>
             </div>
@@ -107,8 +107,8 @@
 
           <div class="account-panel" data-panel="orders">
             <header class="panel-header">
-              <h2>Don hang cua ban</h2>
-              <p>Theo doi lich su dat hang tai GIBOR Coffee.</p>
+              <h2>Đơn hàng của bạn</h2>
+              <p>Theo dõi lịch sử đặt hàng tại GIBOR Coffee.</p>
             </header>
 
             <div class="order-list" id="orderList"></div>
