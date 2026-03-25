@@ -836,21 +836,6 @@ Nếu bạn gặp vấn đề hoặc có câu hỏi:
 
 </div>
 
-
----
-
-## 🌟 Star History
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=Peo051%2FGIBOR-COFFEE-SHOP&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=Peo051/GIBOR-COFFEE-SHOP&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=Peo051/GIBOR-COFFEE-SHOP&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=Peo051/GIBOR-COFFEE-SHOP&type=date&legend=top-left" />
- </picture>
-</a>
-
 ---
 
 <div align="center">
@@ -858,7 +843,5 @@ Nếu bạn gặp vấn đề hoặc có câu hỏi:
 ### Made with ☕ by Team 4 - HUIT
 
 **GIBOR COFFEE SHOP** © 2026
-
-[⬆ Back to top](#-gibor-coffee-shop)
 
 </div>
