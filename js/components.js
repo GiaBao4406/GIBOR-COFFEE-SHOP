@@ -21,6 +21,79 @@ const TOP_BANNER_ITEMS = [
   "Đặt trước trên website để nhận nhanh tại quầy",
 ];
 
+const MENU_IMAGE_BANNER_PATHS = [
+  "images/menu/3Q.jpg",
+  "images/menu/bacxiu.jpg",
+  "images/menu/bonglankemtuoi.jpg",
+  "images/menu/brownie.jpg",
+  "images/menu/capheden.jpg",
+  "images/menu/caphemuoi.jpg",
+  "images/menu/caphesua.jpg",
+  "images/menu/cf1.jpg",
+  "images/menu/cheesecake.jpg",
+  "images/menu/combo1.jpg",
+  "images/menu/combo2.jpg",
+  "images/menu/combo3.jpg",
+  "images/menu/combo4.jpg",
+  "images/menu/combo5.jpg",
+  "images/menu/combo6.jpg",
+  "images/menu/combo7.jpg",
+  "images/menu/combo8.jpg",
+  "images/menu/combo9.jpg",
+  "images/menu/combo10.jpg",
+  "images/menu/combo11.jpg",
+  "images/menu/combo12.jpg",
+  "images/menu/cookie.jpg",
+  "images/menu/cupcake.jpg",
+  "images/menu/khoaimonbong.jpg",
+  "images/menu/luuhibicus.jpg",
+  "images/menu/matchadau.jpg",
+  "images/menu/matchadua.jpg",
+  "images/menu/matchalatte.jpg",
+  "images/menu/matchaxoai.jpg",
+  "images/menu/mousse.jpg",
+  "images/menu/redvelvet.jpg",
+  "images/menu/thachcunang.jpg",
+  "images/menu/thachdua.jpg",
+  "images/menu/thachmatcha.jpg",
+  "images/menu/thachtraicay.jpg",
+  "images/menu/thaixanh.jpg",
+  "images/menu/tiramisu.jpg",
+  "images/menu/tradao.jpg",
+  "images/menu/tradau.jpg",
+  "images/menu/tranchauden.jpg",
+  "images/menu/tranchauduongden.jpg",
+  "images/menu/trasuacaramel.jpg",
+  "images/menu/trasuagaorang.jpg",
+  "images/menu/trasuakemcheese.jpg",
+  "images/menu/trasuakhoaimon.jpg",
+  "images/menu/trasuaoreo.jpg",
+  "images/menu/trasuapudding.jpg",
+  "images/menu/trasuasocola.jpg",
+  "images/menu/travai.jpg",
+  "images/menu/truyenthong.jpg",
+];
+
+const TOP_IMAGE_BANNER_ITEMS = MENU_IMAGE_BANNER_PATHS.map((src) => ({
+  src,
+  alt: src.split("/").pop().replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
+  href: "menu.html",
+}));
+
+const TOP_IMAGE_MARQUEE_ITEMS_HTML = TOP_IMAGE_BANNER_ITEMS.map(
+  ({ src, alt, href }) =>
+    `<a class="top-image-marquee__item" href="${href}" aria-label="${alt}"><img src="${src}" alt="${alt}" loading="lazy" decoding="async" /></a>`
+).join("");
+
+const TOP_IMAGE_MARQUEE_COMPONENT = `
+  <div class="top-image-marquee" role="region" aria-label="Hinh anh menu">
+    <div class="top-image-marquee__track">
+      <div class="top-image-marquee__group">${TOP_IMAGE_MARQUEE_ITEMS_HTML}</div>
+      <div class="top-image-marquee__group" aria-hidden="true">${TOP_IMAGE_MARQUEE_ITEMS_HTML}</div>
+    </div>
+  </div>
+`;
+
 function getCurrentPage() {
   const path = window.location.pathname.replace(/\\/g, "/");
   return (path.split("/").pop() || "index.html").toLowerCase();
@@ -37,7 +110,6 @@ function renderHeaderComponent() {
     (text) =>
       `<span class="top-marquee__item">${text}</span><span class="top-marquee__dot" aria-hidden="true"></span>`
   ).join("");
-
   return `
     <div class="top-marquee" role="region" aria-label="Thông báo ưu đãi">
       <div class="top-marquee__track">
@@ -83,6 +155,7 @@ function renderHeaderComponent() {
 }
 
 const FooterComponent = `
+    ${TOP_IMAGE_MARQUEE_COMPONENT}
     <footer class="footer">
       <div class="footer-container container-xxl">
         <div class="footer-col footer-brand">
